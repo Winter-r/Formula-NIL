@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 297884aa7e5106b45b78535cb8657f32
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 2203
+  packageName: Modern Sports Car 5
+  packageVersion: 1.0
+  assetPath: Assets/Car5/FBXs/Materials/Car5-lambert2.mat
+  uploadId: 25670

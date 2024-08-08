@@ -28,13 +28,6 @@ sysinfo.txt
 *.pidb
 .DS_Store
 
-# vscode and everything inside it
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
 ###
 # OS generated
 ###
@@ -46,3 +39,7 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
+
+.vscode/extensions.json
+.vscode/launch.json
+.vscode/settings.json

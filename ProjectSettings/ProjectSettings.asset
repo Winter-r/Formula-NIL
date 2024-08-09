@@ -815,7 +815,8 @@ PlayerSettings:
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
   webWasm2023: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Standalone: DREAMTECK_SPLINES
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -931,7 +932,7 @@ PlayerSettings:
   cloudProjectId: 3f2af847-aea3-45f8-9d64-bb1a2c8a2b7a
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: The Best Car Simulator
+  projectName: Formula - NIL
   organizationId: dk_mohi
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

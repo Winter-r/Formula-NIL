@@ -303,10 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec20da4e0cd858344a53ef3cb031c188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceLine: {fileID: 1198851459}
-  lookAheadDistance: 5
-  safeDistance: 2
-  shouldBrake: 0
 --- !u!114 &2473123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4784,10 +4780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec20da4e0cd858344a53ef3cb031c188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceLine: {fileID: 1198851459}
-  lookAheadDistance: 5
-  safeDistance: 2
-  shouldBrake: 0
 --- !u!114 &337102497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8366,10 +8358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec20da4e0cd858344a53ef3cb031c188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceLine: {fileID: 1198851459}
-  lookAheadDistance: 5
-  safeDistance: 2
-  shouldBrake: 0
 --- !u!114 &607595521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11668,10 +11656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec20da4e0cd858344a53ef3cb031c188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceLine: {fileID: 1198851459}
-  lookAheadDistance: 5
-  safeDistance: 2
-  shouldBrake: 0
 --- !u!114 &855091954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16657,6 +16641,7 @@ MonoBehaviour:
     showNormalsHelpInfo: 0
     tabIndex: 0
   initialized: 1
+  globalEditorDisplaySettings: {fileID: 0}
 --- !u!4 &1198851460
 Transform:
   m_ObjectHideFlags: 0
@@ -22397,10 +22382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec20da4e0cd858344a53ef3cb031c188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceLine: {fileID: 1198851459}
-  lookAheadDistance: 5
-  safeDistance: 2
-  shouldBrake: 0
 --- !u!114 &1603624705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31267,7 +31248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2324896081041571600
 Transform:
   m_ObjectHideFlags: 0
@@ -38977,10 +38958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec20da4e0cd858344a53ef3cb031c188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceLine: {fileID: 0}
-  lookAheadDistance: 5
-  safeDistance: 2
-  shouldBrake: 0
 --- !u!114 &8985761945658910075
 MonoBehaviour:
   m_ObjectHideFlags: 0

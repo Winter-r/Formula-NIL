@@ -8,17 +8,9 @@ public class WheelConfigurator : MonoBehaviour
 	[SerializeField] private WheelSettings frontWheelSettings;
 	[SerializeField] private WheelSettings rearWheelSettings;
 
-	// [Space(10)]
-
-	// [SerializeField] private WheelSettings frontWheelDriftSettings;
-	// [SerializeField] private WheelSettings rearWheelDriftSettings;
-
 	private void Awake()
 	{
 		carLocomotionManager = GetComponent<CarLocomotionManager>();
-
-		// carLocomotionManager.IsDriftingEvent += OnDrifting;
-		// carLocomotionManager.IsNotDriftingEvent += OnStopDrifting;
 	}
 
 	private void Start()
@@ -73,25 +65,6 @@ public class WheelConfigurator : MonoBehaviour
 		};
 
 		wheelCollider.sidewaysFriction = sidewaysFriction;
-	}
-
-	// private void OnDrifting(object sender, EventArgs e)
-	// {
-	// 	ConfigureWheel(carLocomotionManager.wheelColliders.frontRightWheel, frontWheelDriftSettings);
-	// 	ConfigureWheel(carLocomotionManager.wheelColliders.frontLeftWheel, frontWheelDriftSettings);
-	// 	ConfigureWheel(carLocomotionManager.wheelColliders.rearRightWheel, rearWheelDriftSettings);
-	// 	ConfigureWheel(carLocomotionManager.wheelColliders.rearLeftWheel, rearWheelDriftSettings);
-	// }
-
-	// private void OnStopDrifting(object sender, EventArgs e)
-	// {
-	// 	ApplyDefaultWheelSettings();
-	// }
-
-	private void OnDestroy()
-	{
-		// carLocomotionManager.IsDriftingEvent -= OnDrifting;
-		// carLocomotionManager.IsNotDriftingEvent -= OnStopDrifting;
 	}
 }
 

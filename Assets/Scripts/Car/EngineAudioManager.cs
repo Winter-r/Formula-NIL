@@ -63,7 +63,7 @@ public class EngineAudioManager : MonoBehaviour
 			{
 				reverseSound.volume = 0;
 				runningSound.volume = Mathf.Lerp(0.3f, maxRunningVolume, speedRatio);
-				runningSound.pitch = Mathf.Lerp(0.3f, maxRunningPitch, speedRatio);
+				// runningSound.pitch = Mathf.Lerp(0.3f, maxRunningPitch, speedRatio);
 			}
 			else
 			{

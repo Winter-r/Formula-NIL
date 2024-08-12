@@ -3,8 +3,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
 	private static CarInput CarInput;
-
-	// public static bool isDrifting;
+	
 	private CarLocomotionManager carLocomotionManager;
 
 	public static float throttleInput;
@@ -15,8 +14,6 @@ public class InputManager : MonoBehaviour
 
 	public static float clutchInput;
 	public static float dampenedClutchInput;
-
-	// public static float handBrakeInput;
 
 	public static bool cameraCycleInput;
 
@@ -36,9 +33,6 @@ public class InputManager : MonoBehaviour
 
 			CarInput.Controls.Clutch.performed += ctx => clutchInput = ctx.ReadValue<float>();
 			CarInput.Controls.Clutch.canceled += ctx => clutchInput = 0;
-
-			// CarInput.Controls.HandBrake.performed += ctx => handBrakeInput = ctx.ReadValue<float>();
-			// CarInput.Controls.HandBrake.canceled += ctx => handBrakeInput = 0;
 
 			CarInput.Controls.CycleCamera.performed += ctx => cameraCycleInput = ctx.ReadValueAsButton();
 			CarInput.Controls.CycleCamera.canceled += ctx => cameraCycleInput = false;
@@ -63,9 +57,7 @@ public class InputManager : MonoBehaviour
 		dampenedSteeringInput = DampenedInput(steerInput, dampenedSteeringInput);
 		dampenedClutchInput = DampenedInput(clutchInput, dampenedClutchInput);
 
-		carLocomotionManager.HandleCarLocomotion(dampenedThrottleInput, dampenedSteeringInput, dampenedClutchInput, 0);
-
-		Debug.Log("Throttle: " + throttleInput + " | Clutch: " + clutchInput);
+		carLocomotionManager.HandleCarLocomotion(dampenedThrottleInput, dampenedSteeringInput, dampenedClutchInput);
 	}
 
 	public static float DampenedInput(float input, float output)

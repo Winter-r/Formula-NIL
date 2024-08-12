@@ -52,11 +52,7 @@ public class CarLocomotionManager : MonoBehaviour
 
 	[Header("Break Settings")]
 	[SerializeField] private float brakePower;
-	// [SerializeField] private Material brakeMaterial;
-	// [SerializeField] private Color brakingColor;
-	// [SerializeField] private float brakeColorIntensity;
 	[HideInInspector] public float brakeInput;
-	// private bool handBrake;
 
 	#endregion
 
@@ -85,11 +81,18 @@ public class CarLocomotionManager : MonoBehaviour
 
 	#region UI Settings
 
-	[Header("UI Settings")]
-	[SerializeField] private TMP_Text speedText;
-	[SerializeField] private TMP_Text rpmText;
-	[SerializeField] private TMP_Text gearText;
-	[SerializeField] private Transform rpmNeedle;
+	private TMP_Text speedText;
+	private TMP_Text rpmText;
+	private TMP_Text gearText;
+	private Transform rpmNeedle;
+
+	#endregion
+
+	#region Camera Settings
+
+	public Transform cameraLookAt;
+	public Transform podCameraLookAt;
+	public CameraView[] cameraViews;
 
 	#endregion
 
@@ -105,17 +108,6 @@ public class CarLocomotionManager : MonoBehaviour
 
 	#endregion
 
-	#region Drift Settings
-
-	// [Header("Drift Settigns")]
-	// [SerializeField] private float driftForce = 500f; // Force to apply to the rear end to initiate drift
-	// [SerializeField] private float driftGraceDuration = 2.0f; // Duration to keep drifting state active after handbrake is released
-	// private float driftTimer = 0f;
-	// public event EventHandler IsDriftingEvent;
-	// public event EventHandler IsNotDriftingEvent;
-
-	#endregion
-
 	#endregion
 
 	private void Awake()
@@ -126,49 +118,36 @@ public class CarLocomotionManager : MonoBehaviour
 
 	private void Start()
 	{
-		// powerCurve = new AnimationCurve(
-		// 		new Keyframe(idleRpm - 200 / redLine, 0 / motorPower),        // slightly below idle, power is 0
-		// 		new Keyframe(3000 / redLine, 50 / motorPower),       // Low power at 3,000 RPM
-		// 		new Keyframe(5000 / redLine, 200 / motorPower),      // Increasing power at 5,000 RPM
-		// 		new Keyframe(7500 / redLine, 500 / motorPower),      // Significant power increase at 7,500 RPM
-		// 		new Keyframe(10000 / redLine, 800 / motorPower),     // Power climbing at 10,000 RPM
-		// 		new Keyframe(12500 / redLine, 950 / motorPower),     // Close to peak power at 12,500 RPM
-		// 		new Keyframe(redLine / redLine, 900 / motorPower)      // Slight drop-off at redline (15,000 RPM)
-		// 	);
-
-		// reversePowerCurve = new AnimationCurve(
-		// 	new Keyframe(0, 0),               // At 0 RPM, power is 0
-		// 	new Keyframe(1000 / redLine, 50 / motorPower),    // Low power at 1000 RPM
-		// 	new Keyframe(3000 / redLine, 150 / motorPower),   // Moderate power at 3000 RPM
-		// 	new Keyframe(5000 / redLine, 200 / motorPower)    // Peak power at 5000 RPM
-		// );
-
 		gearState = GearState.Neutral;
 	}
 
 	private void Update()
 	{
+		FindUIElements();
+
 		clampedSpeed = Mathf.Lerp(clampedSpeed, GetCarSpeed(), Time.deltaTime);
 	}
 
-	public void HandleCarLocomotion(float throttleInput, float steerInput, float clutchInput, float handBrakeInput)
+	public void HandleCarLocomotion(float throttleInput, float steerInput, float clutchInput)
 	{
 		HandleStartingEngine(throttleInput);
-		HandleMotor(throttleInput);
-		HandleSteering(steerInput);
-		HandleWheels();
-		HandleBrake(handBrakeInput);
-		HandleBrakeDuringSlip(throttleInput);
-		UpdateGaugeClusterUI();
 		HandleClutch(throttleInput, clutchInput);
-		// HandleDrift();
+		HandleWheels();
 		UpdateReversing(throttleInput);
 		UpdateCarSpeedRatio(throttleInput);
+		UpdateGaugeClusterUI();
 
-
-		if (gearState == GearState.Reversing && throttleInput >= 0)
+		if (RaceManager.Instance.raceStarted)
 		{
-			gearState = GearState.Neutral;
+			HandleMotor(throttleInput);
+			HandleSteering(steerInput);
+			HandleBrake();
+			HandleBrakeDuringSlip(throttleInput);
+
+			if (gearState == GearState.Reversing && throttleInput >= 0)
+			{
+				gearState = GearState.Neutral;
+			}
 		}
 	}
 
@@ -254,23 +233,19 @@ public class CarLocomotionManager : MonoBehaviour
 		{
 			if (clutch < 0.1f)
 			{
-				Debug.Log("Engine Stalled");
 				currentRpm = Mathf.Lerp(currentRpm, Mathf.Max(idleRpm, redLine * Mathf.Abs(throttleInput)) + UnityEngine.Random.Range(-50, 50), Time.deltaTime);
 			}
 			else
 			{
-				Debug.Log("Engine Running");
 				wheelRpm = Mathf.Abs((wheelColliders.rearRightWheel.rpm + wheelColliders.rearLeftWheel.rpm) / 2f) * (isReversing ? reverseGearRatio : gearRatios[currentGear]) * differentialRatio;
 				currentRpm = Mathf.Lerp(currentRpm, Mathf.Max(idleRpm - 100, wheelRpm), Time.deltaTime * 3f);
 
 				if (isReversing)
 				{
-					Debug.Log("Reversing");
 					torque = powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm * reverseGearRatio * differentialRatio * 5252f * clutch;
 				}
 				else
 				{
-					Debug.Log("Forward");
 					torque = powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm * gearRatios[currentGear] * differentialRatio * 5252f * clutch;
 				}
 			}
@@ -320,7 +295,7 @@ public class CarLocomotionManager : MonoBehaviour
 		wheelMeshRenderer.transform.rotation = rotation;
 	}
 
-	private void HandleBrake(float handBrakeInput)
+	private void HandleBrake()
 	{
 		float frontWheelBrakeTorque = brakeInput * brakePower * 0.7f;
 
@@ -331,29 +306,6 @@ public class CarLocomotionManager : MonoBehaviour
 
 		wheelColliders.rearLeftWheel.brakeTorque = rearWheelBrakeTorque;
 		wheelColliders.rearRightWheel.brakeTorque = rearWheelBrakeTorque;
-
-		// if (brakeMaterial)
-		// {
-		// 	if (brakeInput > 0)
-		// 	{
-		// 		brakeMaterial.EnableKeyword("_EMISSION");
-		// 		brakeMaterial.SetColor("_EmissionColor", brakingColor * Mathf.Pow(2, brakeColorIntensity));
-		// 	}
-		// 	else
-		// 	{
-		// 		brakeMaterial.DisableKeyword("_EMISSION");
-		// 		brakeMaterial.SetColor("_EmissionColor", Color.black);
-		// 	}
-		// }
-
-		// handBrake = handBrakeInput > 0.5;
-
-		// if (handBrake)
-		// {
-		// 	clutch = 0;
-		// 	wheelColliders.rearRightWheel.brakeTorque = brakePower * 1000f;
-		// 	wheelColliders.rearLeftWheel.brakeTorque = brakePower * 1000f;
-		// }
 	}
 
 	private void HandleBrakeDuringSlip(float throttleInput)
@@ -400,6 +352,29 @@ public class CarLocomotionManager : MonoBehaviour
 		}
 	}
 
+	private void FindUIElements()
+	{
+		if (!speedText)
+		{
+			GameObject.Find("Speed Text").TryGetComponent(out speedText);
+		}
+
+		if (!rpmText)
+		{
+			GameObject.Find("RPM Text").TryGetComponent(out rpmText);
+		}
+
+		if (!gearText)
+		{
+			GameObject.Find("Gear Text").TryGetComponent(out gearText);
+		}
+
+		if (!rpmNeedle)
+		{
+			GameObject.Find("RPM Needle").TryGetComponent(out rpmNeedle);
+		}
+	}
+
 	private void HandleClutch(float throttleInput, float clutchInput)
 	{
 		if (gearState != GearState.ChangingGear)
@@ -419,85 +394,6 @@ public class CarLocomotionManager : MonoBehaviour
 			clutch = Mathf.Lerp(clutch, 0, Time.deltaTime * 5f);
 		}
 	}
-
-	// private void HandleDrift()
-	// {
-	// 	float carSpeed = GetCarSpeed() * 3.6f; // Convert to km/h
-
-	// 	// Check if the car should start drifting
-	// 	if (!isDrifting && carSpeed > 40f && Mathf.Abs(dampenedSteeringInput) > 0.1f && handBrake)
-	// 	{
-	// 		StartDrifting();
-	// 	}
-
-	// 	// If the car is drifting, keep isDrifting true as long as the car is not straight
-	// 	if (isDrifting)
-	// 	{
-	// 		driftTimer += Time.deltaTime;
-
-	// 		float angleBetween = Vector3.Angle(transform.forward, playerCarRb.linearVelocity);
-
-	// 		if (angleBetween < 5f)
-	// 		{
-	// 			if (driftTimer > driftGraceDuration)
-	// 			{
-	// 				ResetDriftingState();
-	// 			}
-	// 		}
-	// 		else
-	// 		{
-	// 			driftTimer = 0; // Reset the timer if the car is not moving straight
-	// 		}
-	// 	}
-	// }
-
-	// private void StartDrifting()
-	// {
-	// 	Debug.Log("Drifting");
-
-	// 	IsDriftingEvent?.Invoke(this, EventArgs.Empty);
-	// 	isDrifting = true;
-
-	// 	driftTimer = 0;
-
-	// 	Vector3 rearPosition = transform.position - transform.forward * 2.0f; // Adjust the offset as needed
-	// 	Vector3 driftDirection = Vector3.Cross(playerCarRb.linearVelocity.normalized, Vector3.up); // Determine the direction of the drift
-	// 	driftDirection *= dampenedSteeringInput > 0 ? 1 : -1; // Adjust direction based on steering input
-	// 	playerCarRb.AddForceAtPosition(driftDirection * driftForce, rearPosition, ForceMode.Impulse);
-
-	// 	// slightly apply brake torque
-	// 	wheelColliders.rearRightWheel.brakeTorque = brakePower * 0.25f;
-	// 	wheelColliders.rearLeftWheel.brakeTorque = brakePower * 0.25f;
-	// }
-
-	// private void ResetDriftingState()
-	// {
-	// 	Debug.Log("Not Drifting");
-
-	// 	IsNotDriftingEvent?.Invoke(this, EventArgs.Empty);
-	// 	isDrifting = false;
-	// 	driftTimer = 0;
-
-	// 	// Reset the brake torque
-	// 	wheelColliders.rearRightWheel.brakeTorque = 0;
-	// 	wheelColliders.rearLeftWheel.brakeTorque = 0;
-	// }
-
-	// public float GetDriftAngle()
-	// {
-	// 	// Project velocity onto the horizontal plane
-	// 	Vector3 velocityOnPlane = Vector3.ProjectOnPlane(playerCarRb.linearVelocity, Vector3.up);
-	// 	Vector3 forwardOnPlane = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
-
-	// 	// Calculate the angle between the velocity and the forward direction
-	// 	float angle = Vector3.Angle(forwardOnPlane, velocityOnPlane);
-
-	// 	// Determine the sign of the angle based on the cross product
-	// 	float sign = Mathf.Sign(Vector3.Cross(forwardOnPlane, velocityOnPlane).y);
-
-	// 	// Set the current drift angle with the correct sign
-	// 	return angle * sign;
-	// }
 
 	public float GetCarSpeed()
 	{
@@ -580,4 +476,18 @@ public class WheelMeshRenderers
 {
 	public MeshRenderer frontLeftWheel, frontRightWheel;
 	public MeshRenderer rearLeftWheel, rearRightWheel;
+}
+
+[Serializable]
+public class CameraView
+{
+	public ViewType viewType;
+	public Transform viewTransform;
+}
+
+public enum ViewType
+{
+	Regular,
+	Far,
+	Pod
 }

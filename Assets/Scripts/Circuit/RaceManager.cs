@@ -14,14 +14,25 @@ public class RaceManager : MonoBehaviour
 	public static RaceManager Instance { get; private set; }
 
 	public List<Transform> CarTransformsList { get; private set; }
-	public TimeTrialGhostSO ghost;
-	public List<Image> countdownLights;
-	// list of tags
-	public List<string> carTags;
-	public bool raceStarted { get; private set; } = false;
-	public GameObject playerPrefab;
-	public GameObject ghostPrefab;
-	public Transform timeTrialSpawn;
+	public bool RaceStarted { get; private set; } = false;
+
+	[Header("Race Settings")]
+	[SerializeField] private RaceType raceType;
+	[SerializeField] private int numberOfLaps;
+	[SerializeField] private int numberOfOpponents;
+
+	[Header("Cars")]
+	[SerializeField] private GameObject playerPrefab;
+	[SerializeField] private GameObject ghostPrefab;
+	[SerializeField] private GameObject aiPrefab;
+	[SerializeField] private List<string> carTags;
+
+	[Header("UI")]
+	[SerializeField] private List<Image> countdownLights;
+
+	[Header("Spawn Points")]
+	[SerializeField] private Transform timeTrialSpawnPoint;
+	[SerializeField] private List<Transform> grandPrixSpawnPoints;
 
 	private void Awake()
 	{
@@ -53,8 +64,23 @@ public class RaceManager : MonoBehaviour
 
 		Transform carContainerTransform = GameObject.FindGameObjectWithTag("CarContainer").transform;
 
-		Instantiate(playerPrefab, timeTrialSpawn.position, timeTrialSpawn.rotation, carContainerTransform);
-		Instantiate(ghostPrefab, timeTrialSpawn.position, timeTrialSpawn.rotation, carContainerTransform);
+		GameObject playerCar = Instantiate(playerPrefab, timeTrialSpawnPoint.position, timeTrialSpawnPoint.rotation, carContainerTransform);
+
+		if (raceType == RaceType.TimeTrial)
+		{
+			GhostRunner.Instance.recordTarget = playerCar.transform;
+		}
+
+		if (raceType == RaceType.AIGrandPrix)
+		{
+			for (int i = 0; i < numberOfOpponents; i++)
+			{
+				// Randomise the AI spawn points but ensure no cars have the same spawn point
+				int randomIndex = UnityEngine.Random.Range(0, grandPrixSpawnPoints.Count);
+				Instantiate(aiPrefab, grandPrixSpawnPoints[randomIndex].position, grandPrixSpawnPoints[randomIndex].rotation, carContainerTransform);
+				grandPrixSpawnPoints.RemoveAt(randomIndex);
+			}
+		}
 
 		for (int i = 0; i < carContainerTransform.childCount; i++)
 		{
@@ -75,7 +101,7 @@ public class RaceManager : MonoBehaviour
 		}
 
 		// Wait for a random time between 0.2 to 3 seconds
-		float randomWaitTime = Random.Range(0.2f, 3f);
+		float randomWaitTime = UnityEngine.Random.Range(0.2f, 3f);
 		yield return new WaitForSeconds(randomWaitTime);
 
 		// Turn off all lights
@@ -84,13 +110,18 @@ public class RaceManager : MonoBehaviour
 			light.enabled = false;
 		}
 
-		StartRace();
+		if (raceType == RaceType.TimeTrial)
+		{
+			StartTrial();
+		}
+		else if (raceType == RaceType.AIGrandPrix)
+		{
+			// Start
+		}
 	}
 
-	private void StartRace()
+	private void StartTrial()
 	{
-		raceStarted = true;
-		// Implement race start logic, such as enabling car controls
-		Debug.Log("Race Started!");
+		RaceStarted = true;
 	}
 }

@@ -820,7 +820,6 @@ GameObject:
   - component: {fileID: 6787572949067145}
   - component: {fileID: 8743947613833300082}
   - component: {fileID: 4691192907265845983}
-  - component: {fileID: 2773521465018146998}
   - component: {fileID: 8206659628923853506}
   - component: {fileID: 7819608085058473833}
   - component: {fileID: 9144563984808008939}
@@ -840,7 +839,7 @@ Transform:
   m_GameObject: {fileID: 3553969170880271488}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -21.12, y: 6.68, z: 6}
+  m_LocalPosition: {x: 37, y: 0, z: 130}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1015,10 +1014,15 @@ MonoBehaviour:
   decreaseGearRpm: 6500
   changeGearDelay: 0.1
   currentRpm: 0
-  speedText: {fileID: 0}
-  rpmText: {fileID: 0}
-  gearText: {fileID: 0}
-  rpmNeedle: {fileID: 0}
+  cameraLookAt: {fileID: 2269215395596381560}
+  podCameraLookAt: {fileID: 6312370963717130254}
+  cameraViews:
+  - viewType: 0
+    viewTransform: {fileID: 2808136494835520623}
+  - viewType: 1
+    viewTransform: {fileID: 2880116132582644448}
+  - viewType: 2
+    viewTransform: {fileID: 3731132469512625012}
   wheelColliders:
     frontLeftWheel: {fileID: 1439202954018568541}
     frontRightWheel: {fileID: 4367189314680180500}
@@ -1031,28 +1035,10 @@ MonoBehaviour:
     rearRightWheel: {fileID: 7545048953279859162}
   forwardFrictionVelocity: 0
   sidewaysFrictionVelocity: 0
-  cameraLookAt: {fileID: 2269215395596381560}
-  podCameraLookAt: {fileID: 6312370963717130254}
-  cameraViews:
-  - viewType: 0
-    viewTransform: {fileID: 2808136494835520623}
-  - viewType: 1
-    viewTransform: {fileID: 2880116132582644448}
-  - viewType: 2
-    viewTransform: {fileID: 3731132469512625012}
---- !u!114 &2773521465018146998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3553969170880271488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26d801e582c623a4a89a0e2eb9694ee5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ghost: {fileID: 11400000, guid: 12139d23b4274cc41996418f3547d896, type: 2}
+  currentLapTime: 0
+  bestLapTime: 0
+  lastLapTime: 0
+  startClock: 0
 --- !u!114 &8206659628923853506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,7 +1104,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3553969170880271488}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb097631d4b066d4db2095adfc8c8d66, type: 3}
   m_Name: 

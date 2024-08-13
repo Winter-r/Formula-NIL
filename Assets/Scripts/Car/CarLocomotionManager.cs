@@ -81,15 +81,19 @@ public class CarLocomotionManager : MonoBehaviour
 
 	#region UI Settings
 
+	// Gauge Cluster UI
 	private TMP_Text speedText;
 	private TMP_Text rpmText;
 	private TMP_Text gearText;
 	private Transform rpmNeedle;
 
+
+
 	#endregion
 
 	#region Camera Settings
 
+	[Header("Camera Settings")]
 	public Transform cameraLookAt;
 	public Transform podCameraLookAt;
 	public CameraView[] cameraViews;
@@ -105,6 +109,11 @@ public class CarLocomotionManager : MonoBehaviour
 	public WheelFrictionCurve sidewaysFrictionCurve;
 	[HideInInspector] public float forwardFrictionVelocity;
 	[HideInInspector] public float sidewaysFrictionVelocity;
+
+	#endregion
+
+	#region Race Settings
+
 
 	#endregion
 
@@ -130,6 +139,10 @@ public class CarLocomotionManager : MonoBehaviour
 
 	public void HandleCarLocomotion(float throttleInput, float steerInput, float clutchInput)
 	{
+		HandleMotor(throttleInput);
+		HandleSteering(steerInput);
+		HandleBrake();
+		HandleBrakeDuringSlip(throttleInput);
 		HandleStartingEngine(throttleInput);
 		HandleClutch(throttleInput, clutchInput);
 		HandleWheels();
@@ -137,17 +150,9 @@ public class CarLocomotionManager : MonoBehaviour
 		UpdateCarSpeedRatio(throttleInput);
 		UpdateGaugeClusterUI();
 
-		if (RaceManager.Instance.raceStarted)
+		if (gearState == GearState.Reversing && throttleInput >= 0)
 		{
-			HandleMotor(throttleInput);
-			HandleSteering(steerInput);
-			HandleBrake();
-			HandleBrakeDuringSlip(throttleInput);
-
-			if (gearState == GearState.Reversing && throttleInput >= 0)
-			{
-				gearState = GearState.Neutral;
-			}
+			gearState = GearState.Neutral;
 		}
 	}
 
@@ -162,6 +167,13 @@ public class CarLocomotionManager : MonoBehaviour
 
 	private void HandleMotor(float throttleInput)
 	{
+		if (!RaceManager.Instance.RaceStarted)
+		{
+			// If race hasn't started, skip applying motor torque but allow RPM to increase with clutch
+			currentTorque = CalculateTorque(throttleInput);
+			return;
+		}
+
 		float carSpeed = GetCarSpeed();
 
 		if (carSpeed > maxSpeed)
@@ -354,25 +366,24 @@ public class CarLocomotionManager : MonoBehaviour
 
 	private void FindUIElements()
 	{
-		if (!speedText)
-		{
-			GameObject.Find("Speed Text").TryGetComponent(out speedText);
-		}
+		speedText = FindAndAssignComponent("Speed Text", speedText);
+		rpmText = FindAndAssignComponent("RPM Text", rpmText);
+		gearText = FindAndAssignComponent("Gear Text", gearText);
+		rpmNeedle = FindAndAssignComponent("RPM Needle", rpmNeedle);
 
-		if (!rpmText)
-		{
-			GameObject.Find("RPM Text").TryGetComponent(out rpmText);
-		}
+	}
 
-		if (!gearText)
+	public static T FindAndAssignComponent<T>(string name, T existingComponent) where T : Component
+	{
+		if (existingComponent == null)
 		{
-			GameObject.Find("Gear Text").TryGetComponent(out gearText);
+			GameObject foundObject = GameObject.Find(name);
+			if (foundObject != null)
+			{
+				foundObject.TryGetComponent(out existingComponent);
+			}
 		}
-
-		if (!rpmNeedle)
-		{
-			GameObject.Find("RPM Needle").TryGetComponent(out rpmNeedle);
-		}
+		return existingComponent;
 	}
 
 	private void HandleClutch(float throttleInput, float clutchInput)

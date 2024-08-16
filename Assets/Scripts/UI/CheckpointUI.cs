@@ -5,43 +5,29 @@ using UnityEngine;
 
 public class CheckpointUI : MonoBehaviour
 {
-	[SerializeField] private CircuitCheckpointManager checkpointManager;
-	[SerializeField] PenaltyGraphic penaltyGraphic;
-	[SerializeField] GameObject disqualificationGraphic;
+	[SerializeField] private PenaltyGraphic penaltyGraphic;
+	[SerializeField] private GameObject disqualificationGraphic;
 
 	private void Start()
 	{
-		checkpointManager.OnPlayerCorrectCheckpoint += OnPlayerCorrectCheckpoint;
-		checkpointManager.OnPlayerWrongCheckpoint += OnPlayerWrongCheckpoint;
-		checkpointManager.OnPlayerDisqualified += OnPlayerDisqualified;
+		RaceManager.Instance.OnPlayerWrongCheckpoint += OnPlayerWrongCheckpoint;
+		RaceManager.Instance.OnPlayerDisqualified += OnPlayerDisqualified;
 
 		HideGraphic(penaltyGraphic.graphic);
 		HideGraphic(disqualificationGraphic);
 	}
 
-	private void OnPlayerCorrectCheckpoint(object sender, EventArgs e)
-	{
-		HideGraphic(penaltyGraphic.graphic);
-	}
-
-	private void OnPlayerWrongCheckpoint(object sender, CircuitCheckpointManager.PenaltyEventArgs e)
+	private void OnPlayerWrongCheckpoint(object sender, RaceManager.PenaltyEventArgs e)
 	{
 		penaltyGraphic.alertText.text = "CORNER CUTTING!";
 
-		if (e.missedCheckpoints >= 2)
+		if (e.penaltyTime > 0)
 		{
-			penaltyGraphic.penaltyText.text = $"+{e.missedCheckpoints * 3} seconds added to final time!";
+			penaltyGraphic.penaltyText.text = $"+{e.penaltyTime} seconds added to final time!";
 		}
-		else if (e.missedCheckpoints == 1)
+		else
 		{
-			if (e.warnings >= 3)
-			{
-				penaltyGraphic.penaltyText.text = $"+{e.missedCheckpoints * 3} seconds added to final time!";
-			}
-			else
-			{
-				penaltyGraphic.penaltyText.text = "WARNING!";
-			}
+			penaltyGraphic.penaltyText.text = "Warning!";
 		}
 
 		StartCoroutine(ShowGraphic(penaltyGraphic.graphic, 2f));

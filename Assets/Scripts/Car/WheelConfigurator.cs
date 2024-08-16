@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class WheelConfigurator : MonoBehaviour
 {
+	[SerializeField] private bool sameWheelSettingsForAllWheels = true;
+
 	private CarLocomotionManager carLocomotionManager;
 
 	[SerializeField] private WheelSettings frontWheelSettings;
@@ -20,10 +22,20 @@ public class WheelConfigurator : MonoBehaviour
 
 	private void ApplyDefaultWheelSettings()
 	{
-		ConfigureWheel(carLocomotionManager.wheelColliders.frontLeftWheel, frontWheelSettings);
-		ConfigureWheel(carLocomotionManager.wheelColliders.frontRightWheel, frontWheelSettings);
-		ConfigureWheel(carLocomotionManager.wheelColliders.rearLeftWheel, rearWheelSettings);
-		ConfigureWheel(carLocomotionManager.wheelColliders.rearRightWheel, rearWheelSettings);
+		if (sameWheelSettingsForAllWheels)
+		{
+			ConfigureWheel(carLocomotionManager.wheelColliders.frontLeftWheel, frontWheelSettings);
+			ConfigureWheel(carLocomotionManager.wheelColliders.frontRightWheel, frontWheelSettings);
+			ConfigureWheel(carLocomotionManager.wheelColliders.rearLeftWheel, frontWheelSettings);
+			ConfigureWheel(carLocomotionManager.wheelColliders.rearRightWheel, frontWheelSettings);
+		}
+		else
+		{
+			ConfigureWheel(carLocomotionManager.wheelColliders.frontLeftWheel, frontWheelSettings);
+			ConfigureWheel(carLocomotionManager.wheelColliders.frontRightWheel, frontWheelSettings);
+			ConfigureWheel(carLocomotionManager.wheelColliders.rearLeftWheel, rearWheelSettings);
+			ConfigureWheel(carLocomotionManager.wheelColliders.rearRightWheel, rearWheelSettings);
+		}
 	}
 
 	private void ConfigureWheel(WheelCollider wheelCollider, WheelSettings settings)

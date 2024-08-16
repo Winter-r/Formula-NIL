@@ -197,6 +197,17 @@
                 },
                 {
                     "name": "",
+                    "id": "7e16eea5-9c02-4e43-b429-fc2731276f28",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Clutch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e8d2aeb2-b497-489a-9f70-31713b28c6c9",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -210,6 +221,17 @@
                     "name": "",
                     "id": "4923d5ef-a6ed-4795-9ddc-dab1bf45437f",
                     "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cycle Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f771bcf9-bca2-4707-ad16-d4d6eaad836e",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

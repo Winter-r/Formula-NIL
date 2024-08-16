@@ -18,6 +18,8 @@ public class VehicleStabiliser : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		ApplyDownforce();
+
 		WheelHit hit;
 
 		float travelL = 1.0f;
@@ -48,5 +50,11 @@ public class VehicleStabiliser : MonoBehaviour
 		{
 			carLocomotionManager.PlayerCarRb.AddForceAtPosition(rearRightWheel.transform.up * antiRollForce, rearRightWheel.transform.position);
 		}
+	}
+
+	private void ApplyDownforce()
+	{
+		float downforce = carLocomotionManager.GetCarSpeed() * 2.0f; // Adjust multiplier to suit your needs
+		carLocomotionManager.PlayerCarRb.AddForce(-transform.up * downforce);
 	}
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
 	private static CarInput CarInput;
-	
+
 	private CarLocomotionManager carLocomotionManager;
 
 	public static float throttleInput;
@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
 
 	public static bool cameraCycleInput;
 
-	public static float dampeningSpeed = 5f;
+	public float dampeningSpeed = 5f;
 
 	private void OnEnable()
 	{
@@ -60,7 +60,7 @@ public class InputManager : MonoBehaviour
 		carLocomotionManager.HandleCarLocomotion(dampenedThrottleInput, dampenedSteeringInput, dampenedClutchInput);
 	}
 
-	public static float DampenedInput(float input, float output)
+	public float DampenedInput(float input, float output)
 	{
 		return Mathf.Lerp(output, input, dampeningSpeed * Time.deltaTime);
 	}

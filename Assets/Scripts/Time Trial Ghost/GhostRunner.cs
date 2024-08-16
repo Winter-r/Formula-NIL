@@ -27,19 +27,19 @@ public class GhostRunner : MonoBehaviour
 	}
 	private void OnEnable()
 	{
-		CircuitCheckpointManager.OnLapStarted += OnLapStarted;
-		CircuitCheckpointManager.OnLapComplete += OnLapComplete;
+		RaceManager.OnLapStarted += OnLapStarted;
+		RaceManager.OnLapComplete += OnLapComplete;
 	}
 
 	private void OnDisable()
 	{
-		CircuitCheckpointManager.OnLapStarted -= OnLapStarted;
-		CircuitCheckpointManager.OnLapComplete -= OnLapComplete;
+		RaceManager.OnLapStarted -= OnLapStarted;
+		RaceManager.OnLapComplete -= OnLapComplete;
 	}
 
 	private void OnLapStarted(object sender, EventArgs e)
 	{
-		system.StartRun(recordTarget, recordInterval);
+		system.StartRun(recordTarget, recordInterval, 300);
 	}
 
 	private void OnLapComplete(object sender, EventArgs e)

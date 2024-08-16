@@ -43,6 +43,7 @@ public class CarLocomotionManager : MonoBehaviour
 	[SerializeField] private float wheelBase;
 	[SerializeField] private float rearTrack;
 	[SerializeField] private float turnRadius;
+	[SerializeField] private float maxSteeringAngle;
 	private float ackermannAngleLeft;
 	private float ackermannAngleRight;
 
@@ -112,11 +113,6 @@ public class CarLocomotionManager : MonoBehaviour
 
 	#endregion
 
-	#region Race Settings
-
-
-	#endregion
-
 	#endregion
 
 	private void Awake()
@@ -167,7 +163,7 @@ public class CarLocomotionManager : MonoBehaviour
 
 	private void HandleMotor(float throttleInput)
 	{
-		if (!RaceManager.Instance.RaceStarted)
+		if (!RaceManager.Instance.TrialStarted)
 		{
 			// If race hasn't started, skip applying motor torque but allow RPM to increase with clutch
 			currentTorque = CalculateTorque(throttleInput);
@@ -268,16 +264,20 @@ public class CarLocomotionManager : MonoBehaviour
 
 	private void HandleSteering(float steerInput)
 	{
-		// Check if there's any steering input
-		if (steerInput > 0)
+		float carSpeed = GetCarSpeed();
+		float speedFactor = Mathf.Clamp01(carSpeed / maxSpeed);
+		float adjustedSteerInput = steerInput * Mathf.Lerp(1f, 0.3f, speedFactor); // Reduce steering input at high speeds
+
+		// Existing Ackermann angle calculation
+		if (adjustedSteerInput > 0)
 		{
-			ackermannAngleLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * steerInput;
-			ackermannAngleRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTrack / 2))) * steerInput;
+			ackermannAngleLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * adjustedSteerInput;
+			ackermannAngleRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTrack / 2))) * adjustedSteerInput;
 		}
-		else if (steerInput < 0)
+		else if (adjustedSteerInput < 0)
 		{
-			ackermannAngleLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTrack / 2))) * steerInput;
-			ackermannAngleRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * steerInput;
+			ackermannAngleLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTrack / 2))) * adjustedSteerInput;
+			ackermannAngleRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * adjustedSteerInput;
 		}
 		else
 		{
@@ -285,7 +285,9 @@ public class CarLocomotionManager : MonoBehaviour
 			ackermannAngleRight = 0;
 		}
 
-		// Apply the calculated steering angles
+		ackermannAngleLeft = Mathf.Clamp(ackermannAngleLeft, -maxSteeringAngle, maxSteeringAngle);
+		ackermannAngleRight = Mathf.Clamp(ackermannAngleRight, -maxSteeringAngle, maxSteeringAngle);
+
 		wheelColliders.frontLeftWheel.steerAngle = ackermannAngleLeft;
 		wheelColliders.frontRightWheel.steerAngle = ackermannAngleRight;
 	}

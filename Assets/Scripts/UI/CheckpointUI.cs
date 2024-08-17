@@ -29,21 +29,20 @@ public class CheckpointUI : MonoBehaviour
 		{
 			penaltyGraphic.penaltyText.text = "Warning!";
 		}
-
-		StartCoroutine(ShowGraphic(penaltyGraphic.graphic, 2f));
 	}
 
 	private void OnPlayerDisqualified(object sender, EventArgs e)
 	{
-		// TODO: Disqualify the player
-		StartCoroutine(ShowGraphic(disqualificationGraphic, 5f));
+		StartCoroutine(DisqualificationGraphic(disqualificationGraphic, 5f));
 	}
 
-	private IEnumerator ShowGraphic(GameObject graphic, float seconds)
+	private IEnumerator DisqualificationGraphic(GameObject graphic, float seconds)
 	{
 		graphic.SetActive(true);
 		yield return new WaitForSeconds(seconds);
 		graphic.SetActive(false);
+
+		RaceManager.Instance.ResetCircuit();
 	}
 
 	private void HideGraphic(GameObject graphic)

@@ -163,9 +163,14 @@ public class CarLocomotionManager : MonoBehaviour
 
 	private void HandleMotor(float throttleInput)
 	{
-		if (!RaceManager.Instance.TrialStarted)
+		if (RaceManager.Instance.raceType == RaceType.TimeTrial && !RaceManager.Instance.TrialStarted)
 		{
 			// If race hasn't started, skip applying motor torque but allow RPM to increase with clutch
+			currentTorque = CalculateTorque(throttleInput);
+			return;
+		}
+		else if (RaceManager.Instance.raceType == RaceType.AIGrandPrix && !RaceManager.Instance.RaceStarted)
+		{
 			currentTorque = CalculateTorque(throttleInput);
 			return;
 		}
@@ -266,9 +271,8 @@ public class CarLocomotionManager : MonoBehaviour
 	{
 		float carSpeed = GetCarSpeed();
 		float speedFactor = Mathf.Clamp01(carSpeed / maxSpeed);
-		float adjustedSteerInput = steerInput * Mathf.Lerp(1f, 0.3f, speedFactor); // Reduce steering input at high speeds
+		float adjustedSteerInput = steerInput * Mathf.Lerp(1f, 0.3f, speedFactor);
 
-		// Existing Ackermann angle calculation
 		if (adjustedSteerInput > 0)
 		{
 			ackermannAngleLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * adjustedSteerInput;
@@ -430,6 +434,19 @@ public class CarLocomotionManager : MonoBehaviour
 		{
 			isReversing = false;
 		}
+	}
+
+	public void ResetCar()
+	{
+		PlayerCarRb.linearVelocity = Vector3.zero;
+		PlayerCarRb.angularVelocity = Vector3.zero;
+
+		gearState = GearState.Neutral;
+		currentGear = 0;
+		currentRpm = 0;
+		clutch = 0;
+
+		this.gameObject.SetActive(false);
 	}
 
 	private IEnumerator ChangeGear(int gearChange, float throttleInput)

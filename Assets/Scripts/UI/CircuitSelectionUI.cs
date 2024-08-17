@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class CircuitSelectionUI : MonoBehaviour
 {
 	[SerializeField] private Button fujiSpeedwayButton;
-	[SerializeField] private Button playgroundButton;
+	[SerializeField] private Button bahrainCircuitButton;
 
 	private void Awake()
 	{
@@ -14,10 +14,10 @@ public class CircuitSelectionUI : MonoBehaviour
 			UnityEngine.SceneManagement.SceneManager.LoadScene("FujiSpeedway");
 		});
 
-		playgroundButton.onClick.AddListener(() =>
+		bahrainCircuitButton.onClick.AddListener(() =>
 		{
 			// Load the Playground scene
-			UnityEngine.SceneManagement.SceneManager.LoadScene("ExampleCircuit");
+			UnityEngine.SceneManagement.SceneManager.LoadScene("BahrainCircuit");
 		});
 	}
 }

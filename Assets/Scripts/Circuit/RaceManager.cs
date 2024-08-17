@@ -23,9 +23,9 @@ public class RaceManager : MonoBehaviour
 
 	// Serialized Fields
 	[Header("Race Settings")]
-	[SerializeField] private RaceType raceType;
-	[SerializeField] int numberOfLaps;
-	[SerializeField] int numberOfOpponents;
+	public RaceType raceType;
+	[SerializeField] private int numberOfLaps;
+	[SerializeField] private int numberOfOpponents;
 
 	[Header("Cars")]
 	[SerializeField] private GameObject playerPrefab;
@@ -43,8 +43,8 @@ public class RaceManager : MonoBehaviour
 
 	// Checkpoints
 	private List<CheckpointSingle> checkpointList;
-	private List<int> nextCheckpointIndexList;
-	private int totalMissedCheckpoints = 0;
+	private Dictionary<Transform, int> nextCheckpointIndexDict;
+	private int totalMissedCheckpoints;
 	private int numberOfWarnings;
 
 	// Time Trial
@@ -52,7 +52,7 @@ public class RaceManager : MonoBehaviour
 	private float bestTrialLapTime;
 	private float lastTrialLapTime;
 	private bool startTrialClock;
-	
+
 	// Trial UI
 	private TMP_Text lapTimeText;
 	private TMP_Text bestLapTimeText;
@@ -96,6 +96,9 @@ public class RaceManager : MonoBehaviour
 
 	private void Start()
 	{
+		currentTrialLapTime = 0;
+		lastTrialLapTime = 0;
+
 		foreach (Image light in countdownLights)
 		{
 			light.enabled = false;
@@ -127,10 +130,11 @@ public class RaceManager : MonoBehaviour
 			checkpointList.Add(checkpointSingle);
 		}
 
-		nextCheckpointIndexList = new List<int>();
+		nextCheckpointIndexDict = new Dictionary<Transform, int>();
+
 		foreach (Transform carTransform in CarTransformsList)
 		{
-			nextCheckpointIndexList.Add(0);
+			nextCheckpointIndexDict.Add(carTransform, 0);
 		}
 	}
 
@@ -199,10 +203,6 @@ public class RaceManager : MonoBehaviour
 	private void StartTrial()
 	{
 		TrialStarted = true;
-
-		currentTrialLapTime = 0;
-		bestTrialLapTime = 0;
-		lastTrialLapTime = 0;
 	}
 
 	private void StartRace()
@@ -219,8 +219,7 @@ public class RaceManager : MonoBehaviour
 
 	public void CarReachedCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
 	{
-		int carIndex = CarTransformsList.IndexOf(carTransform);
-		int nextCheckpointIndex = nextCheckpointIndexList[carIndex];
+		int nextCheckpointIndex = nextCheckpointIndexDict[carTransform];
 		int checkpointIndex = checkpointList.IndexOf(checkpointSingle);
 
 		if (checkpointIndex == nextCheckpointIndex)
@@ -239,11 +238,11 @@ public class RaceManager : MonoBehaviour
 				OnLapStarted?.Invoke(this, EventArgs.Empty);
 			}
 
-			HandleCorrectCheckpoint(carIndex);
+			HandleCorrectCheckpoint(carTransform);
 		}
 		else if (checkpointIndex > nextCheckpointIndex)
 		{
-			HandleMissedCheckpoint(carIndex, checkpointIndex, nextCheckpointIndex);
+			HandleMissedCheckpoint(carTransform, checkpointIndex, nextCheckpointIndex);
 		}
 		else
 		{
@@ -253,36 +252,34 @@ public class RaceManager : MonoBehaviour
 		CheckDisqualification(carTransform);
 	}
 
-	private void HandleCorrectCheckpoint(int carIndex)
+	private void HandleCorrectCheckpoint(Transform carTransform)
 	{
-		Transform racer = CarTransformsList[carIndex];
 		Debug.Log("Checkpoint reached!");
-		nextCheckpointIndexList[carIndex] = (nextCheckpointIndexList[carIndex] + 1) % checkpointList.Count;
+		nextCheckpointIndexDict[carTransform] = (nextCheckpointIndexDict[carTransform] + 1) % checkpointList.Count;
 
 		if (raceType == RaceType.AIGrandPrix)
 		{
-			if (carCurrentLaps[racer] == numberOfLaps)
+			if (carCurrentLaps[carTransform] == numberOfLaps)
 			{
-				carCurrentTimes[racer] += carPenaltyTimes[racer];
+				carCurrentTimes[carTransform] += carPenaltyTimes[carTransform];
 			}
 		}
 	}
 
-	private void HandleMissedCheckpoint(int carIndex, int checkpointIndex, int nextCheckpointIndex)
+	private void HandleMissedCheckpoint(Transform carTransform, int checkpointIndex, int nextCheckpointIndex)
 	{
-		Transform racer = CarTransformsList[carIndex];
 		int missedCheckpoints = checkpointIndex - nextCheckpointIndex;
 		totalMissedCheckpoints += missedCheckpoints;
 
 		if (raceType == RaceType.TimeTrial)
 		{
-			DisqualifyPlayer(racer);
+			DisqualifyPlayer(carTransform);
 			return;
 		}
 
 		if (missedCheckpoints >= 2)
 		{
-			carPenaltyTimes[racer] = missedCheckpoints * 3;
+			carPenaltyTimes[carTransform] = missedCheckpoints * 3;
 		}
 		else if (missedCheckpoints == 1)
 		{
@@ -290,7 +287,7 @@ public class RaceManager : MonoBehaviour
 
 			if (numberOfWarnings >= 3)
 			{
-				carPenaltyTimes[racer] = missedCheckpoints * 3;
+				carPenaltyTimes[carTransform] = missedCheckpoints * 3;
 			}
 		}
 
@@ -298,11 +295,11 @@ public class RaceManager : MonoBehaviour
 		{
 			missedCheckpoints = missedCheckpoints,
 			warnings = numberOfWarnings,
-			penaltyTime = carPenaltyTimes[racer]
+			penaltyTime = carPenaltyTimes[carTransform]
 		});
 
 		Debug.Log($"Missed {missedCheckpoints} checkpoint(s)!");
-		nextCheckpointIndexList[carIndex] = (checkpointIndex + 1) % checkpointList.Count;
+		nextCheckpointIndexDict[carTransform] = (checkpointIndex + 1) % checkpointList.Count;
 	}
 
 	private void CheckDisqualification(Transform carTransform)
@@ -316,8 +313,61 @@ public class RaceManager : MonoBehaviour
 	private void DisqualifyPlayer(Transform carTransform)
 	{
 		OnPlayerDisqualified?.Invoke(this, EventArgs.Empty);
-		carTransform.gameObject.SetActive(false);
+		carTransform.GetComponent<CarLocomotionManager>().ResetCar();
 		Debug.Log($"{carTransform.name} disqualified!");
+	}
+
+	public void ResetCircuit()
+	{
+		if (raceType == RaceType.TimeTrial)
+		{
+			ResetTimeTrial();
+		}
+		else if (raceType == RaceType.AIGrandPrix)
+		{
+			ResetGrandPrix();
+		}
+	}
+
+	private void ResetTimeTrial()
+	{
+		TrialStarted = false;
+		startTrialClock = false;
+		currentTrialLapTime = 0;
+		nextCheckpointIndexDict.Clear();
+		checkpointList.Clear();
+		totalMissedCheckpoints = 0;
+		numberOfWarnings = 0;
+
+		InitializeCheckpointLists();
+
+		foreach (Transform carTransform in CarTransformsList)
+		{
+			carTransform.gameObject.SetActive(true);
+			carTransform.SetPositionAndRotation(timeTrialSpawnPoint.position, timeTrialSpawnPoint.rotation);
+		}
+
+		GhostRunner.Instance.ResetGhost();
+
+		StartCoroutine(StartCountdown());
+	}
+
+	private void ResetGrandPrix()
+	{
+		RaceStarted = false;
+		bestLapTime = 0;
+		playerLastLapTime = 0;
+		totalMissedCheckpoints = 0;
+		carCurrentLaps.Clear();
+		carCurrentTimes.Clear();
+		carPenaltyTimes.Clear();
+		nextCheckpointIndexDict.Clear();
+		InitializeCheckpointLists();
+
+		foreach (Transform carTransform in CarTransformsList)
+		{
+			carTransform.SetPositionAndRotation(grandPrixSpawnPoints[UnityEngine.Random.Range(0, grandPrixSpawnPoints.Count)].position, grandPrixSpawnPoints[UnityEngine.Random.Range(0, grandPrixSpawnPoints.Count)].rotation);
+		}
 	}
 
 	private void UpdateTrialTimer()

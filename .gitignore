@@ -53,7 +53,9 @@ Thumbs.db
 /Builds
 
 # Training environments
-/envs
+/fnil-venv
+/ml-agents
+/ml-agents-envs
 
 # Environemnt logfile
 *Project.log

@@ -58,6 +58,9 @@ Thumbs.db
 /ml-agents-envs
 get-pip.py
 
+# Ghost Runner .replay files
+*.replay
+
 # Environemnt logfile
 *Project.log
 

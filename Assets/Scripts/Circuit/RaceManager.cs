@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -62,10 +63,18 @@ public class RaceManager : MonoBehaviour
 	private Dictionary<Transform, float> carCurrentTimes = new();
 	private Dictionary<Transform, float> carPenaltyTimes = new();
 	private Dictionary<Transform, int> carCurrentLaps = new();
+	private Dictionary<Transform, int> carPositions = new();
+	[SerializeField] private List<BracketUI> positionsBracketsUI;
+
+	[Serializable]
+	public class BracketUI
+	{
+		public TMP_Text racerName;
+		public TMP_Text racerPosition;
+	}
+
 	private float bestLapTime;
 	private float playerLastLapTime;
-
-	// Opponents List UI
 
 	// Events
 	public event EventHandler<PenaltyEventArgs> OnPlayerWrongCheckpoint;
@@ -116,6 +125,8 @@ public class RaceManager : MonoBehaviour
 	{
 		UpdateTrialLapTimeUI();
 		UpdateTrialTimer();
+
+		UpdateRacingPositions();
 	}
 
 	private void InitializeCheckpointLists()
@@ -214,6 +225,93 @@ public class RaceManager : MonoBehaviour
 			carCurrentTimes.Add(car, 0);
 			carCurrentLaps.Add(car, 0);
 			carPenaltyTimes.Add(car, 0);
+		}
+	}
+
+	private void UpdateRacingPositions()
+	{
+		foreach (Transform racer in CarTransformsList)
+		{
+			int position = 1;
+
+			foreach (Transform otherRacer in CarTransformsList)
+			{
+				if (racer == otherRacer) continue;
+
+				if (carCurrentLaps[racer] > carCurrentLaps[otherRacer])
+				{
+					position++;
+				}
+				else if (carCurrentLaps[racer] == carCurrentLaps[otherRacer])
+				{
+					if (carCurrentTimes[racer] < carCurrentTimes[otherRacer])
+					{
+						position++;
+					}
+				}
+			}
+
+			carPositions[racer] = position;
+		}
+
+		// sort the cars by their positions
+		CarTransformsList.Sort((a, b) => carPositions[a].CompareTo(carPositions[b]));
+
+		UpdatePositionUI();
+	}
+
+	private void UpdatePositionUI()
+	{
+		if (raceType == RaceType.TimeTrial)
+		{
+			// disable the brackets UI
+			foreach (BracketUI bracket in positionsBracketsUI)
+			{
+				SetBracketVisibility(bracket, false);
+			}
+		}
+		else
+		{
+			// Grand Prix Mode
+			int maxVisibleBrackets = Mathf.Min(positionsBracketsUI.Count, CarTransformsList.Count);
+			for (int i = 0; i < maxVisibleBrackets; i++)
+			{
+				Transform carTransform = CarTransformsList[i];
+				int position = carPositions[carTransform];
+				BracketUI bracket = positionsBracketsUI[i];
+
+				bracket.racerName.text = carTransform.name;
+				bracket.racerPosition.text = position + GetOrdinalSuffix(position);
+				SetBracketVisibility(bracket, true);
+			}
+
+			// Hide unused brackets
+			for (int i = maxVisibleBrackets; i < positionsBracketsUI.Count; i++)
+			{
+				SetBracketVisibility(positionsBracketsUI[i], false);
+			}
+		}
+	}
+
+	private void SetBracketVisibility(BracketUI bracket, bool isVisible)
+	{
+		// Custom method to handle showing/hiding UI elements in your custom class
+		bracket.racerName.gameObject.SetActive(isVisible);
+		bracket.racerPosition.gameObject.SetActive(isVisible);
+	}
+
+	private string GetOrdinalSuffix(int number)
+	{
+		if (number % 100 >= 11 && number % 100 <= 13)
+		{
+			return "th";
+		}
+		switch (number % 10)
+		{
+			case 1: return "st";
+			case 2: return "nd";
+			case 3: return "rd";
+			default: return "th";
 		}
 	}
 
@@ -379,7 +477,10 @@ public class RaceManager : MonoBehaviour
 	{
 		if (raceType == RaceType.AIGrandPrix)
 		{
-			carCurrentLaps[carTransform]++;
+			if (carCurrentLaps[carTransform] == numberOfLaps)
+			{
+				carCurrentTimes[carTransform] += carPenaltyTimes[carTransform];
+			}
 
 			if (carTransform.CompareTag("Player"))
 			{
@@ -391,6 +492,7 @@ public class RaceManager : MonoBehaviour
 				bestLapTime = carCurrentTimes[carTransform];
 			}
 
+			carCurrentLaps[carTransform]++;
 			carCurrentTimes[carTransform] = 0;
 		}
 		else if (raceType == RaceType.TimeTrial)

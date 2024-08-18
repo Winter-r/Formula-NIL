@@ -57,6 +57,8 @@ public class InputManager : MonoBehaviour
 		dampenedSteeringInput = DampenedInput(steerInput, dampenedSteeringInput);
 		dampenedClutchInput = DampenedInput(clutchInput, dampenedClutchInput);
 
+		dampenedSteeringInput = Mathf.Clamp(dampenedSteeringInput, -0.7f, 0.7f);
+
 		carLocomotionManager.HandleCarLocomotion(dampenedThrottleInput, dampenedSteeringInput, dampenedClutchInput);
 	}
 

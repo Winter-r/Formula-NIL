@@ -271,7 +271,7 @@ public class CarLocomotionManager : MonoBehaviour
 	{
 		float carSpeed = GetCarSpeed();
 		float speedFactor = Mathf.Clamp01(carSpeed / maxSpeed);
-		float adjustedSteerInput = steerInput * Mathf.Lerp(1f, 0.3f, speedFactor);
+		float adjustedSteerInput = steerInput * Mathf.Lerp(0.5f, 0.025f, speedFactor);
 
 		if (adjustedSteerInput > 0)
 		{

@@ -961,7 +961,7 @@ MonoBehaviour:
   wheelBase: 3.5
   rearTrack: 1.6
   turnRadius: 6
-  maxSteeringAngle: 20
+  maxSteeringAngle: 25
   brakePower: 4000
   brakeInput: 0
   redLine: 15000

@@ -6,7 +6,6 @@ public class MainMenuUI : MonoBehaviour
 {
 	[SerializeField] private Button _playButton;
 	[SerializeField] private Button _garageButton;
-	[SerializeField] private Button _leaderboardButton;
 	[SerializeField] private Button _optionsButton;
 	[SerializeField] private Button _exitButton;
 	
@@ -22,12 +21,6 @@ public class MainMenuUI : MonoBehaviour
 		{
 			// Load the garage scene
 			SceneManager.LoadScene("Garage");
-		});
-		
-		_leaderboardButton.onClick.AddListener(() =>
-		{
-			// Load the leaderboard scene
-			SceneManager.LoadScene("Leaderboard");
 		});
 		
 		_optionsButton.onClick.AddListener(() =>

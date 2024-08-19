@@ -17,9 +17,9 @@ public class CameraController : MonoBehaviour
 	{
 		if (!carLocomotionManager) return;
 
-		if (InputManager.cameraCycleInput)
+		if (CarInputManager.cameraCycleInput)
 		{
-			InputManager.cameraCycleInput = false;
+			CarInputManager.cameraCycleInput = false;
 			CycleCamera();
 		}
 	}

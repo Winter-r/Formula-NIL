@@ -107,6 +107,7 @@ public class RaceManager : MonoBehaviour
 	{
 		currentTrialLapTime = 0;
 		lastTrialLapTime = 0;
+		bestTrialLapTime = PlayerPrefs.GetFloat("BestLapTime", 0);
 
 		foreach (Image light in countdownLights)
 		{
@@ -502,6 +503,7 @@ public class RaceManager : MonoBehaviour
 			if (currentTrialLapTime < bestTrialLapTime || bestTrialLapTime == 0)
 			{
 				bestTrialLapTime = currentTrialLapTime;
+				PlayerPrefs.SetFloat("BestLapTime", bestTrialLapTime);
 			}
 
 			currentTrialLapTime = 0;

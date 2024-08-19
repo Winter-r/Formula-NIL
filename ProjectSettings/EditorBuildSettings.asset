@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CircuitSelection.unity
     guid: 2376bb171f6b0c241afb0f91b9bf6207
   - enabled: 1
+    path: Assets/Scenes/Garage.unity
+    guid: 23235673a35448a4ea82d7994d6429ab
+  - enabled: 1
     path: Assets/Scenes/BahrainCircuit.unity
     guid: cd368012ba25286469d1ea9b8a66bb06
   m_configObjects:

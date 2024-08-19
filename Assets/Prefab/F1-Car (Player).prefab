@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 7507853541068959382}
   - component: {fileID: 4379736367090059631}
   - component: {fileID: 6787572949067145}
-  - component: {fileID: 8743947613833300082}
+  - component: {fileID: 5444398121969896072}
   - component: {fileID: 4691192907265845983}
   - component: {fileID: 8206659628923853506}
   - component: {fileID: 7819608085058473833}
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_DefaultActionMap: Controls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &8743947613833300082
+--- !u!114 &5444398121969896072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -937,10 +937,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3553969170880271488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e6ab05e3f654274d80f935a561d89e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 910b7960b0165264ba85f6a9b792297e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dampeningSpeed: 4.5
+  dampeningSpeed: 5
 --- !u!114 &4691192907265845983
 MonoBehaviour:
   m_ObjectHideFlags: 0

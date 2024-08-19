@@ -16,7 +16,7 @@ public class CircuitSelectionUI : MonoBehaviour
 
 		bahrainCircuitButton.onClick.AddListener(() =>
 		{
-			// Load the Playground scene
+			// Load the Bahrain Circuit scene
 			UnityEngine.SceneManagement.SceneManager.LoadScene("BahrainCircuit");
 		});
 	}

@@ -14,6 +14,8 @@ public enum GearState
 
 public class CarLocomotionManager : MonoBehaviour
 {
+	private const float TORQUE_MULTIPLIER = 5252f;
+
 	#region Variables
 
 	#region General Settings
@@ -257,11 +259,11 @@ public class CarLocomotionManager : MonoBehaviour
 
 				if (isReversing)
 				{
-					torque = powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm * reverseGearRatio * differentialRatio * 5252f * clutch;
+					torque = powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm * reverseGearRatio * differentialRatio * TORQUE_MULTIPLIER * clutch;
 				}
 				else
 				{
-					torque = powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm * gearRatios[currentGear] * differentialRatio * 5252f * clutch;
+					torque = powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm * gearRatios[currentGear] * differentialRatio * TORQUE_MULTIPLIER * clutch;
 				}
 			}
 		}

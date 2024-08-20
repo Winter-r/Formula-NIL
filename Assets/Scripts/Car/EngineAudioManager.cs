@@ -1,6 +1,7 @@
 using UnityEngine;
 using FMODUnity;
 using System.Collections;
+using System;
 
 public class EngineAudioManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EngineAudioManager : MonoBehaviour
 	private void Awake()
 	{
 		carLocomotionManager = GetComponent<CarLocomotionManager>();
+
+		carLocomotionManager.OnGearChanged += PlayGearChangeSound;
 	}
 
 	private void Update()
@@ -28,5 +31,10 @@ public class EngineAudioManager : MonoBehaviour
 		carLocomotionManager.engineStatus = 1;
 		yield return new WaitForSeconds(1f);
 		carLocomotionManager.engineStatus = 2;
+	}
+
+	private void PlayGearChangeSound(int currentGear)
+	{
+		// TODO: Play gear change sound
 	}
 }

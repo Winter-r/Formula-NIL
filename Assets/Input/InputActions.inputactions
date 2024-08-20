@@ -2,6 +2,93 @@
     "name": "InputActions",
     "maps": [
         {
+            "name": "Navigation",
+            "id": "e503d5ac-deae-4f07-bd31-d7da51103341",
+            "actions": [
+                {
+                    "name": "Mouse",
+                    "type": "Value",
+                    "id": "1d9950f6-37a0-4489-99c1-2142dcf99d41",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Keyboard",
+                    "type": "Value",
+                    "id": "25db1890-7a7b-4202-bbf8-0becfc3eeb1e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5ad4d6f8-1d24-40e8-acd1-ff7eeaebd5db",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "23d73e71-5e9e-4029-87b8-140f3b8b43d1",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Keyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CircuitSelection",
+            "id": "e6ff0838-dc04-4f0c-a68d-333a6071dfa0",
+            "actions": [
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "7ea845fb-03f0-4956-ae9d-e3c4fe9e4d15",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "09a9cefc-90b3-44db-b9a7-547b192951d1",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3225598a-9a12-412f-971b-1e1f5120dd67",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Controls",
             "id": "f63dcb6e-307b-4a81-a5b1-8fe20196179c",
             "actions": [
@@ -45,6 +132,15 @@
                     "name": "Cycle Camera",
                     "type": "Button",
                     "id": "b2f4f6d4-0ba8-4f0f-b8f4-b3f637be82f9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "220fb4a2-0afd-409b-bf0a-4de5e527c9f4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -236,6 +332,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Cycle Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e25e2fd6-b8f6-4bef-bc3e-b3503c5e30bc",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a8f67f0-f31b-4bc6-ac30-ee420934be9f",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

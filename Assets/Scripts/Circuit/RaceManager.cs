@@ -44,7 +44,7 @@ public class RaceManager : MonoBehaviour
 
 	// Checkpoints
 	private List<CheckpointSingle> checkpointList;
-	private Dictionary<Transform, int> nextCheckpointIndexDict;
+	[SerializeField] private Dictionary<Transform, int> nextCheckpointIndexDict;
 	private int totalMissedCheckpoints;
 	private int numberOfWarnings;
 
@@ -128,6 +128,8 @@ public class RaceManager : MonoBehaviour
 		UpdateTrialTimer();
 
 		UpdateRacingPositions();
+
+		Debug.Log(nextCheckpointIndexDict[CarTransformsList[0]]);
 	}
 
 	private void InitializeCheckpointLists()
@@ -367,14 +369,14 @@ public class RaceManager : MonoBehaviour
 
 	private void HandleMissedCheckpoint(Transform carTransform, int checkpointIndex, int nextCheckpointIndex)
 	{
-		int missedCheckpoints = checkpointIndex - nextCheckpointIndex;
-		totalMissedCheckpoints += missedCheckpoints;
-
 		if (raceType == RaceType.TimeTrial)
 		{
 			DisqualifyPlayer(carTransform);
 			return;
 		}
+
+		int missedCheckpoints = checkpointIndex - nextCheckpointIndex;
+		totalMissedCheckpoints += missedCheckpoints;
 
 		if (missedCheckpoints >= 2)
 		{

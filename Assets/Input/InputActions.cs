@@ -25,6 +25,93 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     ""name"": ""InputActions"",
     ""maps"": [
         {
+            ""name"": ""Navigation"",
+            ""id"": ""e503d5ac-deae-4f07-bd31-d7da51103341"",
+            ""actions"": [
+                {
+                    ""name"": ""Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""1d9950f6-37a0-4489-99c1-2142dcf99d41"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""type"": ""Value"",
+                    ""id"": ""25db1890-7a7b-4202-bbf8-0becfc3eeb1e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""5ad4d6f8-1d24-40e8-acd1-ff7eeaebd5db"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""23d73e71-5e9e-4029-87b8-140f3b8b43d1"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""CircuitSelection"",
+            ""id"": ""e6ff0838-dc04-4f0c-a68d-333a6071dfa0"",
+            ""actions"": [
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ea845fb-03f0-4956-ae9d-e3c4fe9e4d15"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""09a9cefc-90b3-44db-b9a7-547b192951d1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3225598a-9a12-412f-971b-1e1f5120dd67"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""Controls"",
             ""id"": ""f63dcb6e-307b-4a81-a5b1-8fe20196179c"",
             ""actions"": [
@@ -68,6 +155,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": ""Cycle Camera"",
                     ""type"": ""Button"",
                     ""id"": ""b2f4f6d4-0ba8-4f0f-b8f4-b3f637be82f9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""220fb4a2-0afd-409b-bf0a-4de5e527c9f4"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -261,6 +357,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Cycle Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e25e2fd6-b8f6-4bef-bc3e-b3503c5e30bc"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a8f67f0-f31b-4bc6-ac30-ee420934be9f"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -348,6 +466,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
+        // Navigation
+        m_Navigation = asset.FindActionMap("Navigation", throwIfNotFound: true);
+        m_Navigation_Mouse = m_Navigation.FindAction("Mouse", throwIfNotFound: true);
+        m_Navigation_Keyboard = m_Navigation.FindAction("Keyboard", throwIfNotFound: true);
+        // CircuitSelection
+        m_CircuitSelection = asset.FindActionMap("CircuitSelection", throwIfNotFound: true);
+        m_CircuitSelection_Back = m_CircuitSelection.FindAction("Back", throwIfNotFound: true);
         // Controls
         m_Controls = asset.FindActionMap("Controls", throwIfNotFound: true);
         m_Controls_Steer = m_Controls.FindAction("Steer", throwIfNotFound: true);
@@ -355,6 +480,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Controls_Clutch = m_Controls.FindAction("Clutch", throwIfNotFound: true);
         m_Controls_HandBrake = m_Controls.FindAction("Hand Brake", throwIfNotFound: true);
         m_Controls_CycleCamera = m_Controls.FindAction("Cycle Camera", throwIfNotFound: true);
+        m_Controls_Pause = m_Controls.FindAction("Pause", throwIfNotFound: true);
         // Garage
         m_Garage = asset.FindActionMap("Garage", throwIfNotFound: true);
         m_Garage_Back = m_Garage.FindAction("Back", throwIfNotFound: true);
@@ -363,6 +489,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
 
     ~@InputActions()
     {
+        Debug.Assert(!m_Navigation.enabled, "This will cause a leak and performance issues, InputActions.Navigation.Disable() has not been called.");
+        Debug.Assert(!m_CircuitSelection.enabled, "This will cause a leak and performance issues, InputActions.CircuitSelection.Disable() has not been called.");
         Debug.Assert(!m_Controls.enabled, "This will cause a leak and performance issues, InputActions.Controls.Disable() has not been called.");
         Debug.Assert(!m_Garage.enabled, "This will cause a leak and performance issues, InputActions.Garage.Disable() has not been called.");
     }
@@ -423,6 +551,106 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
+    // Navigation
+    private readonly InputActionMap m_Navigation;
+    private List<INavigationActions> m_NavigationActionsCallbackInterfaces = new List<INavigationActions>();
+    private readonly InputAction m_Navigation_Mouse;
+    private readonly InputAction m_Navigation_Keyboard;
+    public struct NavigationActions
+    {
+        private @InputActions m_Wrapper;
+        public NavigationActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Mouse => m_Wrapper.m_Navigation_Mouse;
+        public InputAction @Keyboard => m_Wrapper.m_Navigation_Keyboard;
+        public InputActionMap Get() { return m_Wrapper.m_Navigation; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(NavigationActions set) { return set.Get(); }
+        public void AddCallbacks(INavigationActions instance)
+        {
+            if (instance == null || m_Wrapper.m_NavigationActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_NavigationActionsCallbackInterfaces.Add(instance);
+            @Mouse.started += instance.OnMouse;
+            @Mouse.performed += instance.OnMouse;
+            @Mouse.canceled += instance.OnMouse;
+            @Keyboard.started += instance.OnKeyboard;
+            @Keyboard.performed += instance.OnKeyboard;
+            @Keyboard.canceled += instance.OnKeyboard;
+        }
+
+        private void UnregisterCallbacks(INavigationActions instance)
+        {
+            @Mouse.started -= instance.OnMouse;
+            @Mouse.performed -= instance.OnMouse;
+            @Mouse.canceled -= instance.OnMouse;
+            @Keyboard.started -= instance.OnKeyboard;
+            @Keyboard.performed -= instance.OnKeyboard;
+            @Keyboard.canceled -= instance.OnKeyboard;
+        }
+
+        public void RemoveCallbacks(INavigationActions instance)
+        {
+            if (m_Wrapper.m_NavigationActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(INavigationActions instance)
+        {
+            foreach (var item in m_Wrapper.m_NavigationActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_NavigationActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public NavigationActions @Navigation => new NavigationActions(this);
+
+    // CircuitSelection
+    private readonly InputActionMap m_CircuitSelection;
+    private List<ICircuitSelectionActions> m_CircuitSelectionActionsCallbackInterfaces = new List<ICircuitSelectionActions>();
+    private readonly InputAction m_CircuitSelection_Back;
+    public struct CircuitSelectionActions
+    {
+        private @InputActions m_Wrapper;
+        public CircuitSelectionActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Back => m_Wrapper.m_CircuitSelection_Back;
+        public InputActionMap Get() { return m_Wrapper.m_CircuitSelection; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CircuitSelectionActions set) { return set.Get(); }
+        public void AddCallbacks(ICircuitSelectionActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CircuitSelectionActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CircuitSelectionActionsCallbackInterfaces.Add(instance);
+            @Back.started += instance.OnBack;
+            @Back.performed += instance.OnBack;
+            @Back.canceled += instance.OnBack;
+        }
+
+        private void UnregisterCallbacks(ICircuitSelectionActions instance)
+        {
+            @Back.started -= instance.OnBack;
+            @Back.performed -= instance.OnBack;
+            @Back.canceled -= instance.OnBack;
+        }
+
+        public void RemoveCallbacks(ICircuitSelectionActions instance)
+        {
+            if (m_Wrapper.m_CircuitSelectionActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICircuitSelectionActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CircuitSelectionActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CircuitSelectionActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CircuitSelectionActions @CircuitSelection => new CircuitSelectionActions(this);
+
     // Controls
     private readonly InputActionMap m_Controls;
     private List<IControlsActions> m_ControlsActionsCallbackInterfaces = new List<IControlsActions>();
@@ -431,6 +659,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Controls_Clutch;
     private readonly InputAction m_Controls_HandBrake;
     private readonly InputAction m_Controls_CycleCamera;
+    private readonly InputAction m_Controls_Pause;
     public struct ControlsActions
     {
         private @InputActions m_Wrapper;
@@ -440,6 +669,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Clutch => m_Wrapper.m_Controls_Clutch;
         public InputAction @HandBrake => m_Wrapper.m_Controls_HandBrake;
         public InputAction @CycleCamera => m_Wrapper.m_Controls_CycleCamera;
+        public InputAction @Pause => m_Wrapper.m_Controls_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Controls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -464,6 +694,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @CycleCamera.started += instance.OnCycleCamera;
             @CycleCamera.performed += instance.OnCycleCamera;
             @CycleCamera.canceled += instance.OnCycleCamera;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IControlsActions instance)
@@ -483,6 +716,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @CycleCamera.started -= instance.OnCycleCamera;
             @CycleCamera.performed -= instance.OnCycleCamera;
             @CycleCamera.canceled -= instance.OnCycleCamera;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IControlsActions instance)
@@ -554,6 +790,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     }
     public GarageActions @Garage => new GarageActions(this);
+    public interface INavigationActions
+    {
+        void OnMouse(InputAction.CallbackContext context);
+        void OnKeyboard(InputAction.CallbackContext context);
+    }
+    public interface ICircuitSelectionActions
+    {
+        void OnBack(InputAction.CallbackContext context);
+    }
     public interface IControlsActions
     {
         void OnSteer(InputAction.CallbackContext context);
@@ -561,6 +806,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnClutch(InputAction.CallbackContext context);
         void OnHandBrake(InputAction.CallbackContext context);
         void OnCycleCamera(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IGarageActions
     {

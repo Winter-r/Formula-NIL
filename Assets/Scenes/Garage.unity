@@ -129,8 +129,8 @@ GameObject:
   m_Component:
   - component: {fileID: 400009147}
   - component: {fileID: 400009146}
-  - component: {fileID: 400009145}
   - component: {fileID: 400009148}
+  - component: {fileID: 400009149}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -138,14 +138,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &400009145
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400009144}
-  m_Enabled: 1
 --- !u!20 &400009146
 Camera:
   m_ObjectHideFlags: 0
@@ -256,6 +248,19 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &400009149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400009144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &646876126
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 5eb4463a824879242b71e42e28395cd8, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -534,7 +539,39 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c00b2972-7ad0-4e03-b6b0-73ac3564ee82
+    m_ActionName: 'Controls/Steer[/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7bcd7f8f-0dcd-4b4c-a9b3-86be9e1d8d53
+    m_ActionName: 'Controls/Throttle & Brake[/Keyboard/w,/Keyboard/leftShift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a5eadf2e-613e-47d3-8cb9-fdc975abc5f6
+    m_ActionName: 'Controls/Clutch[/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 738bda2a-c10c-4961-aa1e-ecfd8f4cb705
+    m_ActionName: 'Controls/Hand Brake[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b2f4f6d4-0ba8-4f0f-b8f4-b3f637be82f9
+    m_ActionName: 'Controls/Cycle Camera[/Keyboard/tab]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c56d4330-c218-4a77-ad70-bb30c92a452d
+    m_ActionName: 'Garage/Back[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f9a80d7b-e515-4504-a7ae-30b01e41e984
+    m_ActionName: Garage/Cycle
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7ea845fb-03f0-4956-ae9d-e3c4fe9e4d15
+    m_ActionName: 'CircuitSelection/Back[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Garage

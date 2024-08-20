@@ -1,23 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CircuitSelectionUI : MonoBehaviour
 {
-	[SerializeField] private Button fujiSpeedwayButton;
+	[SerializeField] private Button backButton;
 	[SerializeField] private Button bahrainCircuitButton;
 
 	private void Awake()
 	{
-		fujiSpeedwayButton.onClick.AddListener(() =>
+		// Add a listener to the back button
+		backButton.onClick.AddListener(() =>
 		{
-			// Load the Fuji Speedway scene
-			UnityEngine.SceneManagement.SceneManager.LoadScene("FujiSpeedway");
+			// Load the main menu scene
+			SceneManager.LoadScene("MainMenu");
 		});
 
 		bahrainCircuitButton.onClick.AddListener(() =>
 		{
 			// Load the Bahrain Circuit scene
-			UnityEngine.SceneManagement.SceneManager.LoadScene("BahrainCircuit");
+			SceneManager.LoadScene("BahrainCircuit");
 		});
 	}
 }

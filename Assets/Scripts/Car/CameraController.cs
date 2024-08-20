@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour
 	private CameraView currentView;
 	private int cameraIndex = 0;
 
+	private Vector3 velocity = Vector3.zero;
+
 	private void Start()
 	{
 		GameObject.FindGameObjectWithTag("Player").TryGetComponent(out carLocomotionManager);
@@ -24,7 +26,7 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-	private void FixedUpdate()
+	private void LateUpdate()
 	{
 		HandleCameraFollow();
 	}
@@ -69,13 +71,15 @@ public class CameraController : MonoBehaviour
 
 	private void HandlePodView()
 	{
+		Vector3 desiredPosition = currentView.viewTransform.position;
+		transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, followSpeed * Time.deltaTime);
 		transform.LookAt(carLocomotionManager.podCameraLookAt);
-		transform.position = Vector3.Lerp(transform.position, currentView.viewTransform.position, Time.deltaTime * followSpeed);
 	}
 
 	private void DefaultView()
 	{
+		Vector3 desiredPosition = currentView.viewTransform.position;
+		transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, followSpeed * Time.deltaTime);
 		transform.LookAt(carLocomotionManager.cameraLookAt);
-		transform.position = Vector3.Lerp(transform.position, currentView.viewTransform.position, Time.deltaTime * followSpeed);
 	}
 }

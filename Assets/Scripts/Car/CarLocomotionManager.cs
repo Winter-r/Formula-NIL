@@ -23,6 +23,8 @@ public class CarLocomotionManager : MonoBehaviour
 
 	[HideInInspector] public bool isReversing;
 
+	public event Action<int> OnGearChanged;
+
 	#endregion
 
 	#region Motor Settings
@@ -61,7 +63,7 @@ public class CarLocomotionManager : MonoBehaviour
 
 	[Header("Gears & RPM")]
 	public float redLine;
-	[SerializeField] private float idleRpm;
+	public float idleRpm;
 	[SerializeField] private float minNeedleRotation;
 	[SerializeField] private float maxNeedleRotation;
 	[SerializeField] private float reverseGearRatio = -2.0f;
@@ -271,7 +273,7 @@ public class CarLocomotionManager : MonoBehaviour
 	{
 		float carSpeed = GetCarSpeed();
 		float speedFactor = Mathf.Clamp01(carSpeed / maxSpeed);
-		float adjustedSteerInput = steerInput * Mathf.Lerp(0.5f, 0.025f, speedFactor);
+		float adjustedSteerInput = steerInput * Mathf.Lerp(0.5f, 0.05f, speedFactor);
 
 		if (adjustedSteerInput > 0)
 		{
@@ -485,6 +487,9 @@ public class CarLocomotionManager : MonoBehaviour
 			gearState = GearState.ChangingGear;
 			yield return new WaitForSeconds(changeGearDelay);
 			currentGear += gearChange;
+
+			// Fire the event after the gear change
+			OnGearChanged?.Invoke(currentGear);
 		}
 
 		if (gearState != GearState.Neutral)

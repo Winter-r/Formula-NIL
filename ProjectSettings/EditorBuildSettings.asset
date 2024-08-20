@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Garage.unity
     guid: 23235673a35448a4ea82d7994d6429ab
   - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 2b432e5549da48f41b829a9151c046c1
+  - enabled: 1
     path: Assets/Scenes/BahrainCircuit.unity
     guid: cd368012ba25286469d1ea9b8a66bb06
   m_configObjects:

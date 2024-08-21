@@ -140,6 +140,8 @@ public class CarLocomotionManager : MonoBehaviour
 
 	public void HandleCarLocomotion(float throttleInput, float steerInput, float clutchInput)
 	{
+		Debug.Log("Throttle: " + throttleInput + " Steer: " + steerInput + " Clutch: " + clutchInput);
+
 		HandleMotor(throttleInput);
 		HandleSteering(steerInput);
 		HandleBrake();

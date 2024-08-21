@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38820094, g: 0.26110822, b: 0.6505371, a: 1}
+  m_IndirectSpecularColor: {r: 0.2504552, g: 0.419217, b: 0.8464387, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3915,7 +3915,7 @@ Transform:
   m_GameObject: {fileID: 1348068070}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -39.37, y: 0.5, z: 195.81}
+  m_LocalPosition: {x: -66, y: 0.87, z: 202.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7992,6 +7992,7 @@ GameObject:
   - component: {fileID: 3687318387831212917}
   - component: {fileID: 325428078022821072}
   - component: {fileID: 2549266453462118426}
+  - component: {fileID: 4062295401359888848}
   m_Layer: 0
   m_Name: Missing Ground
   m_TagString: Untagged
@@ -7999,6 +8000,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &4062295401359888848
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062295401359888847}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5434221796427346076, guid: f5774d7e1f100194fb966a0b1e80e555, type: 3}
 --- !u!33 &4094404308580377488
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -439,6 +439,45 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Options",
+            "id": "56b1b3fc-b599-489f-a3d9-04fa648b215f",
+            "actions": [
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "17369050-cccf-4461-9ec8-7e925ec86a58",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "11f742d5-e023-413c-a6ff-c5c21ea9e163",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad53ad8c-2fc9-463b-8081-70c4795a42b7",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

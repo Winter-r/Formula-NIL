@@ -462,6 +462,45 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Options"",
+            ""id"": ""56b1b3fc-b599-489f-a3d9-04fa648b215f"",
+            ""actions"": [
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""17369050-cccf-4461-9ec8-7e925ec86a58"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""11f742d5-e023-413c-a6ff-c5c21ea9e163"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad53ad8c-2fc9-463b-8081-70c4795a42b7"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -485,6 +524,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Garage = asset.FindActionMap("Garage", throwIfNotFound: true);
         m_Garage_Back = m_Garage.FindAction("Back", throwIfNotFound: true);
         m_Garage_Cycle = m_Garage.FindAction("Cycle", throwIfNotFound: true);
+        // Options
+        m_Options = asset.FindActionMap("Options", throwIfNotFound: true);
+        m_Options_Back = m_Options.FindAction("Back", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -493,6 +535,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         Debug.Assert(!m_CircuitSelection.enabled, "This will cause a leak and performance issues, InputActions.CircuitSelection.Disable() has not been called.");
         Debug.Assert(!m_Controls.enabled, "This will cause a leak and performance issues, InputActions.Controls.Disable() has not been called.");
         Debug.Assert(!m_Garage.enabled, "This will cause a leak and performance issues, InputActions.Garage.Disable() has not been called.");
+        Debug.Assert(!m_Options.enabled, "This will cause a leak and performance issues, InputActions.Options.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -790,6 +833,52 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     }
     public GarageActions @Garage => new GarageActions(this);
+
+    // Options
+    private readonly InputActionMap m_Options;
+    private List<IOptionsActions> m_OptionsActionsCallbackInterfaces = new List<IOptionsActions>();
+    private readonly InputAction m_Options_Back;
+    public struct OptionsActions
+    {
+        private @InputActions m_Wrapper;
+        public OptionsActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Back => m_Wrapper.m_Options_Back;
+        public InputActionMap Get() { return m_Wrapper.m_Options; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(OptionsActions set) { return set.Get(); }
+        public void AddCallbacks(IOptionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_OptionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_OptionsActionsCallbackInterfaces.Add(instance);
+            @Back.started += instance.OnBack;
+            @Back.performed += instance.OnBack;
+            @Back.canceled += instance.OnBack;
+        }
+
+        private void UnregisterCallbacks(IOptionsActions instance)
+        {
+            @Back.started -= instance.OnBack;
+            @Back.performed -= instance.OnBack;
+            @Back.canceled -= instance.OnBack;
+        }
+
+        public void RemoveCallbacks(IOptionsActions instance)
+        {
+            if (m_Wrapper.m_OptionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IOptionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_OptionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_OptionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public OptionsActions @Options => new OptionsActions(this);
     public interface INavigationActions
     {
         void OnMouse(InputAction.CallbackContext context);
@@ -812,5 +901,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnBack(InputAction.CallbackContext context);
         void OnCycle(InputAction.CallbackContext context);
+    }
+    public interface IOptionsActions
+    {
+        void OnBack(InputAction.CallbackContext context);
     }
 }

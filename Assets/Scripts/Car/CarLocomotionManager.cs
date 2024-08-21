@@ -75,6 +75,7 @@ public class CarLocomotionManager : MonoBehaviour
 	[SerializeField] private float increaseGearRpm;
 	[SerializeField] private float decreaseGearRpm;
 	[SerializeField] private float changeGearDelay = 0.5f;
+	[SerializeField] private float rpmSpeedFactor = 5f;
 	[HideInInspector] public float currentRpm;
 	private int currentGear;
 	private float currentTorque;
@@ -250,20 +251,20 @@ public class CarLocomotionManager : MonoBehaviour
 		{
 			if (clutch < 0.1f)
 			{
-				currentRpm = Mathf.Lerp(currentRpm, Mathf.Max(idleRpm, redLine * Mathf.Abs(throttleInput)) + UnityEngine.Random.Range(-50, 50), Time.deltaTime);
+				currentRpm = Mathf.Lerp(currentRpm, Mathf.Max(idleRpm, redLine * throttleInput) + UnityEngine.Random.Range(-50, 50), Time.deltaTime);
 			}
 			else
 			{
 				wheelRpm = Mathf.Abs((wheelColliders.rearRightWheel.rpm + wheelColliders.rearLeftWheel.rpm) / 2f) * (isReversing ? reverseGearRatio : gearRatios[currentGear]) * differentialRatio;
-				currentRpm = Mathf.Lerp(currentRpm, Mathf.Max(idleRpm - 100, wheelRpm), Time.deltaTime * 3f);
+				currentRpm = Mathf.Lerp(currentRpm, Mathf.Max(idleRpm - 100, wheelRpm), Time.deltaTime * rpmSpeedFactor);
 
 				if (isReversing)
 				{
-					torque = powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm * reverseGearRatio * differentialRatio * TORQUE_MULTIPLIER * clutch;
+					torque = (powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm) * reverseGearRatio * differentialRatio * TORQUE_MULTIPLIER * clutch;
 				}
 				else
 				{
-					torque = powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm * gearRatios[currentGear] * differentialRatio * TORQUE_MULTIPLIER * clutch;
+					torque = (powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm) * gearRatios[currentGear] * differentialRatio * TORQUE_MULTIPLIER * clutch;
 				}
 			}
 		}

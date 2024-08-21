@@ -50,13 +50,7 @@ public class GarageUI : MonoBehaviour
 
 	// params for positive or negative
 	public void CycleCarColor(int direction)
-	{
-		if (playerMaterial.shader != Shader.Find("Unlit/Texture"))
-		{
-			return;
-		}
-
-		// Cycle through the car colors, by adjusting the X-offset of the main texture by 0.1 and keeping the Y-offset at 0.5
+	{		// Cycle through the car colors, by adjusting the X-offset of the main texture by 0.1 and keeping the Y-offset at 0.5
 		playerMaterial.mainTextureOffset += new Vector2(0.1f * direction, 0);
 		PlayerPrefs.SetFloat("CarColorOffsetX", playerMaterial.mainTextureOffset.x);
 	}

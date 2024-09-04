@@ -6,6 +6,10 @@ TagManager:
   tags:
   - CarContainer
   - Ghost
+  - AI
+  - Checkpoint
+  - Wall
+  - Curb
   layers:
   - Default
   - TransparentFX
@@ -13,9 +17,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - AI
+  - Wall
+  - Checkpoint
   - 
   - 
   - 

@@ -1,0 +1,12 @@
+using System;
+using UnityEngine;
+
+{0}
+
+namespace {1}
+{{
+    public class {2} : MonoBehaviour
+    {{
+{3}
+    }}
+}}

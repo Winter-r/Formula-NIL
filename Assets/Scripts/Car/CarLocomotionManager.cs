@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum GearState
@@ -12,10 +13,36 @@ public enum GearState
 	ChangingGear
 }
 
+public enum ViewType
+{
+	Regular,
+	Far,
+	Pod
+}
+
+[Serializable]
+public class CameraView
+{
+	public ViewType viewType;
+	public Transform viewTransform;
+}
+
+[Serializable]
+public class WheelColliders
+{
+	public WheelCollider frontLeftWheel, frontRightWheel;
+	public WheelCollider rearLeftWheel, rearRightWheel;
+}
+
+[Serializable]
+public class WheelMeshRenderers
+{
+	public MeshRenderer frontLeftWheel, frontRightWheel;
+	public MeshRenderer rearLeftWheel, rearRightWheel;
+}
+
 public class CarLocomotionManager : MonoBehaviour
 {
-	private const float TORQUE_MULTIPLIER = 5252f;
-
 	#region Variables
 
 	#region General Settings
@@ -23,9 +50,19 @@ public class CarLocomotionManager : MonoBehaviour
 	public Rigidbody PlayerCarRb { get; private set; }
 	public Transform PlayerCar { get; private set; }
 
+	public bool isInputEnabled = true;
+
 	[HideInInspector] public bool isReversing;
 
 	public event Action<int> OnGearChanged;
+
+	#endregion
+
+	#region Input Settings
+
+	private float throttleInput = 0f;
+	private float steerInput = 0f;
+	private float clutchInput = 0f;
 
 	#endregion
 
@@ -35,6 +72,8 @@ public class CarLocomotionManager : MonoBehaviour
 	[SerializeField] private float motorPower;
 	public float maxSpeed;
 	private float clampedSpeed;
+
+	private const float TORQUE_MULTIPLIER = 5252f;
 
 	[HideInInspector] public float carSpeedRatio;
 	[HideInInspector] public int engineStatus;
@@ -93,8 +132,6 @@ public class CarLocomotionManager : MonoBehaviour
 	private TMP_Text gearText;
 	private Transform rpmNeedle;
 
-
-
 	#endregion
 
 	#region Camera Settings
@@ -140,17 +177,19 @@ public class CarLocomotionManager : MonoBehaviour
 
 	public void HandleCarLocomotion(float throttleInput, float steerInput, float clutchInput)
 	{
-		Debug.Log("Throttle: " + throttleInput + " Steer: " + steerInput + " Clutch: " + clutchInput);
+		this.throttleInput = throttleInput;
+		this.steerInput = steerInput;
+		this.clutchInput = clutchInput;
 
-		HandleMotor(throttleInput);
-		HandleSteering(steerInput);
+		HandleMotor();
+		HandleSteering();
 		HandleBrake();
-		HandleBrakeDuringSlip(throttleInput);
-		HandleStartingEngine(throttleInput);
-		HandleClutch(throttleInput, clutchInput);
+		HandleBrakeDuringSlip();
+		HandleStartingEngine();
+		HandleClutch();
 		HandleWheels();
-		UpdateReversing(throttleInput);
-		UpdateCarSpeedRatio(throttleInput);
+		UpdateReversing();
+		UpdateCarSpeedRatio();
 		UpdateGaugeClusterUI();
 
 		if (gearState == GearState.Reversing && throttleInput >= 0)
@@ -159,7 +198,7 @@ public class CarLocomotionManager : MonoBehaviour
 		}
 	}
 
-	private void HandleStartingEngine(float throttleInput)
+	private void HandleStartingEngine()
 	{
 		if (Mathf.Abs(throttleInput) > 0 && engineStatus == 0)
 		{
@@ -168,17 +207,12 @@ public class CarLocomotionManager : MonoBehaviour
 		}
 	}
 
-	private void HandleMotor(float throttleInput)
+	private void HandleMotor()
 	{
 		if (RaceManager.Instance.raceType == RaceType.TimeTrial && !RaceManager.Instance.TrialStarted)
 		{
 			// If race hasn't started, skip applying motor torque but allow RPM to increase with clutch
-			currentTorque = CalculateTorque(throttleInput);
-			return;
-		}
-		else if (RaceManager.Instance.raceType == RaceType.AIGrandPrix && !RaceManager.Instance.RaceStarted)
-		{
-			currentTorque = CalculateTorque(throttleInput);
+			currentTorque = CalculateTorque();
 			return;
 		}
 
@@ -201,7 +235,7 @@ public class CarLocomotionManager : MonoBehaviour
 				}
 			}
 
-			currentTorque = CalculateTorque(throttleInput);
+			currentTorque = CalculateTorque();
 			float motorTorque = currentTorque * throttleInput;
 
 			if (isReversing)
@@ -217,7 +251,7 @@ public class CarLocomotionManager : MonoBehaviour
 		}
 	}
 
-	private float CalculateTorque(float throttleInput)
+	private float CalculateTorque()
 	{
 		float torque = 0;
 
@@ -274,7 +308,7 @@ public class CarLocomotionManager : MonoBehaviour
 		return torque;
 	}
 
-	private void HandleSteering(float steerInput)
+	private void HandleSteering()
 	{
 		float carSpeed = GetCarSpeed();
 		float speedFactor = Mathf.Clamp01(carSpeed / maxSpeed);
@@ -333,7 +367,7 @@ public class CarLocomotionManager : MonoBehaviour
 		wheelColliders.rearRightWheel.brakeTorque = rearWheelBrakeTorque;
 	}
 
-	private void HandleBrakeDuringSlip(float throttleInput)
+	private void HandleBrakeDuringSlip()
 	{
 		float movingDirection = Vector3.Dot(transform.forward, PlayerCarRb.linearVelocity);
 
@@ -399,7 +433,7 @@ public class CarLocomotionManager : MonoBehaviour
 		return existingComponent;
 	}
 
-	private void HandleClutch(float throttleInput, float clutchInput)
+	private void HandleClutch()
 	{
 		if (gearState != GearState.ChangingGear)
 		{
@@ -424,14 +458,14 @@ public class CarLocomotionManager : MonoBehaviour
 		return PlayerCarRb.linearVelocity.magnitude;
 	}
 
-	public void UpdateCarSpeedRatio(float throttleInput)
+	public void UpdateCarSpeedRatio()
 	{
 		float throttle = Mathf.Clamp(Mathf.Abs(throttleInput), 0.5f, 1f);
 
 		carSpeedRatio = currentRpm * throttle / redLine;
 	}
 
-	private void UpdateReversing(float throttleInput)
+	private void UpdateReversing()
 	{
 		if (gearState == GearState.Reversing)
 		{
@@ -443,17 +477,34 @@ public class CarLocomotionManager : MonoBehaviour
 		}
 	}
 
-	public void ResetCar()
+	public void DisableCar()
 	{
-		PlayerCarRb.linearVelocity = Vector3.zero;
-		PlayerCarRb.angularVelocity = Vector3.zero;
-
-		gearState = GearState.Neutral;
+		// gear
 		currentGear = 0;
 		currentRpm = 0;
 		clutch = 0;
+		gearState = GearState.Neutral;
 
-		this.gameObject.SetActive(false);
+		isInputEnabled = false;
+
+		// mask other racers from colliding with this car
+		// this.GetComponent<BoxCollider>().excludeLayers = LayerMask.GetMask("AI");
+
+		if (!this.gameObject.CompareTag("Player"))
+		{
+			StartCoroutine(HideCar());
+		}
+		else
+		{
+			gameObject.SetActive(false);
+		}
+	}
+
+	public void EnableCar()
+	{
+		isInputEnabled = true;
+		// this.GetComponent<BoxCollider>().excludeLayers = 0;
+		gameObject.SetActive(true);
 	}
 
 	private IEnumerator ChangeGear(int gearChange, float throttleInput)
@@ -502,32 +553,10 @@ public class CarLocomotionManager : MonoBehaviour
 			gearState = GearState.Running;
 		}
 	}
-}
 
-[Serializable]
-public class WheelColliders
-{
-	public WheelCollider frontLeftWheel, frontRightWheel;
-	public WheelCollider rearLeftWheel, rearRightWheel;
-}
-
-[Serializable]
-public class WheelMeshRenderers
-{
-	public MeshRenderer frontLeftWheel, frontRightWheel;
-	public MeshRenderer rearLeftWheel, rearRightWheel;
-}
-
-[Serializable]
-public class CameraView
-{
-	public ViewType viewType;
-	public Transform viewTransform;
-}
-
-public enum ViewType
-{
-	Regular,
-	Far,
-	Pod
+	private IEnumerator HideCar(float seconds = 5f)
+	{
+		yield return new WaitForSeconds(seconds);
+		this.gameObject.SetActive(false);
+	}
 }

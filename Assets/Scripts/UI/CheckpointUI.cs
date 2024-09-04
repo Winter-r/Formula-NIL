@@ -10,7 +10,7 @@ public class CheckpointUI : MonoBehaviour
 
 	private void Start()
 	{
-		RaceManager.Instance.OnPlayerWrongCheckpoint += OnPlayerWrongCheckpoint;
+		RaceManager.Instance.OnWrongCheckpoint += OnPlayerWrongCheckpoint;
 		RaceManager.Instance.OnPlayerDisqualified += OnPlayerDisqualified;
 
 		HideGraphic(penaltyGraphic.graphic);
@@ -19,6 +19,11 @@ public class CheckpointUI : MonoBehaviour
 
 	private void OnPlayerWrongCheckpoint(object sender, RaceManager.PenaltyEventArgs e)
 	{
+		if (!e.carTransform.CompareTag("Player"))
+		{
+			return;
+		}
+
 		penaltyGraphic.alertText.text = "CORNER CUTTING!";
 
 		if (e.penaltyTime > 0)
@@ -31,14 +36,15 @@ public class CheckpointUI : MonoBehaviour
 		}
 	}
 
-	private void OnPlayerDisqualified(object sender, EventArgs e)
+	private void OnPlayerDisqualified(object sender, Transform carTransform)
 	{
-		StartCoroutine(DisqualificationGraphic(disqualificationGraphic, 5f));
+		StartCoroutine(DisqualificationGraphic(disqualificationGraphic, 5f, carTransform));
 	}
 
-	private IEnumerator DisqualificationGraphic(GameObject graphic, float seconds)
+	private IEnumerator DisqualificationGraphic(GameObject graphic, float seconds, Transform carTransform)
 	{
 		graphic.SetActive(true);
+		carTransform.GetComponent<CarLocomotionManager>().DisableCar();
 		yield return new WaitForSeconds(seconds);
 		graphic.SetActive(false);
 

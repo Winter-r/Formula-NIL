@@ -9,7 +9,14 @@ using UnityEngine.UI;
 public enum RaceType
 {
 	TimeTrial,
-	AIGrandPrix
+	GrandPrix
+}
+
+public enum SectorState
+{
+	Purple,
+	Green,
+	Yellow
 }
 
 public class RaceManager : MonoBehaviour
@@ -20,7 +27,7 @@ public class RaceManager : MonoBehaviour
 	// Properties
 	public List<Transform> CarTransformsList { get; private set; }
 	public bool TrialStarted { get; private set; } = false;
-	public bool RaceStarted { get; private set; } = false;
+	public bool IsTrainingAI = false;
 
 	// Serialized Fields
 	[Header("Race Settings")]
@@ -31,7 +38,6 @@ public class RaceManager : MonoBehaviour
 	[Header("Cars")]
 	[SerializeField] private GameObject playerPrefab;
 	[SerializeField] private GameObject ghostPrefab;
-	[SerializeField] private GameObject aiPrefab;
 	[SerializeField] private List<string> carTags;
 
 	[Header("UI")]
@@ -39,14 +45,19 @@ public class RaceManager : MonoBehaviour
 
 	[Header("Spawn Points")]
 	[SerializeField] private Transform timeTrialSpawnPoint;
+	[SerializeField] private Transform spawnPointsParent;
+	[HideInInspector] public List<Transform> spawnPoints = new();
 	[Space(5)]
-	[SerializeField] private List<Transform> grandPrixSpawnPoints;
 
 	// Checkpoints
-	private List<CheckpointSingle> checkpointList;
-	[SerializeField] private Dictionary<Transform, int> nextCheckpointIndexDict;
+	public List<CheckpointSingle> checkpointList;
+	public Dictionary<Transform, int> nextCheckpointIndexDict;
 	private int totalMissedCheckpoints;
 	private int numberOfWarnings;
+
+	// Sectors
+	[SerializeField] private GameObject[] sectorTriggers = new GameObject[3];
+	private SectorState[] sectorStates = new SectorState[3];
 
 	// Time Trial
 	private float currentTrialLapTime;
@@ -60,30 +71,19 @@ public class RaceManager : MonoBehaviour
 	private TMP_Text lastLapTimeText;
 
 	// GP
-	private Dictionary<Transform, float> carCurrentTimes = new();
-	private Dictionary<Transform, float> carPenaltyTimes = new();
-	private Dictionary<Transform, int> carCurrentLaps = new();
-	private Dictionary<Transform, int> carPositions = new();
-	[SerializeField] private List<BracketUI> positionsBracketsUI;
-
-	[Serializable]
-	public class BracketUI
-	{
-		public TMP_Text racerName;
-		public TMP_Text racerPosition;
-	}
-
-	private float bestLapTime;
-	private float playerLastLapTime;
+	public Dictionary<Transform, float> carCurrentTimes = new();
+	public Dictionary<Transform, float> carPenaltyTimes = new();
 
 	// Events
-	public event EventHandler<PenaltyEventArgs> OnPlayerWrongCheckpoint;
-	public event EventHandler OnPlayerDisqualified;
+	public event EventHandler<Transform> OnCorrectCheckpoint;
+	public event EventHandler<PenaltyEventArgs> OnWrongCheckpoint;
+	public event EventHandler<Transform> OnPlayerDisqualified;
 	public static event EventHandler OnLapStarted;
 	public static event EventHandler OnLapComplete;
 
 	public class PenaltyEventArgs : EventArgs
 	{
+		public Transform carTransform;
 		public int missedCheckpoints;
 		public int warnings;
 		public float penaltyTime;
@@ -100,14 +100,19 @@ public class RaceManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 
+		InitializeSpawnPoints();
 		InitializeCarTransformsList();
+		InitializeCheckpointLists();
 	}
 
 	private void Start()
 	{
-		currentTrialLapTime = 0;
-		lastTrialLapTime = 0;
-		bestTrialLapTime = PlayerPrefs.GetFloat("BestLapTime", 0);
+		if (raceType == RaceType.TimeTrial)
+		{
+			currentTrialLapTime = 0;
+			lastTrialLapTime = 0;
+			bestTrialLapTime = PlayerPrefs.GetFloat("BestLapTime", 0);
+		}
 
 		foreach (Image light in countdownLights)
 		{
@@ -115,9 +120,8 @@ public class RaceManager : MonoBehaviour
 		}
 
 		StartCoroutine(StartCountdown());
-		InitializeCheckpointLists();
 
-		lapTimeText = CarLocomotionManager.FindAndAssignComponent("Lap Time Text", lapTimeText);
+		lapTimeText = CarLocomotionManager.FindAndAssignComponent("Current Time Text", lapTimeText);
 		bestLapTimeText = CarLocomotionManager.FindAndAssignComponent("Best Lap Time Text", bestLapTimeText);
 		lastLapTimeText = CarLocomotionManager.FindAndAssignComponent("Last Lap Time Text", lastLapTimeText);
 	}
@@ -127,12 +131,13 @@ public class RaceManager : MonoBehaviour
 		UpdateTrialLapTimeUI();
 		UpdateTrialTimer();
 
-		UpdateRacingPositions();
-
-		Debug.Log(nextCheckpointIndexDict[CarTransformsList[0]]);
+		foreach (Transform car in CarTransformsList)
+		{
+			Debug.Log("Car: " + car.name + " Next Checkpoint: " + nextCheckpointIndexDict[car]);
+		}
 	}
 
-	private void InitializeCheckpointLists()
+	public void InitializeCheckpointLists()
 	{
 		checkpointList = new List<CheckpointSingle>();
 		Transform checkpointsTransform = transform.Find("Checkpoints");
@@ -148,41 +153,70 @@ public class RaceManager : MonoBehaviour
 
 		foreach (Transform carTransform in CarTransformsList)
 		{
-			nextCheckpointIndexDict.Add(carTransform, 0);
+			if (!nextCheckpointIndexDict.ContainsKey(carTransform))
+			{
+				nextCheckpointIndexDict.Add(carTransform, 0);
+			}
+		}
+
+		// reset ai checkpoints to 0
+		if (IsTrainingAI)
+		{
+			foreach (Transform carTransform in CarTransformsList)
+			{
+				nextCheckpointIndexDict[carTransform] = 0;
+			}
 		}
 	}
 
-	private void InitializeCarTransformsList()
+	public void InitializeCarTransformsList()
 	{
 		CarTransformsList = new List<Transform>();
-
 		Transform carContainerTransform = GameObject.FindGameObjectWithTag("CarContainer").transform;
-
-		GameObject playerCar = Instantiate(playerPrefab, timeTrialSpawnPoint.position, timeTrialSpawnPoint.rotation, carContainerTransform);
 
 		if (raceType == RaceType.TimeTrial)
 		{
+			GameObject playerCar = Instantiate(playerPrefab, timeTrialSpawnPoint.position, timeTrialSpawnPoint.rotation, carContainerTransform);
 			GhostRunner.Instance.recordTarget = playerCar.transform;
 		}
 
-		if (raceType == RaceType.AIGrandPrix)
+		if (raceType == RaceType.GrandPrix)
 		{
 			for (int i = 0; i < numberOfOpponents; i++)
 			{
-				// Randomise the AI spawn points but ensure no cars have the same spawn point
-				int randomIndex = UnityEngine.Random.Range(0, grandPrixSpawnPoints.Count);
-				Instantiate(aiPrefab, grandPrixSpawnPoints[randomIndex].position, grandPrixSpawnPoints[randomIndex].rotation, carContainerTransform);
-				grandPrixSpawnPoints.RemoveAt(randomIndex);
 			}
 		}
 
 		for (int i = 0; i < carContainerTransform.childCount; i++)
 		{
-			if (carTags.Contains(carContainerTransform.GetChild(i).tag))
+			Transform carTransform = carContainerTransform.GetChild(i);
+
+			if (carTags.Contains(carTransform.tag) && !CarTransformsList.Contains(carTransform))
 			{
-				CarTransformsList.Add(carContainerTransform.GetChild(i));
+				CarTransformsList.Add(carTransform);
 			}
 		}
+	}
+
+	public void InitializeSpawnPoints()
+	{
+		if (raceType == RaceType.GrandPrix)
+		{
+			spawnPoints.Clear();
+
+			foreach (Transform spawnPoint in spawnPointsParent)
+			{
+				spawnPoints.Add(spawnPoint);
+			}
+		}
+	}
+
+	public void StartNewEpisode(Transform carTransform)
+	{
+		int randomSpawnPointIndex = UnityEngine.Random.Range(0, spawnPoints.Count);
+		Transform randomSpawnPoint = spawnPoints[randomSpawnPointIndex];
+		carTransform.SetPositionAndRotation(randomSpawnPoint.position, randomSpawnPoint.rotation);
+		InitializeCheckpointLists();
 	}
 
 	private IEnumerator StartCountdown()
@@ -208,9 +242,10 @@ public class RaceManager : MonoBehaviour
 		{
 			StartTrial();
 		}
-		else if (raceType == RaceType.AIGrandPrix)
+
+		if (raceType == RaceType.GrandPrix)
 		{
-			StartRace();
+			StartGrandPrix();
 		}
 	}
 
@@ -219,103 +254,9 @@ public class RaceManager : MonoBehaviour
 		TrialStarted = true;
 	}
 
-	private void StartRace()
+	private void StartGrandPrix()
 	{
-		RaceStarted = true;
-
-		foreach (Transform car in CarTransformsList)
-		{
-			carCurrentTimes.Add(car, 0);
-			carCurrentLaps.Add(car, 0);
-			carPenaltyTimes.Add(car, 0);
-		}
-	}
-
-	private void UpdateRacingPositions()
-	{
-		foreach (Transform racer in CarTransformsList)
-		{
-			int position = 1;
-
-			foreach (Transform otherRacer in CarTransformsList)
-			{
-				if (racer == otherRacer) continue;
-
-				if (carCurrentLaps[racer] > carCurrentLaps[otherRacer])
-				{
-					position++;
-				}
-				else if (carCurrentLaps[racer] == carCurrentLaps[otherRacer])
-				{
-					if (carCurrentTimes[racer] < carCurrentTimes[otherRacer])
-					{
-						position++;
-					}
-				}
-			}
-
-			carPositions[racer] = position;
-		}
-
-		// sort the cars by their positions
-		CarTransformsList.Sort((a, b) => carPositions[a].CompareTo(carPositions[b]));
-
-		UpdatePositionUI();
-	}
-
-	private void UpdatePositionUI()
-	{
-		if (raceType == RaceType.TimeTrial)
-		{
-			// disable the brackets UI
-			foreach (BracketUI bracket in positionsBracketsUI)
-			{
-				SetBracketVisibility(bracket, false);
-			}
-		}
-		else
-		{
-			// Grand Prix Mode
-			int maxVisibleBrackets = Mathf.Min(positionsBracketsUI.Count, CarTransformsList.Count);
-			for (int i = 0; i < maxVisibleBrackets; i++)
-			{
-				Transform carTransform = CarTransformsList[i];
-				int position = carPositions[carTransform];
-				BracketUI bracket = positionsBracketsUI[i];
-
-				bracket.racerName.text = carTransform.name;
-				bracket.racerPosition.text = position + GetOrdinalSuffix(position);
-				SetBracketVisibility(bracket, true);
-			}
-
-			// Hide unused brackets
-			for (int i = maxVisibleBrackets; i < positionsBracketsUI.Count; i++)
-			{
-				SetBracketVisibility(positionsBracketsUI[i], false);
-			}
-		}
-	}
-
-	private void SetBracketVisibility(BracketUI bracket, bool isVisible)
-	{
-		// Custom method to handle showing/hiding UI elements in your custom class
-		bracket.racerName.gameObject.SetActive(isVisible);
-		bracket.racerPosition.gameObject.SetActive(isVisible);
-	}
-
-	private string GetOrdinalSuffix(int number)
-	{
-		if (number % 100 >= 11 && number % 100 <= 13)
-		{
-			return "th";
-		}
-		switch (number % 10)
-		{
-			case 1: return "st";
-			case 2: return "nd";
-			case 3: return "rd";
-			default: return "th";
-		}
+		// Start
 	}
 
 	public void CarReachedCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
@@ -327,16 +268,19 @@ public class RaceManager : MonoBehaviour
 		{
 			if (checkpointSingle.IsStartFinishLine)
 			{
-				if (startTrialClock)
+				if (raceType == RaceType.TimeTrial)
 				{
-					LapComplete(carTransform);
-				}
-				else
-				{
-					startTrialClock = true;
-				}
+					if (startTrialClock)
+					{
+						LapComplete();
+					}
+					else
+					{
+						startTrialClock = true;
+					}
 
-				OnLapStarted?.Invoke(this, EventArgs.Empty);
+					OnLapStarted?.Invoke(this, EventArgs.Empty);
+				}
 			}
 
 			HandleCorrectCheckpoint(carTransform);
@@ -357,14 +301,7 @@ public class RaceManager : MonoBehaviour
 	{
 		Debug.Log("Checkpoint reached!");
 		nextCheckpointIndexDict[carTransform] = (nextCheckpointIndexDict[carTransform] + 1) % checkpointList.Count;
-
-		if (raceType == RaceType.AIGrandPrix)
-		{
-			if (carCurrentLaps[carTransform] == numberOfLaps)
-			{
-				carCurrentTimes[carTransform] += carPenaltyTimes[carTransform];
-			}
-		}
+		OnCorrectCheckpoint?.Invoke(this, carTransform);
 	}
 
 	private void HandleMissedCheckpoint(Transform carTransform, int checkpointIndex, int nextCheckpointIndex)
@@ -374,6 +311,8 @@ public class RaceManager : MonoBehaviour
 			DisqualifyPlayer(carTransform);
 			return;
 		}
+
+		if (checkpointIndex == nextCheckpointIndex) return;
 
 		int missedCheckpoints = checkpointIndex - nextCheckpointIndex;
 		totalMissedCheckpoints += missedCheckpoints;
@@ -392,8 +331,9 @@ public class RaceManager : MonoBehaviour
 			}
 		}
 
-		OnPlayerWrongCheckpoint?.Invoke(this, new PenaltyEventArgs
+		OnWrongCheckpoint?.Invoke(this, new PenaltyEventArgs
 		{
+			carTransform = carTransform,
 			missedCheckpoints = missedCheckpoints,
 			warnings = numberOfWarnings,
 			penaltyTime = carPenaltyTimes[carTransform]
@@ -413,9 +353,21 @@ public class RaceManager : MonoBehaviour
 
 	private void DisqualifyPlayer(Transform carTransform)
 	{
-		OnPlayerDisqualified?.Invoke(this, EventArgs.Empty);
-		carTransform.GetComponent<CarLocomotionManager>().ResetCar();
-		Debug.Log($"{carTransform.name} disqualified!");
+		if (carTransform.CompareTag("Player"))
+		{
+			OnPlayerDisqualified?.Invoke(this, carTransform);
+		}
+		else
+		{
+			if (IsTrainingAI)
+			{
+				return;
+			}
+			else
+			{
+				carTransform.GetComponent<CarLocomotionManager>().DisableCar();
+			}
+		}
 	}
 
 	public void ResetCircuit()
@@ -424,7 +376,7 @@ public class RaceManager : MonoBehaviour
 		{
 			ResetTimeTrial();
 		}
-		else if (raceType == RaceType.AIGrandPrix)
+		else
 		{
 			ResetGrandPrix();
 		}
@@ -439,36 +391,22 @@ public class RaceManager : MonoBehaviour
 		checkpointList.Clear();
 		totalMissedCheckpoints = 0;
 		numberOfWarnings = 0;
+		GhostRunner.Instance.ResetGhost();
 
 		InitializeCheckpointLists();
 
 		foreach (Transform carTransform in CarTransformsList)
 		{
-			carTransform.gameObject.SetActive(true);
 			carTransform.SetPositionAndRotation(timeTrialSpawnPoint.position, timeTrialSpawnPoint.rotation);
+			carTransform.GetComponent<CarLocomotionManager>().EnableCar();
 		}
-
-		GhostRunner.Instance.ResetGhost();
 
 		StartCoroutine(StartCountdown());
 	}
 
 	private void ResetGrandPrix()
 	{
-		RaceStarted = false;
-		bestLapTime = 0;
-		playerLastLapTime = 0;
-		totalMissedCheckpoints = 0;
-		carCurrentLaps.Clear();
-		carCurrentTimes.Clear();
-		carPenaltyTimes.Clear();
-		nextCheckpointIndexDict.Clear();
-		InitializeCheckpointLists();
-
-		foreach (Transform carTransform in CarTransformsList)
-		{
-			carTransform.SetPositionAndRotation(grandPrixSpawnPoints[UnityEngine.Random.Range(0, grandPrixSpawnPoints.Count)].position, grandPrixSpawnPoints[UnityEngine.Random.Range(0, grandPrixSpawnPoints.Count)].rotation);
-		}
+		// Reset
 	}
 
 	private void UpdateTrialTimer()
@@ -476,29 +414,9 @@ public class RaceManager : MonoBehaviour
 		if (startTrialClock) currentTrialLapTime += Time.deltaTime;
 	}
 
-	private void LapComplete(Transform carTransform)
+	private void LapComplete()
 	{
-		if (raceType == RaceType.AIGrandPrix)
-		{
-			if (carCurrentLaps[carTransform] == numberOfLaps)
-			{
-				carCurrentTimes[carTransform] += carPenaltyTimes[carTransform];
-			}
-
-			if (carTransform.CompareTag("Player"))
-			{
-				playerLastLapTime = carCurrentTimes[carTransform];
-			}
-
-			if (carCurrentTimes[carTransform] < bestLapTime || bestLapTime == 0)
-			{
-				bestLapTime = carCurrentTimes[carTransform];
-			}
-
-			carCurrentLaps[carTransform]++;
-			carCurrentTimes[carTransform] = 0;
-		}
-		else if (raceType == RaceType.TimeTrial)
+		if (raceType == RaceType.TimeTrial)
 		{
 			lastTrialLapTime = currentTrialLapTime;
 
@@ -518,27 +436,27 @@ public class RaceManager : MonoBehaviour
 
 	private string FormatTime(string type, float time)
 	{
-		int minutes = Mathf.FloorToInt(time / 60F);
-		int seconds = Mathf.FloorToInt(time % 60F);
-		int milliseconds = Mathf.FloorToInt((time * 1000F) % 1000F);
-		return $"{type}:{minutes:00}:{seconds:00}.{milliseconds:000}";
+		int minutes = Mathf.FloorToInt(time / 60f);
+		int seconds = Mathf.FloorToInt(time % 60f);
+		int milliseconds = Mathf.FloorToInt(time * 1000f % 1000F);
+		return $"{type}: {minutes:00}:{seconds:00}.{milliseconds:000}";
 	}
 
 	private void UpdateTrialLapTimeUI()
 	{
 		if (lapTimeText)
 		{
-			lapTimeText.text = FormatTime("Lap: ", currentTrialLapTime);
+			lapTimeText.text = FormatTime("Current", currentTrialLapTime);
 		}
 
 		if (bestLapTimeText)
 		{
-			bestLapTimeText.text = FormatTime("Best Lap: ", bestTrialLapTime);
+			bestLapTimeText.text = FormatTime("Best", bestTrialLapTime);
 		}
 
 		if (lastLapTimeText)
 		{
-			lastLapTimeText.text = FormatTime("Last Lap: ", lastTrialLapTime);
+			lastLapTimeText.text = FormatTime("Last", lastTrialLapTime);
 		}
 	}
 }

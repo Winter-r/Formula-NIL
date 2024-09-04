@@ -19,7 +19,7 @@ public class CarInputManager : MonoBehaviour
 
 	public static bool pauseInput = false;
 
-	public float dampeningSpeed = 5f;
+	public static float dampeningSpeed = 5f;
 
 	private void OnEnable()
 	{
@@ -61,10 +61,10 @@ public class CarInputManager : MonoBehaviour
 		dampenedSteeringInput = DampenedInput(steerInput, dampenedSteeringInput);
 		dampenedClutchInput = DampenedInput(clutchInput, dampenedClutchInput);
 
-		carLocomotionManager.HandleCarLocomotion(dampenedThrottleInput, dampenedSteeringInput, dampenedClutchInput);
+		if (carLocomotionManager.isInputEnabled) carLocomotionManager.HandleCarLocomotion(dampenedThrottleInput, dampenedSteeringInput, dampenedClutchInput);
 	}
 
-	public float DampenedInput(float input, float output)
+	public static float DampenedInput(float input, float output)
 	{
 		return Mathf.Lerp(output, input, dampeningSpeed * Time.deltaTime);
 	}

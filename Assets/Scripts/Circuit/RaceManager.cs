@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +13,7 @@ public enum RaceType
 
 public enum SectorState
 {
+	Default,
 	Purple,
 	Green,
 	Yellow
@@ -34,6 +34,7 @@ public class RaceManager : MonoBehaviour
 	public RaceType raceType;
 	[SerializeField] private int numberOfLaps;
 	[SerializeField] private int numberOfOpponents;
+	private bool oneLapComplete;
 
 	[Header("Cars")]
 	[SerializeField] private GameObject playerPrefab;
@@ -56,8 +57,13 @@ public class RaceManager : MonoBehaviour
 	private int numberOfWarnings;
 
 	// Sectors
-	[SerializeField] private GameObject[] sectorTriggers = new GameObject[3];
+	public List<SectorTrigger> sectorTriggers;
 	private SectorState[] sectorStates = new SectorState[3];
+	private float currentSectorTime;
+	private float[] bestSectorTimes = new float[3];
+	private float[] lastSectorTimes = new float[3];
+	private float delta;
+	private int currentSectorIndex;
 
 	// Time Trial
 	private float currentTrialLapTime;
@@ -69,6 +75,12 @@ public class RaceManager : MonoBehaviour
 	private TMP_Text lapTimeText;
 	private TMP_Text bestLapTimeText;
 	private TMP_Text lastLapTimeText;
+	[Header("SectorUI")]
+	public Image sector1Image;
+	public Image sector2Image;
+	public Image sector3Image;
+	public TMP_Text deltaText;
+	public Image deltaBg;
 
 	// GP
 	public Dictionary<Transform, float> carCurrentTimes = new();
@@ -103,6 +115,7 @@ public class RaceManager : MonoBehaviour
 		InitializeSpawnPoints();
 		InitializeCarTransformsList();
 		InitializeCheckpointLists();
+		InitializeSectorTriggers();
 	}
 
 	private void Start()
@@ -167,6 +180,23 @@ public class RaceManager : MonoBehaviour
 				nextCheckpointIndexDict[carTransform] = 0;
 			}
 		}
+	}
+
+	public void InitializeSectorTriggers()
+	{
+		sectorTriggers = new List<SectorTrigger>();
+		Transform sectorsTransform = transform.Find("Sectors");
+
+		foreach (Transform sectorTriggerTransform in sectorsTransform)
+		{
+			SectorTrigger sectorTrigger = sectorTriggerTransform.GetComponent<SectorTrigger>();
+			sectorTriggers.Add(sectorTrigger);
+		}
+
+		sectorStates = new SectorState[sectorTriggers.Count];
+		currentSectorTime = 0;
+		bestSectorTimes = new float[sectorTriggers.Count];
+		lastSectorTimes = new float[sectorTriggers.Count];
 	}
 
 	public void InitializeCarTransformsList()
@@ -370,6 +400,34 @@ public class RaceManager : MonoBehaviour
 		}
 	}
 
+	public void CarReachedSector(int sectorIndex)
+	{
+		if (!oneLapComplete)
+		{
+			return;
+		}
+
+		if (currentSectorTime < bestSectorTimes[sectorIndex] || bestSectorTimes[sectorIndex] == 0)
+		{
+			bestSectorTimes[sectorIndex] = currentSectorTime;
+			sectorStates[sectorIndex] = SectorState.Purple;
+		}
+
+		if (currentSectorTime < lastSectorTimes[sectorIndex] || lastSectorTimes[sectorIndex] == 0)
+		{
+			lastSectorTimes[sectorIndex] = currentSectorTime;
+			sectorStates[sectorIndex] = SectorState.Green;
+		}
+
+		if (currentSectorTime > bestSectorTimes[sectorIndex])
+		{
+			sectorStates[sectorIndex] = SectorState.Yellow;
+		}
+
+		currentSectorIndex = sectorIndex;
+		currentSectorTime = 0;
+	}
+
 	public void ResetCircuit()
 	{
 		if (raceType == RaceType.TimeTrial)
@@ -387,6 +445,8 @@ public class RaceManager : MonoBehaviour
 		TrialStarted = false;
 		startTrialClock = false;
 		currentTrialLapTime = 0;
+		currentSectorTime = 0;
+		currentSectorIndex = 0;
 		nextCheckpointIndexDict.Clear();
 		checkpointList.Clear();
 		totalMissedCheckpoints = 0;
@@ -411,7 +471,15 @@ public class RaceManager : MonoBehaviour
 
 	private void UpdateTrialTimer()
 	{
-		if (startTrialClock) currentTrialLapTime += Time.deltaTime;
+		if (startTrialClock)
+		{
+			currentTrialLapTime += Time.deltaTime;
+
+			if (oneLapComplete)
+			{
+				currentSectorTime += Time.deltaTime;
+			}
+		}
 	}
 
 	private void LapComplete()
@@ -431,7 +499,7 @@ public class RaceManager : MonoBehaviour
 			OnLapComplete?.Invoke(this, EventArgs.Empty);
 		}
 
-		Debug.Log("Lap Complete");
+		oneLapComplete = true;
 	}
 
 	private string FormatTime(string type, float time)
@@ -458,5 +526,41 @@ public class RaceManager : MonoBehaviour
 		{
 			lastLapTimeText.text = FormatTime("Last", lastTrialLapTime);
 		}
+
+		if (sector1Image)
+		{
+			sector1Image.color = GetSectorColor(sectorStates[0]);
+		}
+
+		if (sector2Image)
+		{
+			sector2Image.color = GetSectorColor(sectorStates[1]);
+		}
+
+		if (sector3Image)
+		{
+			sector3Image.color = GetSectorColor(sectorStates[2]);
+		}
+
+		UpdateDeltaUI();
+	}
+
+	private void UpdateDeltaUI()
+	{
+		// delta for the sector
+		delta = currentSectorTime - bestSectorTimes[currentSectorIndex];
+		deltaText.text = $"DELTA: {delta:+0.000;-0.000;+0.000}";
+		deltaBg.color = delta > 0 ? Color.red : Color.green; // Red for positive delta, green for negative
+	}
+
+	private Color GetSectorColor(SectorState sectorState)
+	{
+		return sectorState switch
+		{
+			SectorState.Purple => Color.magenta,
+			SectorState.Green => Color.green,
+			SectorState.Yellow => Color.yellow,
+			_ => Color.grey,
+		};
 	}
 }

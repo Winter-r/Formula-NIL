@@ -1,10 +1,9 @@
 {
   "dependencies": {
     "com.unity.ai.navigation": "2.0.4",
-    "com.unity.collab-proxy": "2.5.1",
+    "com.unity.collab-proxy": "2.5.2",
     "com.unity.ide.visualstudio": "2.0.22",
-    "com.unity.inputsystem": "1.11.0",
-    "com.unity.ml-agents": "2.0.1",
+    "com.unity.inputsystem": "1.11.1",
     "com.unity.multiplayer.center": "1.0.0",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.package-validation-suite": "0.22.0-preview",

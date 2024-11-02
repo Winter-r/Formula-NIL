@@ -10,3 +10,12 @@ The following packages were updated:
   com.unity.ai.navigation from version 2.0.3 to 2.0.4
   com.unity.collab-proxy from version 2.4.4 to 2.5.1
   com.unity.inputsystem from version 1.9.0 to 1.11.0
+
+=== Fri Oct 25 13:59:32 2024
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 2.5.1 to 2.5.2
+  com.unity.inputsystem from version 1.11.0 to 1.11.1

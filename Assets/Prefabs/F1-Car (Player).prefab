@@ -743,7 +743,7 @@ MonoBehaviour:
   wheelBase: 3.5
   rearTrack: 1.6
   turnRadius: 6
-  maxSteeringAngle: 25
+  maxSteeringAngle: 15
   brakePower: 4000
   brakeInput: 0
   redLine: 15000
@@ -774,13 +774,22 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.21417947
     - serializedVersion: 3
-      time: 0.9420532
-      value: 0.9952812
-      inSlope: 0.0343434
-      outSlope: 0.0343434
+      time: 0.34338152
+      value: 0.56296986
+      inSlope: 2.1026835
+      outSlope: 2.1026835
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.28758216
+      inWeight: 0.09173568
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9696638
+      value: 1
+      inSlope: 0.040129628
+      outSlope: 0.040129628
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09779607
       outWeight: 0.3419465
     - serializedVersion: 3
       time: 1
@@ -794,7 +803,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  increaseGearRpm: 13500
+  increaseGearRpm: 13750
   decreaseGearRpm: 4500
   changeGearDelay: 0.05
   rpmSpeedFactor: 4
@@ -802,12 +811,12 @@ MonoBehaviour:
   cameraLookAt: {fileID: 1235874163626493422}
   podCameraLookAt: {fileID: 7731197993999202667}
   cameraViews:
+  - viewType: 2
+    viewTransform: {fileID: 4079202048195122881}
   - viewType: 0
     viewTransform: {fileID: 1757419757870454796}
   - viewType: 1
     viewTransform: {fileID: 5824053846704496499}
-  - viewType: 2
-    viewTransform: {fileID: 4079202048195122881}
   wheelColliders:
     frontLeftWheel: {fileID: 7755588990652944063}
     frontRightWheel: {fileID: 5707100338428448410}
@@ -1434,7 +1443,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8706757339428506420}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 

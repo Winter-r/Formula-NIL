@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public enum RaceType
 {
-	TimeTrial,
-	GrandPrix
+	TimeTrial
 }
 
 public enum SectorState
@@ -112,7 +111,6 @@ public class RaceManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		InitializeSpawnPoints();
 		InitializeCarTransformsList();
 		InitializeCheckpointLists();
 		InitializeSectorTriggers();
@@ -143,11 +141,6 @@ public class RaceManager : MonoBehaviour
 	{
 		UpdateTrialLapTimeUI();
 		UpdateTrialTimer();
-
-		foreach (Transform car in CarTransformsList)
-		{
-			Debug.Log("Car: " + car.name + " Next Checkpoint: " + nextCheckpointIndexDict[car]);
-		}
 	}
 
 	public void InitializeCheckpointLists()
@@ -169,15 +162,6 @@ public class RaceManager : MonoBehaviour
 			if (!nextCheckpointIndexDict.ContainsKey(carTransform))
 			{
 				nextCheckpointIndexDict.Add(carTransform, 0);
-			}
-		}
-
-		// reset ai checkpoints to 0
-		if (IsTrainingAI)
-		{
-			foreach (Transform carTransform in CarTransformsList)
-			{
-				nextCheckpointIndexDict[carTransform] = 0;
 			}
 		}
 	}
@@ -210,13 +194,6 @@ public class RaceManager : MonoBehaviour
 			GhostRunner.Instance.recordTarget = playerCar.transform;
 		}
 
-		if (raceType == RaceType.GrandPrix)
-		{
-			for (int i = 0; i < numberOfOpponents; i++)
-			{
-			}
-		}
-
 		for (int i = 0; i < carContainerTransform.childCount; i++)
 		{
 			Transform carTransform = carContainerTransform.GetChild(i);
@@ -230,14 +207,11 @@ public class RaceManager : MonoBehaviour
 
 	public void InitializeSpawnPoints()
 	{
-		if (raceType == RaceType.GrandPrix)
-		{
-			spawnPoints.Clear();
+		spawnPoints.Clear();
 
-			foreach (Transform spawnPoint in spawnPointsParent)
-			{
-				spawnPoints.Add(spawnPoint);
-			}
+		foreach (Transform spawnPoint in spawnPointsParent)
+		{
+			spawnPoints.Add(spawnPoint);
 		}
 	}
 
@@ -251,18 +225,15 @@ public class RaceManager : MonoBehaviour
 
 	private IEnumerator StartCountdown()
 	{
-		// Show each light one by one
 		for (int i = 0; i < countdownLights.Count; i++)
 		{
 			countdownLights[i].enabled = true;
-			yield return new WaitForSeconds(1f); // Wait 1 second between each light
+			yield return new WaitForSeconds(1f);
 		}
 
-		// Wait for a random time between 0.2 to 3 seconds
 		float randomWaitTime = UnityEngine.Random.Range(0.2f, 3f);
 		yield return new WaitForSeconds(randomWaitTime);
 
-		// Turn off all lights
 		foreach (Image light in countdownLights)
 		{
 			light.enabled = false;
@@ -272,22 +243,9 @@ public class RaceManager : MonoBehaviour
 		{
 			StartTrial();
 		}
-
-		if (raceType == RaceType.GrandPrix)
-		{
-			StartGrandPrix();
-		}
 	}
 
-	private void StartTrial()
-	{
-		TrialStarted = true;
-	}
-
-	private void StartGrandPrix()
-	{
-		// Start
-	}
+	private void StartTrial() => TrialStarted = true;
 
 	public void CarReachedCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
 	{
@@ -402,30 +360,50 @@ public class RaceManager : MonoBehaviour
 
 	public void CarReachedSector(int sectorIndex)
 	{
-		if (!oneLapComplete)
-		{
-			return;
-		}
+		float sectorTime = currentSectorTime;
+		currentSectorTime = 0;
 
-		if (currentSectorTime < bestSectorTimes[sectorIndex] || bestSectorTimes[sectorIndex] == 0)
+		lastSectorTimes[sectorIndex] = sectorTime;
+		currentSectorIndex = (currentSectorIndex + 1) % sectorTriggers.Count;
+
+		if (sectorIndex < 0 || sectorIndex >= sectorTriggers.Count) return;
+		// Check if we are at the last sector, and if previous sector times are recorded
+		if (sectorIndex == sectorTriggers.Count - 1 && !ArePreviousSectorsComplete()) return;
+		if (!oneLapComplete) return;
+
+		if (sectorTime < bestSectorTimes[sectorIndex] || bestSectorTimes[sectorIndex] == 0)
 		{
-			bestSectorTimes[sectorIndex] = currentSectorTime;
 			sectorStates[sectorIndex] = SectorState.Purple;
+			bestSectorTimes[sectorIndex] = sectorTime;
 		}
-
-		if (currentSectorTime < lastSectorTimes[sectorIndex] || lastSectorTimes[sectorIndex] == 0)
+		else if (sectorTime <= bestSectorTimes[sectorIndex] * 1.05f)
 		{
-			lastSectorTimes[sectorIndex] = currentSectorTime;
 			sectorStates[sectorIndex] = SectorState.Green;
 		}
-
-		if (currentSectorTime > bestSectorTimes[sectorIndex])
+		else
 		{
 			sectorStates[sectorIndex] = SectorState.Yellow;
 		}
 
-		currentSectorIndex = sectorIndex;
-		currentSectorTime = 0;
+		if (sectorIndex == sectorTriggers.Count - 1)
+		{
+			for (int i = 0; i < sectorStates.Length; i++)
+			{
+				sectorStates[i] = SectorState.Default;
+			}
+		}
+	}
+
+	private bool ArePreviousSectorsComplete()
+	{
+		for (int i = 0; i < sectorTriggers.Count - 1; i++)
+		{
+			if (lastSectorTimes[i] == 0) // Check if previous sector time is uninitialized
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public void ResetCircuit()
@@ -433,10 +411,6 @@ public class RaceManager : MonoBehaviour
 		if (raceType == RaceType.TimeTrial)
 		{
 			ResetTimeTrial();
-		}
-		else
-		{
-			ResetGrandPrix();
 		}
 	}
 
@@ -464,22 +438,17 @@ public class RaceManager : MonoBehaviour
 		StartCoroutine(StartCountdown());
 	}
 
-	private void ResetGrandPrix()
-	{
-		// Reset
-	}
-
 	private void UpdateTrialTimer()
 	{
 		if (startTrialClock)
 		{
-			currentTrialLapTime += Time.deltaTime;
+			float deltaTime = Time.deltaTime;
 
-			if (oneLapComplete)
-			{
-				currentSectorTime += Time.deltaTime;
-			}
+			currentSectorTime += deltaTime;
+			currentTrialLapTime += deltaTime;
 		}
+
+		UpdateDelta();
 	}
 
 	private void LapComplete()
@@ -541,17 +510,25 @@ public class RaceManager : MonoBehaviour
 		{
 			sector3Image.color = GetSectorColor(sectorStates[2]);
 		}
-
-		UpdateDeltaUI();
 	}
 
-	private void UpdateDeltaUI()
+	private void UpdateDelta()
 	{
-		// delta for the sector
+		if (!oneLapComplete || !startTrialClock)
+		{
+			deltaText.text = "DELTA: ±0.000";
+			deltaBg.color = Color.grey;
+
+			return;
+		}
+
 		delta = currentSectorTime - bestSectorTimes[currentSectorIndex];
+
+		// Update UI with formatted delta value and color
 		deltaText.text = $"DELTA: {delta:+0.000;-0.000;+0.000}";
-		deltaBg.color = delta > 0 ? Color.red : Color.green; // Red for positive delta, green for negative
+		deltaBg.color = delta > 0 ? Color.red : Color.green;
 	}
+
 
 	private Color GetSectorColor(SectorState sectorState)
 	{

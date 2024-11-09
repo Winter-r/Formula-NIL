@@ -69,8 +69,8 @@ public class CarLocomotionManager : MonoBehaviour
 	#region Motor Settings
 
 	[Header("Motor Settings")]
-	[SerializeField] private float motorPower;
-	public float maxSpeed;
+	[SerializeField, Tooltip("Unit is HP")] private float motorPower;
+	[Tooltip("Unit is m/s")] public float maxSpeed;
 	private float clampedSpeed;
 
 	private const float TORQUE_MULTIPLIER = 5252f;
@@ -87,8 +87,8 @@ public class CarLocomotionManager : MonoBehaviour
 	[SerializeField] private float rearTrack;
 	[SerializeField] private float turnRadius;
 	[SerializeField] private float maxSteeringAngle;
-	private float ackermannAngleLeft;
-	private float ackermannAngleRight;
+	private float antiAckermannAngleLeft;
+	private float antiAckermannAngleRight;
 
 	#endregion
 
@@ -181,7 +181,7 @@ public class CarLocomotionManager : MonoBehaviour
 		this.steerInput = steerInput;
 		this.clutchInput = clutchInput;
 
-		HandleMotor();
+		HandleEngine();
 		HandleSteering();
 		HandleBrake();
 		HandleBrakeDuringSlip();
@@ -207,7 +207,7 @@ public class CarLocomotionManager : MonoBehaviour
 		}
 	}
 
-	private void HandleMotor()
+	private void HandleEngine()
 	{
 		if (RaceManager.Instance.raceType == RaceType.TimeTrial && !RaceManager.Instance.TrialStarted)
 		{
@@ -229,6 +229,7 @@ public class CarLocomotionManager : MonoBehaviour
 			{
 				gearState = GearState.Running;
 				changeGearDelay -= Time.deltaTime;
+
 				if (changeGearDelay <= 0)
 				{
 					changeGearDelay = 0.7f;
@@ -261,7 +262,7 @@ public class CarLocomotionManager : MonoBehaviour
 			UpdateGaugeClusterUI();
 		}
 
-		if (gearState == GearState.Running && clutch > 0)
+		if (gearState == GearState.Running && clutch > 0 && RaceManager.Instance.TrialStarted)
 		{
 			if (currentRpm > increaseGearRpm)
 			{
@@ -285,6 +286,8 @@ public class CarLocomotionManager : MonoBehaviour
 
 		if (engineStatus > 0)
 		{
+			clutch = Mathf.Clamp(clutch, 0f, 1f);
+
 			if (clutch < 0.1f)
 			{
 				currentRpm = Mathf.Lerp(currentRpm, Mathf.Max(idleRpm, redLine * throttleInput) + UnityEngine.Random.Range(-50, 50), Time.deltaTime);
@@ -294,13 +297,20 @@ public class CarLocomotionManager : MonoBehaviour
 				wheelRpm = Mathf.Abs((wheelColliders.rearRightWheel.rpm + wheelColliders.rearLeftWheel.rpm) / 2f) * (isReversing ? reverseGearRatio : gearRatios[currentGear]) * differentialRatio;
 				currentRpm = Mathf.Lerp(currentRpm, Mathf.Max(idleRpm - 100, wheelRpm), Time.deltaTime * rpmSpeedFactor);
 
-				if (isReversing)
+				if (currentRpm > 0)
 				{
-					torque = (powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm) * reverseGearRatio * differentialRatio * TORQUE_MULTIPLIER * clutch;
+					if (isReversing)
+					{
+						torque = powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm * reverseGearRatio * differentialRatio * TORQUE_MULTIPLIER * clutch;
+					}
+					else
+					{
+						torque = powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm * gearRatios[currentGear] * differentialRatio * TORQUE_MULTIPLIER * clutch;
+					}
 				}
 				else
 				{
-					torque = (powerCurve.Evaluate(currentRpm / redLine) * motorPower / currentRpm) * gearRatios[currentGear] * differentialRatio * TORQUE_MULTIPLIER * clutch;
+					torque = 0;
 				}
 			}
 		}
@@ -312,46 +322,50 @@ public class CarLocomotionManager : MonoBehaviour
 	{
 		float carSpeed = GetCarSpeed();
 		float speedFactor = Mathf.Clamp01(carSpeed / maxSpeed);
-		float adjustedSteerInput = steerInput * Mathf.Lerp(0.5f, 0.05f, speedFactor);
+
+		float adjustedSteerInput = steerInput * Mathf.Lerp(0.75f, 0.05f, speedFactor);
+
+		float dynamicMaxSteeringAngle = Mathf.Lerp(maxSteeringAngle, maxSteeringAngle * 0.5f, speedFactor);
 
 		if (adjustedSteerInput > 0)
 		{
-			ackermannAngleLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * adjustedSteerInput;
-			ackermannAngleRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTrack / 2))) * adjustedSteerInput;
+			antiAckermannAngleLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTrack / 2))) * adjustedSteerInput;
+			antiAckermannAngleRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * adjustedSteerInput;
 		}
 		else if (adjustedSteerInput < 0)
 		{
-			ackermannAngleLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTrack / 2))) * adjustedSteerInput;
-			ackermannAngleRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * adjustedSteerInput;
+			antiAckermannAngleLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * adjustedSteerInput;
+			antiAckermannAngleRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTrack / 2))) * adjustedSteerInput;
 		}
 		else
 		{
-			ackermannAngleLeft = 0;
-			ackermannAngleRight = 0;
+			antiAckermannAngleLeft = 0;
+			antiAckermannAngleRight = 0;
 		}
 
-		ackermannAngleLeft = Mathf.Clamp(ackermannAngleLeft, -maxSteeringAngle, maxSteeringAngle);
-		ackermannAngleRight = Mathf.Clamp(ackermannAngleRight, -maxSteeringAngle, maxSteeringAngle);
+		antiAckermannAngleLeft = Mathf.Clamp(antiAckermannAngleLeft, -dynamicMaxSteeringAngle, dynamicMaxSteeringAngle);
+		antiAckermannAngleRight = Mathf.Clamp(antiAckermannAngleRight, -dynamicMaxSteeringAngle, dynamicMaxSteeringAngle);
 
-		wheelColliders.frontLeftWheel.steerAngle = ackermannAngleLeft;
-		wheelColliders.frontRightWheel.steerAngle = ackermannAngleRight;
+		wheelColliders.frontLeftWheel.steerAngle = antiAckermannAngleLeft;
+		wheelColliders.frontRightWheel.steerAngle = antiAckermannAngleRight;
 	}
 
 	private void HandleWheels()
 	{
-		UpdateWheelPosition(wheelColliders.frontLeftWheel, wheelMeshRenderers.frontLeftWheel);
-		UpdateWheelPosition(wheelColliders.frontRightWheel, wheelMeshRenderers.frontRightWheel);
-		UpdateWheelPosition(wheelColliders.rearLeftWheel, wheelMeshRenderers.rearLeftWheel);
-		UpdateWheelPosition(wheelColliders.rearRightWheel, wheelMeshRenderers.rearRightWheel);
+		Quaternion offset = Quaternion.Euler(0, -90, 0);
+		UpdateWheelPosition(wheelColliders.frontLeftWheel, wheelMeshRenderers.frontLeftWheel, offset);
+		UpdateWheelPosition(wheelColliders.frontRightWheel, wheelMeshRenderers.frontRightWheel, offset);
+		UpdateWheelPosition(wheelColliders.rearLeftWheel, wheelMeshRenderers.rearLeftWheel, offset);
+		UpdateWheelPosition(wheelColliders.rearRightWheel, wheelMeshRenderers.rearRightWheel, Quaternion.Euler(0, 90, 0));
 	}
 
-	private void UpdateWheelPosition(WheelCollider wheelCollider, MeshRenderer wheelMeshRenderer)
+	private void UpdateWheelPosition(WheelCollider wheelCollider, MeshRenderer wheelMeshRenderer, Quaternion rotationOffset)
 	{
 		Vector3 position;
 		Quaternion rotation;
 		wheelCollider.GetWorldPose(out position, out rotation);
 		wheelMeshRenderer.transform.position = position;
-		wheelMeshRenderer.transform.rotation = rotation;
+		wheelMeshRenderer.transform.rotation = rotation * rotationOffset;
 	}
 
 	private void HandleBrake()

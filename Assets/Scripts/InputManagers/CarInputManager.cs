@@ -19,6 +19,8 @@ public class CarInputManager : MonoBehaviour
 
 	public static bool pauseInput = false;
 
+	public static bool uiInput = false;
+
 	public static float dampeningSpeed = 5f;
 
 	private void OnEnable()
@@ -40,6 +42,8 @@ public class CarInputManager : MonoBehaviour
 			CarInput.Controls.CycleCamera.canceled += ctx => cameraCycleInput = false;
 
 			CarInput.Controls.Pause.performed += ctx => TogglePause();
+
+			CarInput.Controls.ToggleUI.performed += ctx => ToggleUI();
 		}
 
 		CarInput.Enable();
@@ -72,5 +76,10 @@ public class CarInputManager : MonoBehaviour
 	private void TogglePause()
 	{
 		pauseInput = !pauseInput;
+	}
+
+	private void ToggleUI()
+	{
+		uiInput = !uiInput;
 	}
 }

@@ -450,7 +450,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'reason: corner cutting'
+  m_text: 'reason: violating track limits'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5555,7 +5555,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: KHALID KASHMIRI
+  m_text: player name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8dff4db1595d274bbcb249fec460a44, type: 2}
   m_sharedMaterial: {fileID: 7485964483942147384, guid: c8dff4db1595d274bbcb249fec460a44, type: 2}
@@ -11176,6 +11176,7 @@ GameObject:
   - component: {fileID: 201832626790612747}
   - component: {fileID: 3846872469520461998}
   - component: {fileID: 1334791073543734372}
+  - component: {fileID: 3846872469520461999}
   m_Layer: 0
   m_Name: Fence
   m_TagString: Untagged
@@ -12791,6 +12792,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686479092618388913}
   m_Mesh: {fileID: 4596239184023814631, guid: 0715ad3189c3bbc4cb40073580497c06, type: 3}
+--- !u!64 &3846872469520461999
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686479092618388913}
+  m_Material: {fileID: 13400000, guid: 2875c50b819ee8345b74e6e1ae99d544, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4596239184023814631, guid: 0715ad3189c3bbc4cb40073580497c06, type: 3}
 --- !u!65 &3892640348508225557
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14392,7 +14415,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2787553436767929996}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2875c50b819ee8345b74e6e1ae99d544, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -14658,7 +14681,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5713132687277434075}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2875c50b819ee8345b74e6e1ae99d544, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -15542,7 +15565,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2597294149553239996}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2875c50b819ee8345b74e6e1ae99d544, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -16077,7 +16100,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6041029987360549982}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2875c50b819ee8345b74e6e1ae99d544, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

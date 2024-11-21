@@ -87,8 +87,6 @@ public class CarLocomotionManager : MonoBehaviour
 	[SerializeField] private float rearTrack;
 	[SerializeField] private float turnRadius;
 	[SerializeField] private float maxSteeringAngle;
-	private float antiAckermannAngleLeft;
-	private float antiAckermannAngleRight;
 
 	#endregion
 
@@ -114,7 +112,7 @@ public class CarLocomotionManager : MonoBehaviour
 	[SerializeField] private float increaseGearRpm;
 	[SerializeField] private float decreaseGearRpm;
 	[SerializeField] private float changeGearDelay = 0.5f;
-	[SerializeField] private float rpmSpeedFactor = 5f;
+	[SerializeField] private float rpmSpeedFactor = 2.5f;
 	[HideInInspector] public float currentRpm;
 	private int currentGear;
 	private float currentTorque;
@@ -239,14 +237,6 @@ public class CarLocomotionManager : MonoBehaviour
 			currentTorque = CalculateTorque();
 			float motorTorque = currentTorque * throttleInput;
 
-			if (isReversing)
-			{
-				if (GetCarSpeed() * 3.6 > 52)
-				{
-					motorTorque = 0;
-				}
-			}
-
 			wheelColliders.rearRightWheel.motorTorque = motorTorque;
 			wheelColliders.rearLeftWheel.motorTorque = motorTorque;
 		}
@@ -256,31 +246,25 @@ public class CarLocomotionManager : MonoBehaviour
 	{
 		float torque = 0;
 
+		float carSpeedKmh = GetCarSpeed() * 3.6f;
+
 		if (currentRpm < idleRpm + 200 && throttleInput == 0 && currentGear == 0)
 		{
 			gearState = GearState.Neutral;
 			UpdateGaugeClusterUI();
 		}
 
+		float[] gearSpeedLimits = { 0f, 90f, 120f, 150f, 190f, 220f, 250f, 285f, 350f };
+
 		if (gearState == GearState.Running && clutch > 0 && RaceManager.Instance.TrialStarted)
 		{
-			if (currentRpm > increaseGearRpm)
+			if (currentGear < gearSpeedLimits.Length - 1 && carSpeedKmh >= gearSpeedLimits[currentGear] && carSpeedKmh < gearSpeedLimits[currentGear + 1])
 			{
 				StartCoroutine(ChangeGear(1, throttleInput));
 			}
-			else if (currentRpm < decreaseGearRpm)
+			else if (currentGear > 0 && currentRpm < decreaseGearRpm)
 			{
-				if (currentGear > 0)
-				{
-					StartCoroutine(ChangeGear(-1, throttleInput));
-				}
-				else if (currentGear == 0)
-				{
-					if (throttleInput < 0)
-					{
-						StartCoroutine(ChangeGear(-1, throttleInput));
-					}
-				}
+				StartCoroutine(ChangeGear(-1, throttleInput));
 			}
 		}
 
@@ -323,31 +307,30 @@ public class CarLocomotionManager : MonoBehaviour
 		float carSpeed = GetCarSpeed();
 		float speedFactor = Mathf.Clamp01(carSpeed / maxSpeed);
 
-		float adjustedSteerInput = steerInput * Mathf.Lerp(0.75f, 0.05f, speedFactor);
-
+		// Adjust steering input based on speed
+		float adjustedSteerInput = steerInput * Mathf.Lerp(1.0f, 0.3f, speedFactor);
 		float dynamicMaxSteeringAngle = Mathf.Lerp(maxSteeringAngle, maxSteeringAngle * 0.5f, speedFactor);
 
-		if (adjustedSteerInput > 0)
+		// Calculate Ackermann steering angles
+		float innerAngle = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTrack / 2))) * adjustedSteerInput;
+		float outerAngle = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * adjustedSteerInput;
+
+		// Interpolate steering angles for low-speed smoothness
+		if (carSpeed < 5f)
 		{
-			antiAckermannAngleLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTrack / 2))) * adjustedSteerInput;
-			antiAckermannAngleRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * adjustedSteerInput;
-		}
-		else if (adjustedSteerInput < 0)
-		{
-			antiAckermannAngleLeft = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius + (rearTrack / 2))) * adjustedSteerInput;
-			antiAckermannAngleRight = Mathf.Rad2Deg * Mathf.Atan(wheelBase / (turnRadius - (rearTrack / 2))) * adjustedSteerInput;
+			float lowSpeedSteer = Mathf.Lerp(innerAngle, steerInput * maxSteeringAngle, 1f - (carSpeed / 5f));
+			wheelColliders.frontLeftWheel.steerAngle = steerInput > 0 ? lowSpeedSteer : lowSpeedSteer;
+			wheelColliders.frontRightWheel.steerAngle = steerInput > 0 ? lowSpeedSteer : lowSpeedSteer;
 		}
 		else
 		{
-			antiAckermannAngleLeft = 0;
-			antiAckermannAngleRight = 0;
+			wheelColliders.frontLeftWheel.steerAngle = steerInput > 0 ? innerAngle : outerAngle;
+			wheelColliders.frontRightWheel.steerAngle = steerInput > 0 ? outerAngle : innerAngle;
 		}
 
-		antiAckermannAngleLeft = Mathf.Clamp(antiAckermannAngleLeft, -dynamicMaxSteeringAngle, dynamicMaxSteeringAngle);
-		antiAckermannAngleRight = Mathf.Clamp(antiAckermannAngleRight, -dynamicMaxSteeringAngle, dynamicMaxSteeringAngle);
-
-		wheelColliders.frontLeftWheel.steerAngle = antiAckermannAngleLeft;
-		wheelColliders.frontRightWheel.steerAngle = antiAckermannAngleRight;
+		// Clamp angles to avoid extreme values
+		wheelColliders.frontLeftWheel.steerAngle = Mathf.Clamp(wheelColliders.frontLeftWheel.steerAngle, -dynamicMaxSteeringAngle, dynamicMaxSteeringAngle);
+		wheelColliders.frontRightWheel.steerAngle = Mathf.Clamp(wheelColliders.frontRightWheel.steerAngle, -dynamicMaxSteeringAngle, dynamicMaxSteeringAngle);
 	}
 
 	private void HandleWheels()
@@ -527,11 +510,20 @@ public class CarLocomotionManager : MonoBehaviour
 
 		if (currentGear + gearChange >= -1f)
 		{
+			float carSpeedKmh = GetCarSpeed() * 3.6f;
+			float[] gearSpeedLimits = { 0f, 90f, 120f, 150f, 190f, 220f, 250f, 285f, 350f };
+
 			if (gearChange > 0)
 			{
 				yield return new WaitForSeconds(0.7f);
 
-				if (currentRpm < increaseGearRpm || currentGear >= gearRatios.Length - 1)
+				if (carSpeedKmh < gearSpeedLimits[currentGear] || carSpeedKmh >= gearSpeedLimits[currentGear + 1] || currentGear >= gearRatios.Length - 1)
+				{
+					gearState = GearState.Running;
+					yield break;
+				}
+
+				if (currentRpm < increaseGearRpm)
 				{
 					gearState = GearState.Running;
 					yield break;
@@ -547,18 +539,26 @@ public class CarLocomotionManager : MonoBehaviour
 					gearState = GearState.Reversing;
 					yield break;
 				}
-				else if (currentRpm > decreaseGearRpm || currentGear <= -1)
+
+				if (currentGear <= 0)
+				{
+					gearState = GearState.Running;
+					yield break;
+				}
+
+				if (currentRpm > decreaseGearRpm)
 				{
 					gearState = GearState.Running;
 					yield break;
 				}
 			}
 
+			// Apply gear change
 			gearState = GearState.ChangingGear;
 			yield return new WaitForSeconds(changeGearDelay);
 			currentGear += gearChange;
 
-			// Fire the event after the gear change
+			// Trigger gear change event
 			OnGearChanged?.Invoke(currentGear);
 		}
 

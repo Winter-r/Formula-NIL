@@ -587,7 +587,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &8128386026784174853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -595,7 +595,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3503443460786357406}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: dfb5d8318f8f1cb47afc8bf42c77bb9f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -721,7 +721,7 @@ MonoBehaviour:
   rearTrack: 1.64
   turnRadius: 14.03
   maxSteeringAngle: 15
-  brakePower: 7000
+  brakePower: 5000
   brakeInput: 0
   redLine: 15000
   idleRpm: 3500
@@ -737,7 +737,7 @@ MonoBehaviour:
   - 1.83
   - 1.61
   - 1.31
-  differentialRatio: 4
+  differentialRatio: 3.5
   powerCurve:
     serializedVersion: 2
     m_Curve:
@@ -801,7 +801,7 @@ MonoBehaviour:
   increaseGearRpm: 11000
   decreaseGearRpm: 6000
   changeGearDelay: 0.01
-  rpmSpeedFactor: 4
+  rpmSpeedFactor: 7
   currentRpm: 0
   cameraLookAt: {fileID: 1235874163626493422}
   podCameraLookAt: {fileID: 7731197993999202667}

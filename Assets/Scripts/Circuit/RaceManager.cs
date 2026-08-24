@@ -481,35 +481,12 @@ public class RaceManager : MonoBehaviour
 
 	private void UpdateTrialLapTimeUI()
 	{
-		if (lapTimeText)
-		{
-			lapTimeText.text = FormatTime("Current", currentTrialLapTime);
-		}
-
-		if (bestLapTimeText)
-		{
-			bestLapTimeText.text = FormatTime("Best", bestTrialLapTime);
-		}
-
-		if (lastLapTimeText)
-		{
-			lastLapTimeText.text = FormatTime("Last", lastTrialLapTime);
-		}
-
-		if (sector1Image)
-		{
-			sector1Image.color = GetSectorColor(sectorStates[0]);
-		}
-
-		if (sector2Image)
-		{
-			sector2Image.color = GetSectorColor(sectorStates[1]);
-		}
-
-		if (sector3Image)
-		{
-			sector3Image.color = GetSectorColor(sectorStates[2]);
-		}
+		if (lapTimeText) lapTimeText.text = FormatTime("Current", currentTrialLapTime);
+		if (bestLapTimeText) bestLapTimeText.text = FormatTime("Best", bestTrialLapTime);
+		if (lastLapTimeText) lastLapTimeText.text = FormatTime("Last", lastTrialLapTime);
+		if (sector1Image) sector1Image.color = GetSectorColor(sectorStates[0]);
+		if (sector2Image) sector2Image.color = GetSectorColor(sectorStates[1]);
+		if (sector3Image) sector3Image.color = GetSectorColor(sectorStates[2]);
 	}
 
 	private void UpdateDelta()

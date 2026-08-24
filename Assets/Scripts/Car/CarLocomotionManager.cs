@@ -268,6 +268,11 @@ public class CarLocomotionManager : MonoBehaviour
 			}
 		}
 
+		if (gearState == GearState.CheckingChange)
+		{
+			clutch = Mathf.Lerp(clutch, 0f, Time.deltaTime * 5f);
+		}
+
 		if (engineStatus > 0)
 		{
 			clutch = Mathf.Clamp(clutch, 0f, 1f);
@@ -396,9 +401,7 @@ public class CarLocomotionManager : MonoBehaviour
 
 		if (gearText)
 		{
-			gearText.text = (gearState == GearState.Neutral) ? "N"
-						: isReversing ? "R"
-						: (currentGear + 1).ToString();
+			gearText.text = (gearState == GearState.Neutral) ? "N" : isReversing ? "R" : (currentGear + 1).ToString();
 		}
 
 		if (speedText)

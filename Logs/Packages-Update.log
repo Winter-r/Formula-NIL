@@ -19,3 +19,24 @@ Update Mode: updateDependencies
 The following packages were updated:
   com.unity.collab-proxy from version 2.5.1 to 2.5.2
   com.unity.inputsystem from version 1.11.0 to 1.11.1
+
+=== Tue Jan 13 22:01:36 2026
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.modules.adaptiveperformance@1.0.0
+  com.unity.modules.vectorgraphics@1.0.0
+The following packages were updated:
+  com.unity.ai.navigation from version 2.0.4 to 2.0.9
+  com.unity.collab-proxy from version 2.5.2 to 2.10.2
+  com.unity.ide.visualstudio from version 2.0.22 to 2.0.25
+  com.unity.inputsystem from version 1.11.1 to 1.17.0
+  com.unity.multiplayer.center from version 1.0.0 to 1.0.1
+  com.unity.nuget.newtonsoft-json from version 3.2.1 to 3.2.2
+  com.unity.render-pipelines.universal from version 17.0.3 to 17.3.0
+  com.unity.splines from version 2.6.1 to 2.8.2
+  com.unity.test-framework from version 1.4.5 to 1.6.0
+  com.unity.timeline from version 1.8.7 to 1.8.10
+  com.unity.visualscripting from version 1.9.4 to 1.9.9

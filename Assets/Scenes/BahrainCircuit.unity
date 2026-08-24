@@ -216,6 +216,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -352,6 +353,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -488,6 +490,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -670,6 +673,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -756,17 +760,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &89157390
 Light:
   m_ObjectHideFlags: 0
@@ -775,14 +785,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89157387}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -827,7 +837,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -921,66 +931,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 1:47
-    fileName: Sector 2
-    objectName: Sector 2
-    uitkGuid: 3edc68a87b6049ff8b9c5658336cf280
-    fieldName: _sector2
-    methodName: Sector2
-    className: Sector2
-    ussClassName: style-Sector 2-1-47
-    tags: c900000001000000
-    childIndexes: 07000000
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 102450219}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0.09022917, g: 0.8875, b: 0.07395833, a: 1}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 166, y: 25}
-    position: {x: 167, y: -210}
-    fcuImageType: 2
-    buttonComponent: 0
-    hash: 958988902
-    parentIndex: 3
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 1
-      Name: Sectors
-      Guid: 8a28351871724d5296c48bc759d06e3d
-    - Index: 1
-      Name: Sector 2
-      Guid: 3edc68a87b6049ff8b9c5658336cf280
-    nameHierarchy: Lap Time Details/Sectors/Sector 2
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: 
-    tagReason: children not empty
-    downloadableReason: HasUndownloadableTags
-    generativeReason: not generative
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 0
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 0
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &105526114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,6 +1073,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1176,66 +1127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 1:9
-    fileName: Best Lap Time Text
-    objectName: Best Lap Time Te
-    uitkGuid: 5274afcae4c44655a71e33d82f93c060
-    fieldName: _bestLapTimeText
-    methodName: BestLapTimeText
-    className: BestLapTimeText
-    ussClassName: style-Best Lap Time Te-1-9
-    tags: c8000000
-    childIndexes: 
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 105633364}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 0}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 491, y: 43}
-    position: {x: 6, y: -123}
-    fcuImageType: 0
-    buttonComponent: 0
-    hash: -2130716292
-    parentIndex: 10
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 2
-      Name: Lap Times
-      Guid: 8dce8b6a42304b62996ad9970fc3dba8
-    - Index: 1
-      Name: Best Lap Time Te
-      Guid: 5274afcae4c44655a71e33d82f93c060
-    nameHierarchy: Lap Time Details/Lap Times/Best Lap Time Te
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: TextMeshPro Bungee Spice-Normal-25-LeftCenter-fill-Black255_stroke-Black255
-    tagReason: 
-    downloadableReason: 
-    generativeReason: 
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 1
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 1
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &116320573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,6 +1225,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1387,69 +1279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 1:32
-    fileName: S3 Text
-    objectName: S3 Text
-    uitkGuid: 7f5305b346da4142b6877deb9d43dd54
-    fieldName: _s3Text
-    methodName: S3Text
-    className: S3Text
-    ussClassName: style-S3 Text-1-32
-    tags: c8000000
-    childIndexes: 
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 116320573}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 0}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 167, y: 26}
-    position: {x: 332, y: -210}
-    fcuImageType: 0
-    buttonComponent: 0
-    hash: -20532103
-    parentIndex: 4
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 1
-      Name: Sectors
-      Guid: 8a28351871724d5296c48bc759d06e3d
-    - Index: 0
-      Name: Sector 3
-      Guid: 9bda8cb44fed4a6da44e0d2e43560e7d
-    - Index: 0
-      Name: S3 Text
-      Guid: 7f5305b346da4142b6877deb9d43dd54
-    nameHierarchy: Lap Time Details/Sectors/Sector 3/S3 Text
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: TextMeshPro Bungee Spice-Normal-16-CenterCenter-fill-Black255_stroke-Black255
-    tagReason: 
-    downloadableReason: 
-    generativeReason: 
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 1
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 1
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &177002201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,6 +1578,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1885,6 +1715,7 @@ MonoBehaviour:
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2021,6 +1852,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2107,17 +1939,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &282500327
 Light:
   m_ObjectHideFlags: 0
@@ -2126,14 +1964,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282500324}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -2178,7 +2016,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -2192,7 +2030,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 300925071}
-  - component: {fileID: 300925073}
   - component: {fileID: 300925072}
   m_Layer: 5
   m_Name: Lap Time Details
@@ -2200,7 +2037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &300925071
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2238,72 +2075,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
---- !u!114 &300925073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 300925070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    id: 45:46
-    fileName: Lap Time Details
-    objectName: Lap Time Details
-    uitkGuid: 77d2faf051f0426997ce2fdb8f4362f3
-    fieldName: _lapTimeDetails
-    methodName: LapTimeDetails
-    className: LapTimeDetails
-    ussClassName: style-Lap Time Details-45-46
-    tags: 02000000f601000001000000
-    childIndexes: 01000000030000000a0000000e000000
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 300925070}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 0}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 500, y: 300}
-    position: {x: 0, y: -0}
-    fcuImageType: 0
-    buttonComponent: 0
-    hash: 1508161483
-    parentIndex: -1
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    nameHierarchy: Lap Time Details
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: 
-    tagReason: children not empty
-    downloadableReason: 
-    generativeReason: 
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 0
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 0
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &457795109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2524,63 +2295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 45:43
-    fileName: Sectors
-    objectName: Sectors
-    uitkGuid: 8a28351871724d5296c48bc759d06e3d
-    fieldName: _sectors
-    methodName: Sectors
-    className: Sectors
-    ussClassName: style-Sectors-45-43
-    tags: c900000001000000
-    childIndexes: 040000000600000008000000
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 482302508}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 0}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 498, y: 26}
-    position: {x: 1, y: -209}
-    fcuImageType: 2
-    buttonComponent: 0
-    hash: -320504935
-    parentIndex: 0
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 1
-      Name: Sectors
-      Guid: 8a28351871724d5296c48bc759d06e3d
-    nameHierarchy: Lap Time Details/Sectors
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: 
-    tagReason: children not empty
-    downloadableReason: HasUndownloadableTags
-    generativeReason: not generative
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 0
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 0
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &527192682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,6 +2503,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2875,17 +2590,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &555291028
 Light:
   m_ObjectHideFlags: 0
@@ -2894,14 +2615,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555291025}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -2946,7 +2667,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -3046,6 +2767,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3349,6 +3071,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3531,6 +3254,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3552,9 +3277,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &646920386
 MeshFilter:
@@ -3672,6 +3399,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3810,6 +3538,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3912,6 +3641,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3933,9 +3664,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &672687514
 MeshFilter:
@@ -4069,6 +3802,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4122,69 +3856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 1:28
-    fileName: S1 Text
-    objectName: S1 Text
-    uitkGuid: 0d8886f748764dac8841858c8d62ed0c
-    fieldName: _s1Text
-    methodName: S1Text
-    className: S1Text
-    ussClassName: style-S1 Text-1-28
-    tags: c8000000
-    childIndexes: 
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 695541789}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 0}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 167, y: 26}
-    position: {x: 0, y: -210}
-    fcuImageType: 0
-    buttonComponent: 0
-    hash: -20532103
-    parentIndex: 8
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 1
-      Name: Sectors
-      Guid: 8a28351871724d5296c48bc759d06e3d
-    - Index: 2
-      Name: Sector 1
-      Guid: de80fe0ff3f945a689c18e2bd20e143f
-    - Index: 0
-      Name: S1 Text
-      Guid: 0d8886f748764dac8841858c8d62ed0c
-    nameHierarchy: Lap Time Details/Sectors/Sector 1/S1 Text
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: TextMeshPro Bungee Spice-Normal-16-CenterCenter-fill-Black255_stroke-Black255
-    tagReason: 
-    downloadableReason: 
-    generativeReason: 
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 1
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 1
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &718045288
 GameObject:
   m_ObjectHideFlags: 0
@@ -4283,6 +3954,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4336,69 +4008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 1:30
-    fileName: S2 Text
-    objectName: S2 Text
-    uitkGuid: b76ff3c2c8e145368cf3ec778564e58f
-    fieldName: _s2Text
-    methodName: S2Text
-    className: S2Text
-    ussClassName: style-S2 Text-1-30
-    tags: c8000000
-    childIndexes: 
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 718045288}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 0}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 166, y: 26}
-    position: {x: 167, y: -210}
-    fcuImageType: 0
-    buttonComponent: 0
-    hash: -20532103
-    parentIndex: 6
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 1
-      Name: Sectors
-      Guid: 8a28351871724d5296c48bc759d06e3d
-    - Index: 1
-      Name: Sector 2
-      Guid: 3edc68a87b6049ff8b9c5658336cf280
-    - Index: 0
-      Name: S2 Text
-      Guid: b76ff3c2c8e145368cf3ec778564e58f
-    nameHierarchy: Lap Time Details/Sectors/Sector 2/S2 Text
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: TextMeshPro Bungee Spice-Normal-16-CenterCenter-fill-Black255_stroke-Black255
-    tagReason: 
-    downloadableReason: 
-    generativeReason: 
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 1
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 1
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &730335232
 GameObject:
   m_ObjectHideFlags: 0
@@ -4496,6 +4105,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4633,6 +4243,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4686,66 +4297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 1:13
-    fileName: Current Lap Time Text
-    objectName: Current Lap Time
-    uitkGuid: adede7c040b74d408136ebc8e6a31820
-    fieldName: _currentLapTimeText
-    methodName: CurrentLapTimeText
-    className: CurrentLapTimeText
-    ussClassName: style-Current Lap Time-1-13
-    tags: c8000000
-    childIndexes: 
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 744462866}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 0}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 491, y: 44}
-    position: {x: 6, y: -79}
-    fcuImageType: 0
-    buttonComponent: 0
-    hash: -2130716292
-    parentIndex: 10
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 2
-      Name: Lap Times
-      Guid: 8dce8b6a42304b62996ad9970fc3dba8
-    - Index: 2
-      Name: Current Lap Time
-      Guid: adede7c040b74d408136ebc8e6a31820
-    nameHierarchy: Lap Time Details/Lap Times/Current Lap Time
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: TextMeshPro Bungee Spice-Normal-25-LeftCenter-fill-Black255_stroke-Black255
-    tagReason: 
-    downloadableReason: 
-    generativeReason: 
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 1
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 1
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &757681479
 GameObject:
   m_ObjectHideFlags: 0
@@ -4918,6 +4469,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4971,66 +4523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 1:12
-    fileName: Last Lap Time Text
-    objectName: Last Lap Time Te
-    uitkGuid: 2b52e201716b40fe96982d8cda6a8be2
-    fieldName: _lastLapTimeText
-    methodName: LastLapTimeText
-    className: LastLapTimeText
-    ussClassName: style-Last Lap Time Te-1-12
-    tags: c8000000
-    childIndexes: 
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 771671972}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 0}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 491, y: 44}
-    position: {x: 6, y: -166}
-    fcuImageType: 0
-    buttonComponent: 0
-    hash: -2130716292
-    parentIndex: 10
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 2
-      Name: Lap Times
-      Guid: 8dce8b6a42304b62996ad9970fc3dba8
-    - Index: 0
-      Name: Last Lap Time Te
-      Guid: 2b52e201716b40fe96982d8cda6a8be2
-    nameHierarchy: Lap Time Details/Lap Times/Last Lap Time Te
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: TextMeshPro Bungee Spice-Normal-25-LeftCenter-fill-Black255_stroke-Black255
-    tagReason: 
-    downloadableReason: 
-    generativeReason: 
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 1
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 1
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &772950421
 GameObject:
   m_ObjectHideFlags: 0
@@ -5076,17 +4568,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &772950424
 Light:
   m_ObjectHideFlags: 0
@@ -5095,14 +4593,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772950421}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -5147,7 +4645,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -5257,63 +4755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 44:42
-    fileName: Delta
-    objectName: Delta
-    uitkGuid: 93639ec74b364348aabbae991fa7d49c
-    fieldName: _delta
-    methodName: Delta
-    className: Delta
-    ussClassName: style-Delta-44-42
-    tags: c900000001000000
-    childIndexes: 02000000
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 823120299}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 0}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 498, y: 44}
-    position: {x: 1, y: -255}
-    fcuImageType: 2
-    buttonComponent: 0
-    hash: -1692094467
-    parentIndex: 0
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 0
-      Name: Delta
-      Guid: 93639ec74b364348aabbae991fa7d49c
-    nameHierarchy: Lap Time Details/Delta
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: 
-    tagReason: children not empty
-    downloadableReason: HasUndownloadableTags
-    generativeReason: not generative
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 0
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 0
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &824963292
 GameObject:
   m_ObjectHideFlags: 0
@@ -5409,6 +4850,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -5593,6 +5035,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -5646,66 +5089,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 44:34
-    fileName: Name Text
-    objectName: Name Text
-    uitkGuid: 1446af133a7d48418ea752c953959646
-    fieldName: _nameText
-    methodName: NameText
-    className: NameText
-    ussClassName: style-Name Text-44-34
-    tags: c8000000
-    childIndexes: 
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 845365174}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 1, g: 1, b: 1, a: 1}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 500, y: 79}
-    position: {x: 0, y: -1}
-    fcuImageType: 0
-    buttonComponent: 0
-    hash: 1176688591
-    parentIndex: 14
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 3
-      Name: Player Name
-      Guid: c39a737eaa9e4ad8b015797692a88a53
-    - Index: 0
-      Name: Name Text
-      Guid: 1446af133a7d48418ea752c953959646
-    nameHierarchy: Lap Time Details/Player Name/Name Text
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: TextMeshPro Bungee Spice-Normal-40-CenterCenter-Black255
-    tagReason: 
-    downloadableReason: 
-    generativeReason: 
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 0
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 1
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &860624070
 GameObject:
   m_ObjectHideFlags: 0
@@ -5801,6 +5184,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -6114,6 +5498,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -6250,6 +5635,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6271,9 +5658,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1083808735
 MeshFilter:
@@ -6392,6 +5781,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -6445,66 +5835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 44:41
-    fileName: Delta Text
-    objectName: Delta Text
-    uitkGuid: ae6b5b725cae465f8878af0e1a8bade8
-    fieldName: _deltaText
-    methodName: DeltaText
-    className: DeltaText
-    ussClassName: style-Delta Text-44-41
-    tags: c8000000
-    childIndexes: 
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 1087995788}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 0}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 493, y: 44}
-    position: {x: 5, y: -255}
-    fcuImageType: 0
-    buttonComponent: 0
-    hash: 2009547076
-    parentIndex: 1
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 0
-      Name: Delta
-      Guid: 93639ec74b364348aabbae991fa7d49c
-    - Index: 0
-      Name: Delta Text
-      Guid: ae6b5b725cae465f8878af0e1a8bade8
-    nameHierarchy: Lap Time Details/Delta/Delta Text
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: TextMeshPro Bungee Spice-Normal-32-LeftCenter-fill-Black255_stroke-Black255
-    tagReason: 
-    downloadableReason: 
-    generativeReason: 
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 0
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 1
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &1170980213
 GameObject:
   m_ObjectHideFlags: 0
@@ -6600,6 +5930,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -6746,63 +6077,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 44:35
-    fileName: Player Name
-    objectName: Player Name
-    uitkGuid: c39a737eaa9e4ad8b015797692a88a53
-    fieldName: _playerName
-    methodName: PlayerName
-    className: PlayerName
-    ussClassName: style-Player Name-44-35
-    tags: c900000001000000
-    childIndexes: 0f000000
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 1199730755}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 1}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 498, y: 79}
-    position: {x: 1, y: -1}
-    fcuImageType: 2
-    buttonComponent: 0
-    hash: 768806129
-    parentIndex: 0
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 3
-      Name: Player Name
-      Guid: c39a737eaa9e4ad8b015797692a88a53
-    nameHierarchy: Lap Time Details/Player Name
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: 
-    tagReason: children not empty
-    downloadableReason: HasUndownloadableTags
-    generativeReason: not generative
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 0
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 0
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &1225582962
 GameObject:
   m_ObjectHideFlags: 0
@@ -7034,17 +6308,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &1360659068
 Light:
   m_ObjectHideFlags: 0
@@ -7053,14 +6333,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360659065}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -7105,7 +6385,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -7230,17 +6510,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &1371938658
 Light:
   m_ObjectHideFlags: 0
@@ -7249,14 +6535,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371938655}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -7301,7 +6587,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -7441,66 +6727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 1:48
-    fileName: Sector 3
-    objectName: Sector 3
-    uitkGuid: 9bda8cb44fed4a6da44e0d2e43560e7d
-    fieldName: _sector3
-    methodName: Sector3
-    className: Sector3
-    ussClassName: style-Sector 3-1-48
-    tags: c900000001000000
-    childIndexes: 05000000
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 1388203987}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0.96088946, g: 0.9791667, b: 0.06527778, a: 1}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 166, y: 25}
-    position: {x: 333, y: -210}
-    fcuImageType: 2
-    buttonComponent: 0
-    hash: -127755406
-    parentIndex: 3
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 1
-      Name: Sectors
-      Guid: 8a28351871724d5296c48bc759d06e3d
-    - Index: 0
-      Name: Sector 3
-      Guid: 9bda8cb44fed4a6da44e0d2e43560e7d
-    nameHierarchy: Lap Time Details/Sectors/Sector 3
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: 
-    tagReason: children not empty
-    downloadableReason: HasUndownloadableTags
-    generativeReason: not generative
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 0
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 0
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &1394462286
 GameObject:
   m_ObjectHideFlags: 0
@@ -7744,17 +6970,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &1474828894
 Light:
   m_ObjectHideFlags: 0
@@ -7763,14 +6995,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474828891}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -7815,7 +7047,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -7910,17 +7142,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &1482066487
 Light:
   m_ObjectHideFlags: 0
@@ -7929,14 +7167,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482066484}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -7981,7 +7219,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -8215,17 +7453,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &1543798396
 Light:
   m_ObjectHideFlags: 0
@@ -8234,14 +7478,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543798393}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1000
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -8286,7 +7530,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -8336,17 +7580,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &1614375433
 Light:
   m_ObjectHideFlags: 0
@@ -8355,14 +7605,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614375430}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -8407,7 +7657,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -8457,17 +7707,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &1722196993
 Light:
   m_ObjectHideFlags: 0
@@ -8476,14 +7732,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722196990}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 75
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -8528,7 +7784,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -8628,6 +7884,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -8766,6 +8023,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -8902,6 +8160,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -9099,17 +8358,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &1814852524
 Light:
   m_ObjectHideFlags: 0
@@ -9118,14 +8383,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814852521}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -9170,7 +8435,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -9295,17 +8560,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &1839512994
 Light:
   m_ObjectHideFlags: 0
@@ -9314,14 +8585,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839512991}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -9366,7 +8637,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -9575,6 +8846,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -9661,17 +8933,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!108 &1896564041
 Light:
   m_ObjectHideFlags: 0
@@ -9680,14 +8958,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896564038}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 75
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -9732,7 +9010,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -9826,66 +9104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 1:46
-    fileName: Sector 1
-    objectName: Sector 1
-    uitkGuid: de80fe0ff3f945a689c18e2bd20e143f
-    fieldName: _sector1
-    methodName: Sector1
-    className: Sector1
-    ussClassName: style-Sector 1-1-46
-    tags: c900000001000000
-    childIndexes: 09000000
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 1909762577}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0.58255, g: 0.12932292, b: 0.79583335, a: 1}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 166, y: 25}
-    position: {x: 1, y: -210}
-    fcuImageType: 2
-    buttonComponent: 0
-    hash: -1898339222
-    parentIndex: 3
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 1
-      Name: Sectors
-      Guid: 8a28351871724d5296c48bc759d06e3d
-    - Index: 2
-      Name: Sector 1
-      Guid: de80fe0ff3f945a689c18e2bd20e143f
-    nameHierarchy: Lap Time Details/Sectors/Sector 1
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: 
-    tagReason: children not empty
-    downloadableReason: HasUndownloadableTags
-    generativeReason: not generative
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 0
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 0
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!1 &1931392370
 GameObject:
   m_ObjectHideFlags: 0
@@ -9981,6 +9199,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -10117,6 +9336,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -10322,6 +9542,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -10458,6 +9679,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -10606,63 +9828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b42570416bdca4697b2749e5bf8c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    id: 44:6
-    fileName: Lap Times
-    objectName: Lap Times
-    uitkGuid: 8dce8b6a42304b62996ad9970fc3dba8
-    fieldName: _lapTimes
-    methodName: LapTimes
-    className: LapTimes
-    ussClassName: style-Lap Times-44-6
-    tags: c900000001000000
-    childIndexes: 0b0000000c0000000d000000
-    fcuInstance: {fileID: 7551755695688736083}
-    gameObject: {fileID: 2041227824}
-    rootFrameGO: {fileID: 300925070}
-    singleColor: {r: 0, g: 0, b: 0, a: 1}
-    spriteSize: {x: 0, y: 0}
-    size: {x: 498, y: 129}
-    position: {x: 1, y: -80}
-    fcuImageType: 2
-    buttonComponent: 0
-    hash: 2099933574
-    parentIndex: 0
-    hierarchy:
-    - Index: -1
-      Name: Lap Time Details
-      Guid: 77d2faf051f0426997ce2fdb8f4362f3
-    - Index: 2
-      Name: Lap Times
-      Guid: 8dce8b6a42304b62996ad9970fc3dba8
-    nameHierarchy: Lap Time Details/Lap Times
-    spritePath: 
-    link: 
-    humanizedTextPrefabName: 
-    tagReason: children not empty
-    downloadableReason: HasUndownloadableTags
-    generativeReason: not generative
-    downloadAttempsCount: 0
-    angle: -0
-    isDuplicate: 0
-    isMutual: 0
-    isEmpty: 0
-    needDownload: 0
-    needGenerate: 0
-    forceImage: 0
-    isOverlappedByStroke: 0
-    forceContainer: 0
-    isInsideDownloadable: 0
-    ignore: 0
-    hasFontAsset: 0
-    uguiTransformData:
-      anchorMin: {x: 0, y: 0}
-      anchorMax: {x: 0, y: 0}
-      anchoredPosition: {x: 0, y: 0}
-      sizeDelta: {x: 0, y: 0, z: 0}
-      localRotation: {x: 0, y: 0, z: 0, w: 0}
-      localScale: {x: 0, y: 0, z: 0}
-    uxmlPath: 
 --- !u!33 &24923221657698396
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10860,6 +10025,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10881,9 +10048,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &381671904765957382
 BoxCollider:
@@ -11011,7 +10180,6 @@ GameObject:
   - component: {fileID: 1702198761762247957}
   - component: {fileID: 849857698825991782}
   - component: {fileID: 8419162637500507512}
-  - component: {fileID: 8419162637500507513}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11095,6 +10263,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11116,9 +10286,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!23 &666274448867839999
 MeshRenderer:
@@ -11140,6 +10312,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11161,9 +10335,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &686479092618388913
 GameObject:
@@ -11238,6 +10414,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11259,9 +10437,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &744903793160093796
 MonoBehaviour:
@@ -11398,6 +10578,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11419,9 +10601,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1075609964150543348
 GameObject:
@@ -11491,6 +10675,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11512,9 +10698,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1307746742234793494
 MonoBehaviour:
@@ -11564,6 +10752,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11585,9 +10775,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1357629958270664717
 GameObject:
@@ -11628,6 +10820,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11649,9 +10843,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &1556774591373983844
 Transform:
@@ -11806,6 +11002,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11827,9 +11025,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!23 &1878264947591868273
 MeshRenderer:
@@ -11851,6 +11051,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11872,9 +11074,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &1988457217676918369
 Transform:
@@ -12032,7 +11236,6 @@ GameObject:
   - component: {fileID: 7287449291895442391}
   - component: {fileID: 6356953180609339888}
   - component: {fileID: 7551755695688736082}
-  - component: {fileID: 7551755695688736083}
   - component: {fileID: 7551755695688736084}
   m_Layer: 5
   m_Name: Canvas
@@ -12179,6 +11382,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12200,9 +11405,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2597294149553239996
 GameObject:
@@ -12291,6 +11498,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12312,9 +11521,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &2914826499444773665
 BoxCollider:
@@ -12402,6 +11613,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12423,9 +11636,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &3050473224804302283
 BoxCollider:
@@ -12545,6 +11760,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12566,9 +11783,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &3403605952032944156
 MeshFilter:
@@ -12613,6 +11832,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12634,9 +11855,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &3560317919885445275
 MeshFilter:
@@ -12708,6 +11931,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12729,9 +11954,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &3740732464259140984
 Transform:
@@ -12883,6 +12110,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12904,9 +12133,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &4101029519352827512
 Transform:
@@ -12971,6 +12202,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12992,9 +12225,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &4415321716022511280
 Transform:
@@ -13046,6 +12281,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13067,9 +12304,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &4485515885555807318
 Transform:
@@ -13386,6 +12625,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13407,9 +12648,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!23 &5102124504681846176
 MeshRenderer:
@@ -13431,6 +12674,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13452,9 +12697,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &5102124504681846177
 MeshCollider:
@@ -13513,6 +12760,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13534,9 +12783,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!23 &5275537969213342840
 MeshRenderer:
@@ -13558,6 +12809,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13579,9 +12832,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &5308610618206519881
 MeshFilter:
@@ -13633,6 +12888,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13654,9 +12911,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &5352402067983476897
 MeshFilter:
@@ -13751,6 +13010,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13772,9 +13033,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &5670376675728895085
 Transform:
@@ -14008,6 +13271,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14029,9 +13294,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &6525233463302507238
 MeshFilter:
@@ -14181,6 +13448,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14202,9 +13471,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6856201557292865241
 GameObject:
@@ -14383,6 +13654,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14404,9 +13677,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &7148303559276105844
 MeshCollider:
@@ -14450,6 +13725,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14471,9 +13748,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!23 &7190720763676130642
 MeshRenderer:
@@ -14495,6 +13774,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14516,9 +13797,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &7201080344484116653
 Transform:
@@ -14553,6 +13836,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -14649,6 +13933,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14670,9 +13956,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &7450535939150516853
 MeshCollider:
@@ -14721,447 +14009,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7551755695688736083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2295348578380315617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb50b5b4038022744b7d09fe41d03007, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasDrawer:
-    imageDrawer: {}
-    textDrawer: {}
-    autoLayoutDrawer: {}
-    buttonDrawer: {}
-  imageTypeSetter:
-    downloadableIds: []
-    generativeIds: []
-    drawableIds: []
-    noneIds: []
-  settings:
-    mainSettings:
-      uiFramework: 0
-      positioningMode: 0
-      pivotType: 4
-      imageFormat: 0
-      imageScale: 4
-      preserveRatioMode: 2
-      pixelsPerUnit: 100
-      goLayer: 5
-      spritesPath: Assets\Sprites
-      uitkOutputPath: Assets\UITK Output
-      redownloadSprites: 0
-      rawImport: 0
-      windowMode: 0
-      projectUrl: qTluHBPBbEwxMEthT66dA4
-      componentsUrls:
-      - 
-      - 
-      - 
-      - 
-      - 
-    componentSettings:
-      imageComponent: 0
-      shadowComponent: 0
-      textComponent: 1
-      buttonComponent: 0
-      useI2Localization: 0
-    _scriptGeneratorSettings:
-      _isEnabled: 0
-      _namespace: MyNameSpace
-      _outputPath: Assets/GeneratedScripts
-    novaSettings:
-      inputTexture: {fileID: 0}
-    puiSettings:
-      type: 0
-      raycastTarget: 1
-      preserveAspect: 1
-      raycastPadding: {x: 0, y: 0, z: 0, w: 0}
-      maskable: 1
-      falloffDistance: 1
-    mpuikitSettings:
-      type: 0
-      raycastTarget: 1
-      preserveAspect: 1
-      raycastPadding: {x: 0, y: 0, z: 0, w: 0}
-      maskable: 1
-      falloffDistance: 0.5
-    proceduralUISettings:
-      type: 0
-      raycastTarget: 1
-      preserveAspect: 1
-      raycastPadding: {x: 0, y: 0, z: 0, w: 0}
-      maskable: 1
-      falloffDistance: 1
-    unityImageSettings:
-      type: 0
-      raycastTarget: 1
-      preserveAspect: 1
-      raycastPadding: {x: 0, y: 0, z: 0, w: 0}
-      maskable: 1
-    rawImageSettings:
-      type: 0
-      raycastTarget: 1
-      preserveAspect: 1
-      raycastPadding: {x: 0, y: 0, z: 0, w: 0}
-      maskable: 1
-    shapes2D_Settings:
-      type: 0
-      raycastTarget: 1
-      preserveAspect: 1
-      raycastPadding: {x: 0, y: 0, z: 0, w: 0}
-      maskable: 1
-    srSettings:
-      flipX: 0
-      flipY: 0
-      maskInteraction: 0
-      sortPoint: 0
-      sortingLayer: Default
-      nextOrderStep: 10
-    textMeshSettings:
-      autoSize: 0
-      overrideTags: 0
-      wrapping: 1
-      orthographicMode: 1
-      richText: 1
-      raycastTarget: 1
-      parseEscapeCharacters: 1
-      visibleDescender: 1
-      kerning: 1
-      extraPadding: 0
-      overflow: 0
-      horizontalMapping: 0
-      verticalMapping: 0
-      geometrySorting: 0
-      shader: {fileID: 0}
-    unityTextSettings:
-      fontLineSpacing: 1
-      horizontalWrapMode: 0
-      verticalWrapMode: 0
-      bestFit: 1
-    debugSettings:
-      logDefault: 1
-      logSetTag: 1
-      logIsDownloadable: 1
-      logTransform: 1
-      logGameObjectDrawer: 1
-      logComponentDrawer: 1
-      logHashGenerator: 1
-      debugMode: 0
-    prefabSettings:
-      prefabsPath: Assets/Prefabs
-      textPrefabNameType: 0
-    buttonSettings:
-      normalColor: {r: 1, g: 1, b: 1, a: 1}
-      highlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-      pressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-      selectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-      disabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-      colorMultiplier: 1
-      fadeDuration: 0.1
-    dabSettings:
-      blendMode: 0
-      blendIntensity: 1
-  events:
-    onProjectDownloadFail:
-      m_PersistentCalls:
-        m_Calls: []
-    onProjectDownloadStart:
-      m_PersistentCalls:
-        m_Calls: []
-    onProjectDownloaded:
-      m_PersistentCalls:
-        m_Calls: []
-    onImportStart:
-      m_PersistentCalls:
-        m_Calls: []
-    onImportComplete:
-      m_PersistentCalls:
-        m_Calls: []
-    onImportFail:
-      m_PersistentCalls:
-        m_Calls: []
-    onObjectInstantiate:
-      m_PersistentCalls:
-        m_Calls: []
-    onAddComponent:
-      m_PersistentCalls:
-        m_Calls: []
-  prefabCreator:
-    pstructs:
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 4896774443307288009, guid: e8e7d9ec0dc87ed4fa6b40f1be07f1c1, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs: []
-      siblingIndex: 0
-      hash: 1176688591
-      id: 44:34
-      prefabNumber: 0
-      prefabPath: Assets/Prefabs/Lap Time Details/Texts/TextMeshPro Bungee Spice-Normal-40-CenterCenter-Black255
-        1176688591.prefab
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 535509888546418476, guid: 86d4e3fe38dd28841bffcaa20c165c4c, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs:
-      - {fileID: 0}
-      siblingIndex: 3
-      hash: -1151714415
-      id: 44:35
-      prefabNumber: 0
-      prefabPath: Assets/Prefabs/Lap Time Details/Images/Player Name -1151714415.prefab
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 7362939181499841356, guid: 0b3376d20d8fd004d9279e527623519b, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs: []
-      siblingIndex: 2
-      hash: -2130716292
-      id: 1:13
-      prefabNumber: 1
-      prefabPath: Assets/Prefabs/Lap Time Details/Texts/TextMeshPro Bungee Spice-Normal-25-LeftCenter-fill-Black255_stroke-Black255
-        -2130716292.prefab
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 0}
-      instantiatedPrefab: {fileID: 0}
-      childs: []
-      siblingIndex: 1
-      hash: -2130716292
-      id: 1:9
-      prefabNumber: 1
-      prefabPath: 
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 0}
-      instantiatedPrefab: {fileID: 0}
-      childs: []
-      siblingIndex: 0
-      hash: -2130716292
-      id: 1:12
-      prefabNumber: 1
-      prefabPath: 
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 6053489471498113324, guid: a12c6fe88541c834a9293779a72abb68, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs:
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      siblingIndex: 2
-      hash: -280900410
-      id: 44:6
-      prefabNumber: 0
-      prefabPath: Assets/Prefabs/Lap Time Details/Images/Lap Times -280900410.prefab
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 3638880710542235498, guid: 9fd85568d7b528d4e963ccb498c13a9c, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs: []
-      siblingIndex: 0
-      hash: -20532103
-      id: 1:28
-      prefabNumber: 2
-      prefabPath: Assets/Prefabs/Lap Time Details/Texts/TextMeshPro Bungee Spice-Normal-16-CenterCenter-fill-Black255_stroke-Black255
-        -20532103.prefab
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 4237242014724655631, guid: d44b70c7a96313e47922d5b0560e2292, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs:
-      - {fileID: 0}
-      siblingIndex: 2
-      hash: -957392534
-      id: 1:46
-      prefabNumber: 0
-      prefabPath: Assets/Prefabs/Lap Time Details/Images/Sector 1 -957392534.prefab
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 0}
-      instantiatedPrefab: {fileID: 0}
-      childs: []
-      siblingIndex: 0
-      hash: -20532103
-      id: 1:30
-      prefabNumber: 2
-      prefabPath: 
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 3459147867204260455, guid: 2eb2d2c90a94e364298f13b3fcb32fec, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs:
-      - {fileID: 0}
-      siblingIndex: 1
-      hash: 958988902
-      id: 1:47
-      prefabNumber: 0
-      prefabPath: Assets/Prefabs/Lap Time Details/Images/Sector 2 958988902.prefab
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 0}
-      instantiatedPrefab: {fileID: 0}
-      childs: []
-      siblingIndex: 0
-      hash: -20532103
-      id: 1:32
-      prefabNumber: 2
-      prefabPath: 
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 8677305734668351767, guid: d587bb05df5107043ab62921973bf103, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs:
-      - {fileID: 0}
-      siblingIndex: 0
-      hash: -1640880398
-      id: 1:48
-      prefabNumber: 0
-      prefabPath: Assets/Prefabs/Lap Time Details/Images/Sector 3 -1640880398.prefab
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 6438670857062874462, guid: ee42934e48000504cb0ef80cf5aade85, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs:
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      siblingIndex: 1
-      hash: 1042357721
-      id: 45:43
-      prefabNumber: 0
-      prefabPath: Assets/Prefabs/Lap Time Details/Images/Sectors 1042357721.prefab
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 145344599515530686, guid: dc7a0fa7cd4468c4f8aadc53767dc71f, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs: []
-      siblingIndex: 0
-      hash: 2009547076
-      id: 44:41
-      prefabNumber: 0
-      prefabPath: Assets/Prefabs/Lap Time Details/Texts/TextMeshPro Bungee Spice-Normal-32-LeftCenter-fill-Black255_stroke-Black255
-        2009547076.prefab
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 4057488340940705359, guid: 845aeac4720dbf14c95dfe847baa098b, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs:
-      - {fileID: 0}
-      siblingIndex: 0
-      hash: 680620497
-      id: 44:42
-      prefabNumber: 0
-      prefabPath: Assets/Prefabs/Lap Time Details/Images/Delta 680620497.prefab
-    - current: {fileID: 0}
-      parent: {fileID: 0}
-      prefab: {fileID: 6867363536473357681, guid: 2cc9b7df1a64c14488482f9d28c85fb7, type: 3}
-      instantiatedPrefab: {fileID: 0}
-      childs:
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      siblingIndex: 6
-      hash: -331787209
-      id: 44:37
-      prefabNumber: 0
-      prefabPath: Assets/Prefabs/Lap Time Details/Other/Lap Time Details -331787209.prefab
-  inspectorDrawer:
-    _selectableHambItems:
-    - id: 0:0
-      fade:
-        m_Target: 0
-        speed: 4
-        m_Value: 0
-      checkBoxValue:
-        _value: 1
-        _temp: 1
-      guiContent:
-        m_Text: FRAMES TO IMPORT (1/1)
-        m_Image: {fileID: 0}
-        m_Tooltip: 
-        m_TextWithWhitespace: "FRAMES TO IMPORT (1/1)\u200B"
-      buttonGuiContent:
-        m_Text: 
-        m_Image: {fileID: 0}
-        m_Tooltip: 
-        m_TextWithWhitespace: 
-    _doc:
-      name: Document
-      selected: 1
-      childs:
-      - name: Page 1
-        selected: 1
-        childs:
-        - name: Lap Time Details
-          selected: 1
-          childs: []
-  requestSender:
-    pbarProgress: 0
-    pbarBytes: 0
-    _requestCount: 0
-    _timeoutActive: 0
-    _remainingTime: 0
-  fontDownloader:
-    tmpDownloader:
-      samplingPointSize: 90
-      atlasPadding: 5
-      renderMode: 4165
-      atlasWidth: 512
-      atlasHeight: 512
-      atlasPopulationMode: 1
-      enableMultiAtlasSupport: 1
-      unityTmpFonts:
-        missing: []
-        existing:
-        - fontSubset: 1
-          fontMetadata:
-            family: Bungee Spice
-            weight: 400
-            fontStyle: 0
-          bytes: 
-          font: {fileID: 11400000, guid: c8dff4db1595d274bbcb249fec460a44, type: 2}
-    gFontsApi:
-      fontSubsets: 1
-  fontLoader:
-    ttfFontsPath: Assets/Fonts/Ttf
-    tmpFontsPath: Assets/Fonts/Sdf
-    ttfFonts:
-    - {fileID: 12800000, guid: 077d91266040ff046923432ea6e0b36f, type: 3}
-    tmpFonts:
-    - {fileID: 11400000, guid: c8dff4db1595d274bbcb249fec460a44, type: 2}
-  tools:
-    needShowRateMe: 1
-  currentProject:
-    lastImportedFrames: []
-    localPrefabs: []
-  spriteGenerator:
-    rectTransform: {fileID: 0}
-    meshRenderer: {fileID: 0}
-    meshFilter: {fileID: 0}
-    camera: {fileID: 0}
-  guid: 3523e927
 --- !u!114 &7551755695688736084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15344,6 +14191,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15365,9 +14214,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &7980459763181405897
 MeshCollider:
@@ -15503,6 +14354,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15524,9 +14377,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &8238228281655525190
 MeshCollider:
@@ -15630,6 +14485,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15651,9 +14508,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &8382393206073197972
 Transform:
@@ -15727,7 +14586,6 @@ MonoBehaviour:
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
-  m_Version: 2
   m_TaaSettings:
     m_Quality: 3
     m_FrameInfluence: 0.1
@@ -15735,19 +14593,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &8419162637500507513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 542255624118858361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  m_Version: 2
 --- !u!4 &8432076375095389416
 Transform:
   m_ObjectHideFlags: 0
@@ -15783,6 +14629,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15804,9 +14652,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &8503319167059022554
 MeshCollider:
@@ -15850,6 +14700,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15871,9 +14723,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &8508179158992851270
 MeshFilter:
@@ -15911,6 +14765,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15932,9 +14788,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &8588961614637322292
 MeshCollider:
@@ -15978,6 +14836,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15999,9 +14859,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!23 &8619574626607890729
 MeshRenderer:
@@ -16023,6 +14885,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16044,9 +14908,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!23 &8638155673677832442
 MeshRenderer:
@@ -16068,6 +14934,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16089,9 +14957,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &8638155673677832443
 MeshCollider:
@@ -16248,6 +15118,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16269,9 +15141,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &9011184339736903846
 MeshFilter:
@@ -16329,6 +15203,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16350,9 +15226,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &9149844877602988939
 MeshCollider:

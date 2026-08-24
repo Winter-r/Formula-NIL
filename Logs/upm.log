@@ -1,0 +1,374 @@
+[2026-08-24T14:55:02.086Z][INFO] Command-line: 'C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.2f1\\Editor\\Data\\Resources\\PackageManager\\Server\\UnityPackageManager.exe' server -s 5076 --ipc-path Unity-Upm-5076 -l 2 --log-file 'C:\\Users\\moham\\My Stuff\\Development\\Formula-NIL/Logs/upm.log'
+[2026-08-24T14:55:02.124Z][INFO] IPC server started (IPC path=Unity-Upm-5076).
+[2026-08-24T14:55:02.124Z][INFO] Hint: To connect to this UPM instance, launch Unity with the command-line parameter -upmIpcPath Upm-5076.
+[2026-08-24T14:57:12.759Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T14:57:13.003Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T14:57:13.014Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-08-24T14:57:13.148Z][INFO] project:update-dependencies <-- Request received
+params: {}
+[2026-08-24T14:57:13.312Z][INFO] project:update-dependencies --> 200 (164 ms)
+[2026-08-24T14:57:13.344Z][INFO] config:project:get-registries --> 200 (330 ms)
+[2026-08-24T14:57:13.352Z][INFO] project:resolve-packages <-- Request received
+params: {}
+[2026-08-24T14:57:13.725Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T14:57:13.725Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T14:57:13.763Z][INFO] project:list-packages --> 200 (760 ms)
+[2026-08-24T14:57:13.764Z][INFO] project:list-packages --> 200 (1005 ms)
+[2026-08-24T14:57:47.027Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T14:57:47.111Z][WARN] Requested version [1.0.3] for package [com.unity.settings-manager] overridden by minimum version [2.1.1].
+[2026-08-24T14:57:47.111Z][WARN] Requested version [0.1.6-preview.2] for package [com.unity.nuget.mono-cecil] overridden by minimum version [1.11.6].
+[2026-08-24T14:57:47.111Z][WARN] Requested version [4.9.3] for package [com.unity.searcher] overridden by minimum version [4.9.4].
+[2026-08-24T14:57:47.111Z][WARN] Requested version [1.8.14] for package [com.unity.burst] overridden by minimum version [1.8.29].
+[2026-08-24T14:57:47.111Z][WARN] Requested version [3.2.0] for package [com.unity.test-framework.performance] overridden by minimum version [3.5.0].
+[2026-08-24T14:57:47.114Z][INFO] project:resolve-packages --> 200 (33762 ms)
+[2026-08-24T15:00:18.626Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:00:18.704Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:00:19.760Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:00:19.761Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:00:19.764Z][INFO] project:list-packages --> 200 (1060 ms)
+[2026-08-24T15:00:19.773Z][INFO] project:list-packages --> 200 (1147 ms)
+[2026-08-24T15:00:20.456Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:00:20.681Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:00:20.687Z][INFO] project:list-packages --> 200 (231 ms)
+[2026-08-24T15:00:20.742Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-08-24T15:00:20.747Z][INFO] config:project:get-registries --> 200 (5 ms)
+[2026-08-24T15:03:25.539Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:03:26.776Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:03:26.786Z][INFO] project:list-packages --> 200 (1269 ms)
+[2026-08-24T15:03:39.994Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:03:40.481Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:03:40.487Z][INFO] project:list-packages --> 200 (493 ms)
+[2026-08-24T15:03:43.538Z][INFO] packages:get-all-packageinfo <-- Request received
+params: {}
+[2026-08-24T15:03:43.610Z][INFO] packages:get-all-packageinfo <-- Request received
+params: {}
+[2026-08-24T15:03:46.784Z][INFO] packages:get-all-packageinfo --> 200 (3175 ms)
+[2026-08-24T15:03:47.891Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.addressables@2.9.1"
+}
+[2026-08-24T15:03:47.916Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.ads.ios-support@1.0.1"
+}
+[2026-08-24T15:03:47.917Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.learn.iet-framework@5.0.4"
+}
+[2026-08-24T15:03:47.953Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.learn.iet-framework.authoring@1.5.4"
+}
+[2026-08-24T15:03:47.954Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.microsoft.gdk@1.6.0"
+}
+[2026-08-24T15:03:47.955Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.microsoft.gdk.tools@1.6.0"
+}
+[2026-08-24T15:03:48.016Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.polyspatial.extensions@3.1.5"
+}
+[2026-08-24T15:03:48.017Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.polyspatial.visionos@3.1.5"
+}
+[2026-08-24T15:03:48.018Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.project-auditor-rules@1.0.3"
+}
+[2026-08-24T15:03:48.018Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.scriptablebuildpipeline@2.6.1"
+}
+[2026-08-24T15:03:48.019Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.services.friends@1.1.1"
+}
+[2026-08-24T15:03:48.019Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.services.moderation@1.0.2"
+}
+[2026-08-24T15:03:48.127Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.services.multiplayer@2.2.4"
+}
+[2026-08-24T15:03:48.128Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.androidxr-openxr@1.3.1"
+}
+[2026-08-24T15:03:48.128Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.arcore@6.5.0"
+}
+[2026-08-24T15:03:48.129Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.arfoundation@6.5.0"
+}
+[2026-08-24T15:03:48.130Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.arkit@6.5.0"
+}
+[2026-08-24T15:03:48.131Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.compositionlayers@2.4.0"
+}
+[2026-08-24T15:03:48.131Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.hands@1.8.1"
+}
+[2026-08-24T15:03:48.132Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.interaction.toolkit@3.5.1"
+}
+[2026-08-24T15:03:49.670Z][INFO] packages:get-packageinfo --> 200 (1651 ms)
+[2026-08-24T15:03:49.754Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.management@4.5.4"
+}
+[2026-08-24T15:03:49.880Z][INFO] packages:get-packageinfo --> 200 (1861 ms)
+[2026-08-24T15:03:49.944Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.openxr@1.17.1"
+}
+[2026-08-24T15:03:50.042Z][INFO] packages:get-packageinfo --> 200 (1915 ms)
+[2026-08-24T15:03:50.121Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.visionos@3.1.5"
+}
+[2026-08-24T15:03:50.467Z][ERROR] Error: Request [GET https://packages.unity.com/com.unity.2d.tooling] failed with status code [503]
+[2026-08-24T15:03:50.534Z][INFO] packages:get-packageinfo --> 200 (2618 ms)
+[2026-08-24T15:03:50.892Z][ERROR] Error: Request [GET https://packages.unity.com/com.unity.ide.visualstudio] failed with status code [503]
+[2026-08-24T15:03:50.984Z][ERROR] Error: Request [GET https://packages.unity.com/com.unity.microsoft.gdk] failed with status code [503]
+[2026-08-24T15:03:51.032Z][ERROR] Error: Request [GET https://packages.unity.com/com.unity.microsoft.gdk.tools] failed with status code [503]
+[2026-08-24T15:03:51.056Z][INFO] packages:get-packageinfo --> 200 (3139 ms)
+[2026-08-24T15:03:51.237Z][ERROR] Error: Request [GET https://packages.unity.com/com.unity.learn.iet-framework.authoring] failed with status code [503]
+[2026-08-24T15:03:51.279Z][ERROR] Error: Request [GET https://packages.unity.com/com.unity.performance.profile-analyzer] failed with status code [503]
+[2026-08-24T15:03:51.284Z][INFO] packages:get-packageinfo --> 200 (3267 ms)
+[2026-08-24T15:03:51.285Z][INFO] packages:get-packageinfo --> 200 (3269 ms)
+[2026-08-24T15:03:51.455Z][INFO] packages:get-packageinfo --> 200 (3564 ms)
+[2026-08-24T15:03:51.491Z][INFO] packages:get-packageinfo --> 200 (3473 ms)
+[2026-08-24T15:03:51.509Z][ERROR] Error: Request [GET https://packages.unity.com/com.unity.profiling.core] failed with status code [503]
+[2026-08-24T15:03:51.717Z][ERROR] Error: Request [GET https://packages.unity.com/com.unity.recorder] failed with status code [503]
+[2026-08-24T15:03:51.773Z][ERROR] Error: Request [GET https://packages.unity.com/com.unity.splines] failed with status code [503]
+[2026-08-24T15:03:51.816Z][INFO] packages:get-packageinfo --> 200 (3798 ms)
+[2026-08-24T15:03:51.843Z][INFO] packages:get-packageinfo --> 200 (3712 ms)
+[2026-08-24T15:03:52.020Z][INFO] packages:get-packageinfo --> 200 (3892 ms)
+[2026-08-24T15:03:52.044Z][INFO] packages:get-packageinfo --> 200 (3916 ms)
+[2026-08-24T15:03:52.119Z][INFO] packages:get-packageinfo --> 200 (2366 ms)
+[2026-08-24T15:03:52.137Z][INFO] packages:get-packageinfo --> 200 (4007 ms)
+[2026-08-24T15:03:52.179Z][INFO] packages:get-packageinfo --> 200 (4048 ms)
+[2026-08-24T15:03:52.181Z][INFO] packages:get-packageinfo --> 200 (2060 ms)
+[2026-08-24T15:03:52.190Z][INFO] packages:get-packageinfo --> 200 (2247 ms)
+[2026-08-24T15:03:52.249Z][INFO] packages:get-packageinfo --> 200 (4120 ms)
+[2026-08-24T15:03:52.272Z][ERROR] Error: Request [GET https://packages.unity.com/com.unity.2d.tooling] failed with status code [503]
+[2026-08-24T15:03:52.297Z][INFO] packages:get-packageinfo --> 200 (4165 ms)
+[2026-08-24T15:03:52.378Z][INFO] packages:get-packageinfo --> 200 (4424 ms)
+[2026-08-24T15:03:52.443Z][INFO] packages:get-packageinfo --> 200 (4490 ms)
+[2026-08-24T15:03:52.461Z][INFO] packages:get-packageinfo --> 200 (4506 ms)
+[2026-08-24T15:03:52.961Z][INFO] packages:get-all-packageinfo --> 200 (9423 ms)
+[2026-08-24T15:03:53.219Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.meta-openxr@2.5.1"
+}
+[2026-08-24T15:03:53.268Z][INFO] packages:get-packageinfo --> 200 (49 ms)
+[2026-08-24T15:10:22.895Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:10:23.233Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:10:23.238Z][INFO] project:list-packages --> 200 (343 ms)
+[2026-08-24T15:10:23.537Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:10:23.761Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:10:23.775Z][INFO] project:list-packages --> 200 (238 ms)
+[2026-08-24T15:10:23.823Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-08-24T15:10:23.831Z][INFO] config:project:get-registries --> 200 (8 ms)
+[2026-08-24T15:10:56.141Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:10:56.353Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:10:56.357Z][INFO] project:list-packages --> 200 (216 ms)
+[2026-08-24T15:10:56.747Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:10:56.951Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:10:56.966Z][INFO] project:list-packages --> 200 (219 ms)
+[2026-08-24T15:10:56.980Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-08-24T15:10:56.985Z][INFO] config:project:get-registries --> 200 (5 ms)
+[2026-08-24T15:12:33.994Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:12:34.241Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:12:34.244Z][INFO] project:list-packages --> 200 (252 ms)
+[2026-08-24T15:12:34.569Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:12:34.781Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:12:34.787Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-08-24T15:12:34.793Z][INFO] project:list-packages --> 200 (224 ms)
+[2026-08-24T15:12:34.795Z][INFO] config:project:get-registries --> 200 (8 ms)
+[2026-08-24T15:12:43.596Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:12:43.625Z][INFO] packages:get-all-packageinfo <-- Request received
+params: {}
+[2026-08-24T15:12:43.639Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:12:43.654Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:12:49.496Z][INFO] packages:get-all-packageinfo --> 200 (5870 ms)
+[2026-08-24T15:12:49.723Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:12:49.728Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:12:49.729Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:12:49.735Z][INFO] project:list-packages --> 200 (6139 ms)
+[2026-08-24T15:12:49.736Z][INFO] project:list-packages --> 200 (6082 ms)
+[2026-08-24T15:12:49.737Z][INFO] project:list-packages --> 200 (6098 ms)
+[2026-08-24T15:13:14.579Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:13:14.687Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:13:14.692Z][INFO] project:list-packages --> 200 (113 ms)
+[2026-08-24T15:13:14.924Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:13:15.046Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:13:15.053Z][INFO] project:list-packages --> 200 (129 ms)
+[2026-08-24T15:13:15.094Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-08-24T15:13:15.098Z][INFO] config:project:get-registries --> 200 (4 ms)
+[2026-08-24T15:15:38.992Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:15:39.196Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:15:39.201Z][INFO] project:list-packages --> 200 (210 ms)
+[2026-08-24T15:15:39.542Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:15:39.732Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:15:39.738Z][INFO] project:list-packages --> 200 (196 ms)
+[2026-08-24T15:15:39.744Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-08-24T15:15:39.748Z][INFO] config:project:get-registries --> 200 (4 ms)
+[2026-08-24T15:18:13.957Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:18:14.236Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:18:14.241Z][INFO] project:list-packages --> 200 (284 ms)
+[2026-08-24T15:18:14.517Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:18:14.735Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-08-24T15:18:14.752Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:18:14.757Z][INFO] project:list-packages --> 200 (240 ms)
+[2026-08-24T15:18:14.758Z][INFO] config:project:get-registries --> 200 (23 ms)
+[2026-08-24T15:20:14.492Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:20:14.749Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:20:14.755Z][INFO] project:list-packages --> 200 (263 ms)
+[2026-08-24T15:20:15.070Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:20:15.282Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:20:15.291Z][INFO] project:list-packages --> 200 (221 ms)
+[2026-08-24T15:20:15.315Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-08-24T15:20:15.321Z][INFO] config:project:get-registries --> 200 (6 ms)
+[2026-08-24T15:21:21.764Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:21:21.953Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:21:21.957Z][INFO] project:list-packages --> 200 (193 ms)
+[2026-08-24T15:21:22.344Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:21:22.547Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:21:22.555Z][INFO] project:list-packages --> 200 (211 ms)
+[2026-08-24T15:21:22.581Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-08-24T15:21:22.590Z][INFO] config:project:get-registries --> 200 (9 ms)
+[2026-08-24T15:25:29.658Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:25:29.864Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:25:29.868Z][INFO] project:list-packages --> 200 (210 ms)
+[2026-08-24T15:25:30.219Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-08-24T15:25:30.424Z][WARN] Package [com.unity.package-validation-suite] has a non-valid signature — status: Unsigned, reason: .signature file could not be located in the package, errorCode: ERR_LEGACY_SIGNATURE_FILE_NOT_FOUND
+[2026-08-24T15:25:30.430Z][INFO] project:list-packages --> 200 (211 ms)
+[2026-08-24T15:25:30.447Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-08-24T15:25:30.452Z][INFO] config:project:get-registries --> 200 (5 ms)
+[2026-08-24T15:27:00.153Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.dedicated-server"
+}
+[2026-08-24T15:27:00.163Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.purchasing"
+}
+[2026-08-24T15:27:00.178Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.openxr"
+}
+[2026-08-24T15:27:00.193Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.meta.xr.sdk.all"
+}
+[2026-08-24T15:27:00.207Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.meta.xr.sdk.core"
+}
+[2026-08-24T15:27:00.217Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.meta.xr.sdk.audio"
+}
+[2026-08-24T15:27:00.227Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.meta.xr.sdk.haptics"
+}
+[2026-08-24T15:27:00.241Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.meta.xr.sdk.interaction"
+}
+[2026-08-24T15:27:00.252Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.meta.xr.sdk.interaction.ovr"
+}
+[2026-08-24T15:27:00.266Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.meta.xr.sdk.platform"
+}
+[2026-08-24T15:27:00.281Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.meta.xr.sdk.voice"
+}
+[2026-08-24T15:27:00.295Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.meta.xr.simulator"
+}
+[2026-08-24T15:27:00.309Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.meta.xr.mrutilitykit"
+}
+[2026-08-24T15:27:00.324Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.xr.androidxr-openxr"
+}
+[2026-08-24T15:27:00.338Z][INFO] packages:get-packageinfo <-- Request received
+params: {
+  "packageId": "com.unity.android.render-service"
+}
+[2026-08-24T15:27:01.593Z][INFO] packages:get-packageinfo --> 200 (1400 ms)
+[2026-08-24T15:27:01.595Z][INFO] packages:get-packageinfo --> 200 (1378 ms)
+[2026-08-24T15:27:01.596Z][INFO] packages:get-packageinfo --> 200 (1344 ms)
+[2026-08-24T15:27:01.637Z][INFO] packages:get-packageinfo --> 200 (1342 ms)
+[2026-08-24T15:27:01.650Z][INFO] packages:get-packageinfo --> 200 (1423 ms)
+[2026-08-24T15:27:01.651Z][INFO] packages:get-packageinfo --> 200 (1385 ms)
+[2026-08-24T15:27:01.652Z][INFO] packages:get-packageinfo --> 200 (1410 ms)
+[2026-08-24T15:27:01.746Z][INFO] packages:get-packageinfo --> 200 (1539 ms)
+[2026-08-24T15:27:01.757Z][INFO] packages:get-packageinfo --> 200 (1476 ms)
+[2026-08-24T15:27:01.806Z][INFO] packages:get-packageinfo --> 200 (1643 ms)
+[2026-08-24T15:27:01.807Z][INFO] packages:get-packageinfo --> 200 (1654 ms)
+[2026-08-24T15:27:01.809Z][INFO] packages:get-packageinfo --> 404 (1471 ms)
+[2026-08-24T15:27:01.812Z][INFO] packages:get-packageinfo --> 200 (1503 ms)
+[2026-08-24T15:27:01.901Z][INFO] packages:get-packageinfo --> 200 (1577 ms)
+[2026-08-24T15:27:01.904Z][INFO] packages:get-packageinfo --> 200 (1726 ms)

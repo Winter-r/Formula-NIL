@@ -2,11 +2,7 @@
   <Project Path="DA_Shared.csproj" />
   <Project Path="Boxophobic.Utils.Editor.csproj" />
   <Project Path="DA_Editor.csproj" />
-  <Project Path="FMODUnity.csproj" />
-  <Project Path="FMODUnityResonance.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Boxophobic.Utils.Scripts.csproj" />
-  <Project Path="FMODUnityEditor.csproj" />
   <Project Path="Boxophobic.SkyboxCubemapExtended.Editor.csproj" />
-  <Project Path="FMODUnityResonanceEditor.csproj" />
 </Solution>

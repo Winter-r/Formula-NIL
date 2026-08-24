@@ -10,18 +10,18 @@ namespace DA_Assets.Shared
         where T2 : Editor
         where T3 : MonoBehaviour
     {
-        private static Dictionary<int, T1> instances = new Dictionary<int, T1>();
+        private static Dictionary<EntityId, T1> instances = new Dictionary<EntityId, T1>();
 
         public static T1 GetInstance(T2 inspector, T3 monoBeh, Vector2 windowSize, bool fixedSize)
         {
             T1 result;
 
-            instances.TryGetValue(monoBeh.GetInstanceID(), out result);
+            instances.TryGetValue(monoBeh.GetEntityId(), out result);
 
             if (result.IsDefault())
             {
                 result = ScriptableObject.CreateInstance<T1>();
-                instances[monoBeh.GetInstanceID()] = result;
+                instances[monoBeh.GetEntityId()] = result;
             }
 
             result.Inspector = inspector;

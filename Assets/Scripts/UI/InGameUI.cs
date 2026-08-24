@@ -7,7 +7,7 @@ public class InGameUI : MonoBehaviour
 
 	private void Start()
 	{
-		lapTimeUI.SetActive(true);
+		// lapTimeUI.SetActive(false);
 		guageClusterUI.SetActive(true);
 	}
 
@@ -15,12 +15,12 @@ public class InGameUI : MonoBehaviour
 	{
 		if (CarInputManager.uiInput)
 		{
-			lapTimeUI.SetActive(false);
+			// lapTimeUI.SetActive(false);
 			guageClusterUI.SetActive(false);
 		}
 		else
 		{
-			lapTimeUI.SetActive(true);
+			// lapTimeUI.SetActive(true);
 			guageClusterUI.SetActive(true);
 		}
 	}

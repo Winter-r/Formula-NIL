@@ -1,11 +1,11 @@
 using UnityEngine;
-using FMODUnity;
+// using FMODUnity;
 using System.Collections;
 
 public class EngineAudioManager : MonoBehaviour
 {
 	private CarLocomotionManager carLocomotionManager;
-	[SerializeField] private StudioEventEmitter engineSoundEmitter;
+	// [SerializeField] private StudioEventEmitter engineSoundEmitter;
 
 	private void Awake()
 	{
@@ -22,7 +22,7 @@ public class EngineAudioManager : MonoBehaviour
 
 		float rpm = Mathf.Lerp(minRPM, maxRPM, speed);
 
-		engineSoundEmitter.SetParameter("RPM", rpm);
+		// engineSoundEmitter.SetParameter("RPM", rpm);
 	}
 
 	public IEnumerator StartEngine()
